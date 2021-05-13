@@ -83,18 +83,6 @@ async function getCollections(collectionsConfig = {}) {
         });
     }
     return result;
-    
-    
-        // const files = await Promise.all(keys.map(async (key) => {
-        //     return readdir(path.join('.', collectionsConfig[key].path));
-        // }));
-
-    // return keys.reduce(async (memo, key) => {
-    //     const files = await readdir(path.join('.', collectionsConfig[key].path));
-    //     // path = /_posts
-    //     memo[key] = files;
-    //     return memo;
-    // }, {});
 }
 
 await mkdir('./_cloudcannon', { recursive: true });
