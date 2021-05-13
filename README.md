@@ -1,0 +1,2 @@
+# ssg-reader
+Reads SSGs
