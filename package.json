@@ -1,0 +1,26 @@
+{
+  "name": "ssg-reader",
+  "version": "0.0.1",
+  "description": "SSG Reader",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "npm ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "ssg-reader": "index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CloudCannon/ssg-reader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CloudCannon/ssg-reader/issues"
+  },
+  "homepage": "https://github.com/CloudCannon/ssg-reader#readme",
+  "dependencies": {
+    "commander": "^7.2.0"
+  }
+}
