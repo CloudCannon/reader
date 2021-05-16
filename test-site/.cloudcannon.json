@@ -1,0 +1,16 @@
+{
+    "source": {},
+    "timezone": "",
+    "base-url": "",
+    "collections": {
+        "posts": {
+            "path": "posts"
+        }
+    },
+    "comments": {},
+    "input-options": {},
+    "paths": {},
+    "array-strictures": {},
+    "select-data": {},
+    "generator": {}
+}

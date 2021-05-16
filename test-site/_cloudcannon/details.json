@@ -1,51 +1,11 @@
 {
-  "time": "2021-05-13T03:24:04.798Z",
+  "time": "2021-05-16T23:24:09.519Z",
   "cloudcannon": {
     "name": "ssg-reader",
     "version": "0.0.1"
   },
-  "generator": {
-    "name": "jekyll",
-    "version": "4.1.1",
-    "environment": "development",
-    "metadata": {
-      "markdown": "kramdown",
-      "kramdown": {
-        "auto_ids": true,
-        "toc_levels": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ],
-        "entity_output": "as_char",
-        "smart_quotes": "lsquo,rsquo,ldquo,rdquo",
-        "input": "GFM",
-        "hard_wrap": false,
-        "guess_lang": true,
-        "footnote_nr": 1,
-        "show_warnings": false
-      }
-    }
-  },
-  "collections": {
-    "posts": [
-      {
-        "path": "_posts/2016-08-10-business-mergers.md",
-        "collection": "posts"
-      },
-      {
-        "path": "_posts/2016-11-11-real-estate-flipping.md",
-        "collection": "posts"
-      },
-      {
-        "path": "_posts/_defaults.md",
-        "collection": "posts"
-      }
-    ]
-  },
+  "generator": {},
+  "collections": {},
   "pages": [],
   "static": []
 }
