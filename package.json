@@ -4,7 +4,7 @@
   "description": "SSG Reader",
   "main": "index.mjs",
   "scripts": {
-    "start": "npm ",
+    "start": "npm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {

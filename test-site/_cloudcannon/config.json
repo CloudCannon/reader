@@ -1,16 +1,32 @@
 {
-  "source": {},
-  "timezone": "",
+  "time": "2021-05-17T04:15:42.185Z",
+  "cloudcannon": {
+    "name": "ssg-reader",
+    "version": "0.0.1"
+  },
+  "source": "",
+  "timezone": "Etc/UTC",
   "base-url": "",
   "collections": {
     "posts": {
-      "path": "posts"
+      "path": "_posts"
+    },
+    "news": {
+      "path": "_news"
     }
   },
   "comments": {},
   "input-options": {},
-  "paths": {},
-  "array-strictures": {},
+  "editor": {},
+  "source-editor": {},
+  "array-structures": {},
   "select-data": {},
-  "generator": {}
+  "paths": {
+    "uploads": "Key",
+    "data": "",
+    "pages": "",
+    "collections": "",
+    "includes": "",
+    "layouts": ""
+  }
 }

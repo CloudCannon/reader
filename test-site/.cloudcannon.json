@@ -1,16 +1,25 @@
 {
-    "source": {},
-    "timezone": "",
     "base-url": "",
+    "loader": {
+        "*.html": "html",
+        "*.md": "front-matter",
+        "*.mdx": "jsx"
+    },
     "collections": {
         "posts": {
-            "path": "posts"
+            "path": "_posts"
+        },
+        "news": {
+            "path": "_news"
         }
     },
     "comments": {},
     "input-options": {},
-    "paths": {},
     "array-strictures": {},
     "select-data": {},
-    "generator": {}
+    "generator": {},
+    "source-editor": {},
+    "paths": {
+        "uploads": "Key"
+    }
 }

@@ -1,11 +1,52 @@
 {
-  "time": "2021-05-16T23:24:09.519Z",
+  "time": "2021-05-17T04:15:42.195Z",
   "cloudcannon": {
     "name": "ssg-reader",
     "version": "0.0.1"
   },
   "generator": {},
-  "collections": {},
+  "collections": {
+    "posts": [
+      {
+        "path": "_posts/2016-08-10-business-mergers.md",
+        "collection": "posts",
+        "ext": ".md",
+        "loader": "hello"
+      },
+      {
+        "path": "_posts/2016-11-11-real-estate-flipping.md",
+        "collection": "posts",
+        "ext": ".md",
+        "loader": "hello"
+      },
+      {
+        "path": "_posts/_defaults.md",
+        "collection": "posts",
+        "ext": ".md",
+        "loader": "hello"
+      }
+    ],
+    "news": [
+      {
+        "path": "_news/2016-08-10-business-mergers.md",
+        "collection": "news",
+        "ext": ".md",
+        "loader": "hello"
+      },
+      {
+        "path": "_news/2016-11-11-real-estate-flipping.md",
+        "collection": "news",
+        "ext": ".md",
+        "loader": "hello"
+      },
+      {
+        "path": "_news/_defaults.md",
+        "collection": "news",
+        "ext": ".md",
+        "loader": "hello"
+      }
+    ]
+  },
   "pages": [],
   "static": []
 }
