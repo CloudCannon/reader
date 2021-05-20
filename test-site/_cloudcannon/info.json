@@ -1,0 +1,115 @@
+{
+  "base-url": "",
+  "collections": {
+    "posts": {
+      "path": "_posts",
+      "loader": {}
+    },
+    "news": {
+      "path": "_news",
+      "loader": {}
+    }
+  },
+  "comments": {},
+  "input-options": {},
+  "array-strictures": {},
+  "select-data": {},
+  "generator": {},
+  "source-editor": {},
+  "paths": {
+    "uploads": "Key"
+  },
+  "time": "2021-05-20T05:20:35.113Z",
+  "cloudcannon": {
+    "name": "ssg-reader-ts",
+    "version": "0.0.1"
+  },
+  "posts": {
+    "posts": [
+      {
+        "path": "_posts/2016-08-10-business-mergers.md",
+        "collection": "posts",
+        "ext": ".md",
+        "loader": "gray-matter",
+        "title": "Business Mergers",
+        "date": "2016-08-10T00:00:00.000Z",
+        "categories": [
+          "Business"
+        ],
+        "author_staff_member": "jane-doe",
+        "image": "https://unsplash.it/600/450?image=737&a=.png",
+        "large_header": false
+      },
+      {
+        "path": "_posts/2016-11-11-real-estate-flipping.md",
+        "collection": "posts",
+        "ext": ".md",
+        "loader": "gray-matter",
+        "title": "Real Estate Flipping",
+        "date": "2016-11-11T00:00:00.000Z",
+        "categories": [
+          "Property"
+        ],
+        "author_staff_member": "john-doe",
+        "image": "https://unsplash.it/600/450?image=448&a=.png",
+        "large_header": false
+      },
+      {
+        "path": "_posts/_defaults.md",
+        "collection": "posts",
+        "ext": ".md",
+        "loader": "gray-matter",
+        "title": null,
+        "date": null,
+        "categories": null,
+        "author_staff_member": null,
+        "image": "https://placehold.it/600/450?a=.png",
+        "large_header": false
+      }
+    ]
+  },
+  "news": {
+    "news": [
+      {
+        "path": "_news/2016-08-10-business-mergers.md",
+        "collection": "news",
+        "ext": ".md",
+        "loader": "gray-matter",
+        "title": "Business Mergers",
+        "date": "2016-08-10T00:00:00.000Z",
+        "categories": [
+          "Business"
+        ],
+        "author_staff_member": "jane-doe",
+        "image": "https://unsplash.it/600/450?image=737&a=.png",
+        "large_header": false
+      },
+      {
+        "path": "_news/2016-11-11-real-estate-flipping.md",
+        "collection": "news",
+        "ext": ".md",
+        "loader": "gray-matter",
+        "title": "Real Estate Flipping",
+        "date": "2016-11-11T00:00:00.000Z",
+        "categories": [
+          "Property"
+        ],
+        "author_staff_member": "john-doe",
+        "image": "https://unsplash.it/600/450?image=448&a=.png",
+        "large_header": false
+      },
+      {
+        "path": "_news/_defaults.md",
+        "collection": "news",
+        "ext": ".md",
+        "loader": "gray-matter",
+        "title": null,
+        "date": null,
+        "categories": null,
+        "author_staff_member": null,
+        "image": "https://placehold.it/600/450?a=.png",
+        "large_header": false
+      }
+    ]
+  }
+}

@@ -1,16 +1,16 @@
 {
     "base-url": "",
-    "loader": {
-        "*.html": "html",
-        "*.md": "front-matter",
-        "*.mdx": "jsx"
-    },
     "collections": {
         "posts": {
-            "path": "_posts"
+            "path": "_posts",
+            "loader": {
+            }
+
         },
         "news": {
-            "path": "_news"
+            "path": "_news",
+            "loader": {
+            }
         }
     },
     "comments": {},

@@ -13,24 +13,25 @@ CONFIG
 		"posts": {
 			"output": true,
 			"permalink": "/:categories/:year/:month/:day/:title:output_ext",
-			"_path": "_posts"},
-			"drafts": {
-				"_path": "_drafts"
-			},
-			"other/posts": {
-				"output": true,
-				"permalink": "/:categories/:year/:month/:day/:title:output_ext",
-				"_path": "other/_posts"
-			},
-			"other/drafts": {
-				"output": true,"
-				permalink": "/:categories/:year/:month/:day/:title:output_ext",
-				"_path": "other/_drafts"
-			},
-			"data": {
-				"_path": "_data"
-			}
+			"_path": "_posts"
 		},
+		"drafts": {
+			"_path": "_drafts"
+		},
+		"other/posts": {
+			"output": true,
+			"permalink": "/:categories/:year/:month/:day/:title:output_ext",
+			"_path": "other/_posts"
+		},
+		"other/drafts": {
+			"output": true,"
+			permalink": "/:categories/:year/:month/:day/:title:output_ext",
+			"_path": "other/_drafts"
+		},
+		"data": {
+			"_path": "_data"
+		}
+	},
 	
 	
 	"defaults": [],

@@ -1,26 +1,34 @@
 {
-  "name": "ssg-reader",
+  "name": "ssg-reader-ts",
   "version": "0.0.1",
-  "description": "SSG Reader",
-  "main": "index.mjs",
+  "description": "",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "npm",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll",
+    "lint": "npx eslint src",
+    "build": "tsc",
+    "release": "gulp"
   },
   "bin": {
-    "ssg-reader": "index.mjs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CloudCannon/ssg-reader.git"
+    "ssg-reader-ts": "dist/index.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CloudCannon/ssg-reader/issues"
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.26.0",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.6",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.4"
   },
-  "homepage": "https://github.com/CloudCannon/ssg-reader#readme",
   "dependencies": {
-    "commander": "^7.2.0"
+    "gray-matter": "^4.0.3",
+    "gulp-all": "^1.1.0",
+    "ts-to-zod": "^1.0.3",
+    "zod": "^3.0.0"
   }
 }
