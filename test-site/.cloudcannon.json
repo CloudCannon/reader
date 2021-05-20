@@ -2,15 +2,13 @@
     "base-url": "",
     "collections": {
         "posts": {
-            "path": "_posts",
-            "loader": {
-            }
-
+            "path": "_posts"
         },
         "news": {
-            "path": "_news",
-            "loader": {
-            }
+            "path": "_news"
+        },
+        "case-studies": {
+            "path": "_case_study"
         }
     },
     "comments": {},

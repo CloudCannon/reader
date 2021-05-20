@@ -12,5 +12,4 @@ export async function parseFromGrayMatter(filePath: string): Promise<any> {
     catch(e) {
         console.error(e)
     }
-
 }

@@ -2,12 +2,13 @@
   "base-url": "",
   "collections": {
     "posts": {
-      "path": "_posts",
-      "loader": {}
+      "path": "_posts"
     },
     "news": {
-      "path": "_news",
-      "loader": {}
+      "path": "_news"
+    },
+    "case-studies": {
+      "path": "_case_study"
     }
   },
   "comments": {},
@@ -19,9 +20,9 @@
   "paths": {
     "uploads": "Key"
   },
-  "time": "2021-05-20T05:20:35.113Z",
+  "time": "2021-05-20T10:17:47.777Z",
   "cloudcannon": {
-    "name": "ssg-reader-ts",
+    "name": "ssg-reader",
     "version": "0.0.1"
   },
   "posts": {
@@ -29,42 +30,17 @@
       {
         "path": "_posts/2016-08-10-business-mergers.md",
         "collection": "posts",
-        "ext": ".md",
-        "loader": "gray-matter",
-        "title": "Business Mergers",
-        "date": "2016-08-10T00:00:00.000Z",
-        "categories": [
-          "Business"
-        ],
-        "author_staff_member": "jane-doe",
-        "image": "https://unsplash.it/600/450?image=737&a=.png",
-        "large_header": false
+        "ext": ".md"
       },
       {
         "path": "_posts/2016-11-11-real-estate-flipping.md",
         "collection": "posts",
-        "ext": ".md",
-        "loader": "gray-matter",
-        "title": "Real Estate Flipping",
-        "date": "2016-11-11T00:00:00.000Z",
-        "categories": [
-          "Property"
-        ],
-        "author_staff_member": "john-doe",
-        "image": "https://unsplash.it/600/450?image=448&a=.png",
-        "large_header": false
+        "ext": ".md"
       },
       {
         "path": "_posts/_defaults.md",
         "collection": "posts",
-        "ext": ".md",
-        "loader": "gray-matter",
-        "title": null,
-        "date": null,
-        "categories": null,
-        "author_staff_member": null,
-        "image": "https://placehold.it/600/450?a=.png",
-        "large_header": false
+        "ext": ".md"
       }
     ]
   },
@@ -73,42 +49,66 @@
       {
         "path": "_news/2016-08-10-business-mergers.md",
         "collection": "news",
-        "ext": ".md",
-        "loader": "gray-matter",
-        "title": "Business Mergers",
-        "date": "2016-08-10T00:00:00.000Z",
-        "categories": [
-          "Business"
-        ],
-        "author_staff_member": "jane-doe",
-        "image": "https://unsplash.it/600/450?image=737&a=.png",
-        "large_header": false
+        "ext": ".md"
       },
       {
         "path": "_news/2016-11-11-real-estate-flipping.md",
         "collection": "news",
-        "ext": ".md",
-        "loader": "gray-matter",
-        "title": "Real Estate Flipping",
-        "date": "2016-11-11T00:00:00.000Z",
-        "categories": [
-          "Property"
-        ],
-        "author_staff_member": "john-doe",
-        "image": "https://unsplash.it/600/450?image=448&a=.png",
-        "large_header": false
+        "ext": ".md"
       },
       {
         "path": "_news/_defaults.md",
         "collection": "news",
-        "ext": ".md",
-        "loader": "gray-matter",
-        "title": null,
-        "date": null,
-        "categories": null,
-        "author_staff_member": null,
-        "image": "https://placehold.it/600/450?a=.png",
-        "large_header": false
+        "ext": ".md"
+      }
+    ]
+  },
+  "case-studies": {
+    "case-studies": [
+      {
+        "path": "_case_study/_default.html",
+        "collection": "case-studies",
+        "ext": ".html"
+      },
+      {
+        "path": "_case_study/cubicflow.html",
+        "collection": "case-studies",
+        "ext": ".html"
+      },
+      {
+        "path": "_case_study/hnry.html",
+        "collection": "case-studies",
+        "ext": ".html"
+      },
+      {
+        "path": "_case_study/insightly.html",
+        "collection": "case-studies",
+        "ext": ".html"
+      },
+      {
+        "path": "_case_study/lumina.html",
+        "collection": "case-studies",
+        "ext": ".html"
+      },
+      {
+        "path": "_case_study/netflix.html",
+        "collection": "case-studies",
+        "ext": ".html"
+      },
+      {
+        "path": "_case_study/ocupop.html",
+        "collection": "case-studies",
+        "ext": ".html"
+      },
+      {
+        "path": "_case_study/twitch.html",
+        "collection": "case-studies",
+        "ext": ".html"
+      },
+      {
+        "path": "_case_study/usecue.html",
+        "collection": "case-studies",
+        "ext": ".html"
       }
     ]
   }
