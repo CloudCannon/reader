@@ -6,13 +6,14 @@ import { IUserInfo, ILoader } from './interfaces/user-info.interface';
 import { IInfo, IGeneratedInfo } from './interfaces/info.interface'
 import { readLocalJSONFile } from './helper/read-local-file';
 import { parseFromGrayMatter } from './parse-from-gray-matter'; 
+import { userInfo } from 'os';
 
 export async function buildObject(userInput: IUserInfo): Promise<IInfo> {
 
     // TODO: Validate the userInput object is correct..?? 
     let configObject: IInfo;
     let generatedInfo = await basicGeneratedInfo();
-    let collections = await getCollections(userInput.loader, userInput.collections);
+    let collections = await getCollections(userInput);
 
     configObject = {
         ...userInput, 
@@ -35,38 +36,44 @@ async function basicGeneratedInfo(): Promise<IGeneratedInfo> {
     }
 }
 
-async function getCollections(loader?: ILoader, collectionsConfig: any = {} ): Promise<any> {
+async function getCollections(userInput: IUserInfo ): Promise<any> {
+    const { loader, collections: collectionsConfig } = userInput;
+    // const collectionsConfig: any = {} 
     const keys = Object.keys(collectionsConfig);
 
     let collections: any = {}
     for (let key of keys) {
-        const collectionPath = collectionsConfig[key].path;
-        let collection = await getCollection(collectionPath, key, loader);
+        // const collectionPath = collectionsConfig[key].path;
+        let collection = await getCollection(collectionsConfig[key], key, loader);
         collections[key] = collection;
     }
     return collections;
 }
 
-async function getCollection(collectionPath: string, key: string, loader?: ILoader) {
+async function getCollection(collectionConfig: any, key: string, loader?: ILoader) {
     let files;
+
     let result: any = {}
 
     try {
-        files = await readdir(path.join('.', collectionPath));
+        files = await readdir(path.join('.', collectionConfig.path));
 
         result[key] = await Promise.all(files.map(async file => {
     
-            const filePath = path.join('.', collectionPath, file);
+            const filePath = path.join('.', collectionConfig.path, file);
             const fileType = path.extname(filePath);
             const loaderType = getLoaderType(fileType, loader);
             
-            let frontMatter = await returnFrontMatterFromLoaderType(loaderType, filePath)
+            const frontMatter = await returnFrontMatterFromLoaderType(loaderType, filePath);
+            let url = getUrlFromFrontMatter(frontMatter, filePath, collectionConfig.url);
 
             return {
+                ...frontMatter,
                 path: filePath,
                 collection: key,
                 ext: fileType,
-                ...frontMatter
+                url
+                
             };
         }));
     } catch (e) {
@@ -91,12 +98,37 @@ async function returnFrontMatterFromLoaderType(loaderType: string, filePath: str
 
     // Could do this better? But currently it is really nice and readable.
     // This needs to be built out a bunch.. Need to get some more test collections..
+
+    // TODO: Allow people to parse JSON, YAML and TOML
     switch(loaderType) {
         case Parsers.md:
-                frontMatter = await parseFromGrayMatter(filePath);
-            break;
+            return await parseFromGrayMatter(filePath);
         case Parsers.html:
-            frontMatter = await parseFromGrayMatter(filePath);
-            break;
+            return await parseFromGrayMatter(filePath);
     }
+}
+
+function getUrlFromFrontMatter(frontMatter: any, filePath: string, urlTemplate?: string): string {
+
+    if(!urlTemplate) {
+        return ""
+    }
+
+    if(!urlTemplate.includes(':')) {
+        return urlTemplate;
+    }
+
+    //regex out the :things
+    const urlVariableArray = urlTemplate.match(/:[^/:]+/g);
+
+    let result: string;
+    urlVariableArray?.forEach(url => {
+        console.log(url)
+        urlTemplate = urlTemplate?.replace(url, frontMatter[url] ?? "")
+    })
+    return urlTemplate.replace(/\/+/g, '/')
+    // extract filter types and then do the thing.
+    // :name - frontmater.name exists - if it does replace it with an empty string
+    // Replace all '//' with '/'
+
 }

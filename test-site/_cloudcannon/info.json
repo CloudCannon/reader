@@ -5,7 +5,8 @@
       "path": "_posts"
     },
     "news": {
-      "path": "_news"
+      "path": "_news",
+      "url": "/news/:title/:slug"
     },
     "case-studies": {
       "path": "_case_study"
@@ -20,7 +21,7 @@
   "paths": {
     "uploads": "Key"
   },
-  "time": "2021-05-20T10:17:47.777Z",
+  "time": "2021-06-02T03:02:03.112Z",
   "cloudcannon": {
     "name": "ssg-reader",
     "version": "0.0.1"
@@ -28,87 +29,1433 @@
   "posts": {
     "posts": [
       {
+        "title": "Business Mergers",
+        "date": "2016-08-10T00:00:00.000Z",
+        "categories": [
+          "Business"
+        ],
+        "author_staff_member": "jane-doe",
+        "image": "https://unsplash.it/600/450?image=737&a=.png",
+        "large_header": false,
         "path": "_posts/2016-08-10-business-mergers.md",
         "collection": "posts",
-        "ext": ".md"
+        "ext": ".md",
+        "url": ""
       },
       {
+        "title": "Real Estate Flipping",
+        "date": "2016-11-11T00:00:00.000Z",
+        "categories": [
+          "Property"
+        ],
+        "author_staff_member": "john-doe",
+        "image": "https://unsplash.it/600/450?image=448&a=.png",
+        "large_header": false,
         "path": "_posts/2016-11-11-real-estate-flipping.md",
         "collection": "posts",
-        "ext": ".md"
+        "ext": ".md",
+        "url": ""
       },
       {
+        "title": null,
+        "date": null,
+        "categories": null,
+        "author_staff_member": null,
+        "image": "https://placehold.it/600/450?a=.png",
+        "large_header": false,
         "path": "_posts/_defaults.md",
         "collection": "posts",
-        "ext": ".md"
+        "ext": ".md",
+        "url": ""
       }
     ]
   },
   "news": {
     "news": [
       {
+        "title": "Business Mergers",
+        "date": "2016-08-10T00:00:00.000Z",
+        "categories": [
+          "Business"
+        ],
+        "author_staff_member": "jane-doe",
+        "image": "https://unsplash.it/600/450?image=737&a=.png",
+        "large_header": false,
         "path": "_news/2016-08-10-business-mergers.md",
         "collection": "news",
-        "ext": ".md"
+        "ext": ".md",
+        "url": "/news/"
       },
       {
+        "title": "Real Estate Flipping",
+        "date": "2016-11-11T00:00:00.000Z",
+        "categories": [
+          "Property"
+        ],
+        "author_staff_member": "john-doe",
+        "image": "https://unsplash.it/600/450?image=448&a=.png",
+        "large_header": false,
         "path": "_news/2016-11-11-real-estate-flipping.md",
         "collection": "news",
-        "ext": ".md"
+        "ext": ".md",
+        "url": "/news/"
       },
       {
+        "title": null,
+        "date": null,
+        "categories": null,
+        "author_staff_member": null,
+        "image": "https://placehold.it/600/450?a=.png",
+        "large_header": false,
         "path": "_news/_defaults.md",
         "collection": "news",
-        "ext": ".md"
+        "ext": ".md",
+        "url": "/news/"
       }
     ]
   },
   "case-studies": {
     "case-studies": [
       {
+        "title": null,
+        "layout": "case_study",
+        "heading": null,
+        "permalink": "/customers/:title/",
+        "categories": null,
+        "featured": null,
+        "image": null,
+        "image_alt": null,
+        "date": null,
+        "other_case_studies": null,
+        "content_blocks": null,
         "path": "_case_study/_default.html",
         "collection": "case-studies",
-        "ext": ".html"
+        "ext": ".html",
+        "url": ""
       },
       {
+        "title": "Cubicflow",
+        "layout": "case_study",
+        "permalink": "/customers/:title/",
+        "heading": "Cubicflow's digital agency transformation - from WordPress to Jamstack",
+        "categories": [
+          "Agency"
+        ],
+        "image": "/uploads/cubicflow-card-teal.svg",
+        "image_alt": "Cubicflow logo",
+        "featured": true,
+        "date": "2021-03-26 12:37:00 +1300",
+        "other_case_studies": [
+          "Lumina",
+          "Hnry",
+          "Netflix"
+        ],
+        "content_blocks": [
+          {
+            "_component_type": "hero",
+            "image_path": "/uploads/cubicflow-card-teal.svg",
+            "image_alt": "Cubicflow logo",
+            "heading": "Cubicflow's digital agency transformation - from WordPress to Jamstack",
+            "hero_colour": "#034ad8",
+            "blog": true,
+            "author_image_path": "/uploads/cubicflow-profile.svg",
+            "author_image_alt": "Image of Cubicflow logo",
+            "author": "With Matt Ellison and Dan McNair, Founders"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Natives of creative",
+            "alignment": "right",
+            "content_markdown": "As a team, Dan and Matt, the founders of Cubicflow, go all the way back. Starting as teenagers meeting online in graphic design forums, they progressed from smaller to incrementally larger projects together, which influenced their personal and professional interests in design and development. After beginning tech careers and gaining considerable experience, including working in the ranks of big tech, their paths eventually led them to found their own design agency - Cubicflow.",
+            "quote": "There is no transparency in WordPress' plugins, and you are so dependent on them. When looking at the codebase, I would often ask, where is some of this coming from?",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-list-block",
+            "image_path": "/uploads/cubicflow-scene.png",
+            "image_alt": "Image of laptop showcasing Cubicflow's website",
+            "lottie_animation": false,
+            "heading": "The whole digital flow",
+            "content_markdown": "Cubicflow is much more than simply websites. Their extensive experience and love of impactful design have made them experts who can own and advise on every stage of modern development, from start to finish and anywhere in between. Here is just some of what is offered by the team:",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "animation": {
+              "static_image_path": "/uploads/cubicflow-scene.png",
+              "static_image_alt": "Image of laptop showcasing Cubicflow's website",
+              "animation_path": null,
+              "id": null,
+              "loop": false,
+              "has_shadows": false,
+              "auto_play": true
+            },
+            "list_items": [
+              {
+                "icon_path": "/uploads/icons/tick.svg",
+                "icon_alt": "tick",
+                "content_markdown": "Website and native app development"
+              },
+              {
+                "icon_path": "/uploads/icons/tick.svg",
+                "icon_alt": "tick",
+                "content_markdown": "Responsive and accessible UX/UI"
+              },
+              {
+                "icon_path": "/uploads/icons/tick.svg",
+                "icon_alt": "tick",
+                "content_markdown": "Digital and physical product design"
+              },
+              {
+                "icon_path": "/uploads/icons/tick.svg",
+                "icon_alt": "tick",
+                "content_markdown": "Marketing communication and strategy"
+              }
+            ],
+            "heading_type": "h2",
+            "alignment": null
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Frustration with legacy CMS setups",
+            "alignment": "right",
+            "content_markdown": "As with many origin stories, Cubicflow started out with WordPress for marketing websites. However, it wasn't long until the drawbacks of the system began to show. WordPress is known to offer vast options, but interactions in the system were often unpredictable. Updates, often automatic or potentially initiated by clients, could cause plugin clashes and downtime, leading to wasted, frustrating admin time finding the source of the problem, and understanding how exactly the plugins work.",
+            "quote": "We needed to figure out a way for our clients to work with static sites - we couldn't expect them to learn Markdown and other tools",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/cubicflow-scene-2.png",
+            "image_alt": "Image of a mobile phone showcasing Cubicflow's Services page..",
+            "heading": "Customization is key for designers",
+            "content_markdown": "In addition, as design professionals, the team also found many of the templates unpalatable and laborious to change. Not only that, they desired different hosting options and simply having a local development environment to make changes and experimentation easier. Unfortunately, these were restricted by the complicated setup and over-reliance on plugins. This ever-increasing set of problems led Cubicflow to seek a solution that would give them more control from the ground up.\n\nInvestigation of alternatives soon led to discovering static site generation and Jekyll. Jekyll's simplicity made customization of designs easier, more powerful, and extremely portable. No database or complicated setup to worry about. However, while Cubicflow now had a tool for greater customization, static sites by themselves were only part of the solution.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/cubicflow-scene-3.png",
+            "image_alt": "Image of an ipad showcasing the contact us page of Cubicflow's site",
+            "heading": "Removing roadblocks with CloudCannon and static sites",
+            "content_markdown": "For static sites to be the alternative to WordPress that they wanted, Cubicflow needed to find hosted infrastructure to automate their needs and allow editing, without clients needing to learn new tools. After testing multiple options, Cubicflow was immediately convinced by CloudCannon's easy setup and powerful interface for editing and sharing, as well as low maintenance needs.\n\nWith CloudCannon, Cubicflow was now able to launch powerful static websites live and quickly share visual editing with clients, while also allowing them to develop locally and easily manage content through Git syncing. The only issue remaining to solve was creating e-commerce solutions, which meant having to straddle two different systems. However, Snipcart soon came to solve the e-commerce game, and the team was finally able to move forward on one platform for everything.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "right"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/cubic-scene-4.png",
+            "image_alt": "Image of an iMac showcasing the portfolio page of Cubicflow's site",
+            "heading": "More time for experimentation",
+            "content_markdown": "With static sites and CloudCannon as the spark, Cubicflow joined the static site movement, free to design and work as they needed without complicated infrastructure and convoluted plugins slowing them down.\n\nThe world of Jamstack is also a fast-moving community working hard to implement the bleeding edge of technologies for fast, stable and scalable websites. Since working with Jekyll, Cubicflow have discovered a whole variety of other options to experiment with and increase their repertoire, rather than being confined to one limited ecosystem.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/cubicflow-scene-5.png",
+            "image_alt": "Image of an iMac showcasing the portfolio page of Cubicflow's site",
+            "heading": "No looking back - CloudCannon and Cubicflow together",
+            "content_markdown": "Cubicflow is flourishing in the world of static sites and loves using CloudCannon for its CMS. Naturally, CloudCannon will be there to help them in their further journeys.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "right"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "social-block",
+            "text": "Share:",
+            "link_content": null,
+            "link_url": null,
+            "full_width": true,
+            "open_in_new_tab": true,
+            "social_sharing": [
+              "email",
+              "facebook",
+              "linkedin",
+              "twitter"
+            ]
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 4,
+            "tablet_unit_number": 6,
+            "laptop_unit_number": 8
+          }
+        ],
         "path": "_case_study/cubicflow.html",
         "collection": "case-studies",
-        "ext": ".html"
+        "ext": ".html",
+        "url": ""
       },
       {
+        "title": "Hnry",
+        "layout": "case_study",
+        "permalink": "/customers/:title/",
+        "heading": "How Hnry keeps their marketing site a step ahead of the competition",
+        "categories": [
+          "Company sites",
+          "Business"
+        ],
+        "featured": false,
+        "image": "/uploads/hnry-card.svg",
+        "image_alt": "Hnry logo",
+        "other_case_studies": [
+          "Lumina",
+          "Twitch",
+          "Netflix"
+        ],
+        "date": "2021-01-26 12:37:00 +1300",
+        "content_blocks": [
+          {
+            "_component_type": "hero",
+            "image_path": "/uploads/hnry-card.svg",
+            "image_alt": "Hnry logo",
+            "blog": true,
+            "heading": "How Hnry keeps their marketing site a step ahead of the competition",
+            "author_image_path": "/uploads/case-study/hnry/james-fuller.jpg",
+            "author_image_alt": "Image of James Fuller",
+            "author": "With James Fuller, CEO"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Financial management for modern realities",
+            "alignment": "right",
+            "content_markdown": "Reimaging what professional life looks like with a modern definition, Hnry helps creators focus on their craft by lifting the weight and anxieties of managing their finances. Hnry streamlines the hand-off process, making it simple and affordable.\n\nWhat started off as a passion project to ease tax and invoicing management for freelancers and contractors quickly turned into NZ’s largest specialist accountant for the self-employed. With their ever-expanding team of bright and hardworking people, Hnry has reached many milestones within a period of only 3 years. They notably scooped up two Wellington Gold Awards, featured in the NZBusiness Magazine and are now growing quickly in the Australian market.",
+            "quote": "With CloudCannon we have all the performance and deployment benefits of static websites and easy editing for our team.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/case-study/hnry/ipad-1.jpg",
+            "image_alt": "Image of someone holding a tablet looking at the Hnry marketing site.",
+            "heading": "Standard CMS solutions are often a strain on developers",
+            "content_markdown": "Having previously used WordPress and relying on developers to make even the most incremental of changes, Hnry was more than ready to make a switch to something better fitting their needs. However, a content management system (CMS) that aligned with Hnry’s needs and matched their values would need considerable flexibility and efficiency.\n\nA suitable solution would enable content editors to make multiple, concurrent updates through real-time visual editing, while also providing continuous deployment and not impeding developers. Additionally, it would help team members to delegate responsibility efficiently, with different complexity levels for different levels of technical ability.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Fast, effective workflows that support the whole team",
+            "alignment": "right",
+            "content_markdown": "This is where Hnry and CloudCannon’s great partnership began. As a recommendation from a trusted friend, James took on CloudCannon as the platform to create, host, and manage the [Hnry website](https://hnry.co){: target=\"_blank\" rel=\"noopener\"}. The team onboarded quickly and immediately became accustomed to the system, positively changing their workflow and allowing the flexibility for any team member to contribute to the site.&nbsp;\n\nNo longer restricted by the constrained nature of out-of-the-box sites, they were able to take advantage of all the benefits of great performance, fast deployment, and improved developer experience that comes with static sites.",
+            "quote": "With CloudCannon it has just been really easy for us and has actually made it far more efficient for us as a business to react to demand in the market.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/case-study/hnry/hnry-office 1.png",
+            "image_alt": "Image of Hnry's logo being displayed on a featured plants wall",
+            "heading": "Hnry and CloudCannon’s future together",
+            "content_markdown": "While Hnry keeps working to continuously expand and deliver great new features, making life a whole lot easier for freelancers, CloudCannon will be there to support all their content contribution and publishing needs.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "social-block",
+            "text": "Share:",
+            "link_content": null,
+            "link_url": null,
+            "full_width": true,
+            "open_in_new_tab": true,
+            "social_sharing": [
+              "email",
+              "facebook",
+              "linkedin",
+              "twitter"
+            ]
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 4,
+            "tablet_unit_number": 6,
+            "laptop_unit_number": 8
+          }
+        ],
         "path": "_case_study/hnry.html",
         "collection": "case-studies",
-        "ext": ".html"
+        "ext": ".html",
+        "url": ""
       },
       {
+        "title": "Insightly",
+        "heading": "The story of Insightly's digital transformation",
+        "layout": "case_study",
+        "permalink": "/customers/:title/",
+        "published": false,
+        "categories": [
+          "Company sites",
+          "Business"
+        ],
+        "image": "/uploads/insightly-card.svg",
+        "image_alt": "Insightly logo",
+        "featured": true,
+        "other_case_studies": [
+          "Lumina",
+          "Netflix",
+          "Twitch"
+        ],
+        "date": "2021-03-26 12:37:00 +1300",
+        "content_blocks": [
+          {
+            "_component_type": "hero",
+            "image_path": "/uploads/insightly-card.svg",
+            "image_alt": "Insightly logo",
+            "heading": "The story of Insightly's digital transformation",
+            "hero_colour": "#034ad8",
+            "blog": true,
+            "author_image_path": "/uploads/case-study/twitch-profile-small.png",
+            "author_image_alt": "Heather White, front end developer",
+            "author": "Heather White, front end developer"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "The move to Jamstack",
+            "alignment": "right",
+            "content_markdown": "Web developer Heather White would probably agree with the adage that one change leads to another. In early 2018 she started a new job with CRM vendor Insightly and then, within weeks, found herself transitioning the company’s sites to Jekyll and CloudCannon.\n\nWhite joined a small team that was short on technical skills and she personally had no prior experience with static sites. Despite starting from scratch with Jekyll-compatible content management systems, she got stuck into the project and within six months had Insightly’s web presence running smoothly on CloudCannon.&nbsp;\n\nLooking back, she says she’s stoked with the switch and credits CloudCannon’s inherent simplicity and responsive customer support for much of what has proven to be a successful transition.",
+            "quote": "Not only do we have great support but everything I need to manage the website is in one place, it’s really straightforward and I have pretty much complete control over everything that happens in and around the site.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/insightly-scene.png",
+            "image_alt": "Image of a laptop showing Insightly's website",
+            "heading": "A long history of outages",
+            "content_markdown": "San Francisco-based Insightly’s WordPress sites had a long history of outages, many due to a plethora of plugins that weren’t updating. At its worst, the company’s main marketing site was going offline every few weeks. The company’s CEO got fed up, mandated a move to Jekyll, and asked White, his incoming front-end developer, to make it happen.\n\nKnowing that the right interface for non-technical content editors would be critical, White set about shortlisting CMS. She trialed a number of options, including building a test site with Netlify and React, and finally opted for the simplicity and control offered by CloudCannon.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": null,
+            "alignment": "right",
+            "content_markdown": "Drawing on Jekyll and CloudCannon documentation, White built the new site from the ground up. An early decision was for in-depth interfaces using data collections. “They are data objects of tons of our content – blog posts, customer stories, webinars, e-books and so on,” she explains. “I created data files that live on the website that can then be pulled in from other web environments on CloudCannon to inform CloudCannon’s interface. They let people pick blog posts and other content and then display them either on internal websites or on websites that we use for account-based marketing.”\n\nThe deeper she got into editing, the more White liked her new CMS. “The way it allows you to edit the interface is really cool,” she says, and points to other advantages.&nbsp; “I love having my domains all in one place because I can easily take action on errors. Plus the learning curve for editors is relatively small because CloudCannon works in a similar fashion to advanced custom fields in WordPress.”",
+            "quote": "The learning curve for editors is relatively small because CloudCannon works in a similar fashion to advanced custom fields in WordPress.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": false,
+            "image_path": "/uploads/insightly-scene-2.png",
+            "image_alt": "Image of a mobile phone showing Insightly's website",
+            "heading": "Quality control",
+            "content_markdown": "Another win: control. White, who values quality control and was keen to limit the opportunities for errors on her sites, could hide fields, offer tool tips on fields, and use clear settings to limit options for a content creator or content manager. “That was a big win,” she says.\n\nWhite tapped CloudCannon’s support team throughout the build. “They were always respectful, always super helpful,” she recounts. “CloudCannon’s support in that transition was such a lifeline.”",
+            "link_url": null,
+            "link_content": null,
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": null
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": null,
+            "alignment": "right",
+            "content_markdown": "In early October 2018 Insightly took its new sites live. Their stability since then has been exceptional, White reports. “With the exception of maybe two blips when Cloudflare went down, which of course means everybody has gone down, our sites have never failed since we switched. Not once.”\n\nWhite’s summary of the transition? “I’m stoked that we’re on CloudCannon. Stoked that not only do we have great support but everything I need to manage the website is in one place, it’s really straightforward and I have pretty much complete control over everything that happens in and around the site without having to dig too deeply into any unknown black boxes like stuck servers, for example. From a development point of view, I’m glad we made the switch.”",
+            "quote": "The learning curve for editors is relatively small because CloudCannon works in a similar fashion to advanced custom fields in WordPress.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "social-block",
+            "text": "Share:",
+            "link_content": null,
+            "link_url": null,
+            "full_width": true,
+            "open_in_new_tab": true,
+            "social_sharing": [
+              "email",
+              "facebook",
+              "linkedin",
+              "twitter"
+            ]
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 4,
+            "tablet_unit_number": 6,
+            "laptop_unit_number": 8
+          }
+        ],
         "path": "_case_study/insightly.html",
         "collection": "case-studies",
-        "ext": ".html"
+        "ext": ".html",
+        "url": ""
       },
       {
+        "title": "Lumina",
+        "layout": "case_study",
+        "heading": "Simplifying the process of creating client websites",
+        "permalink": "/customers/:title/",
+        "categories": [
+          "Agency"
+        ],
+        "featured": false,
+        "image": "/uploads/lumina-card.svg",
+        "image_alt": "Lumina Web Solutions logo",
+        "date": "2021-02-26 12:37:00 +1300",
+        "other_case_studies": [
+          "Hnry",
+          "Twitch",
+          "Netflix"
+        ],
+        "content_blocks": [
+          {
+            "_component_type": "hero",
+            "image_path": "/uploads/lumina-card.svg",
+            "image_alt": "Lumina Web Solutions logo",
+            "heading": "Simplifying the process of creating client websites",
+            "hero_colour": "#034ad8",
+            "blog": true,
+            "author_image_path": "/uploads/case-study/lumina/lumina-profile-small.png",
+            "author_image_alt": "Image of Viv Bakkarat",
+            "author": "With Viv Barakat, Owner and Developer"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Simplifying website solutions for local communities and businesses",
+            "alignment": "right",
+            "content_markdown": "Lumina Web Solutions helps local businesses and communities to fulfill their vision, creating detail-oriented designs and functional websites, using the right tools for their needs.",
+            "quote": "You’re not tied to a proprietary system where if the whole thing goes down then that's it.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/case-study/lumina/lumina-img1.png",
+            "image_alt": "Image of an iMac showing Lumina's website",
+            "heading": "Veterinarian to web veteran",
+            "content_markdown": "A veterinarian by profession, owner and developer Viv Barakat has a love for continuous learning and experimenting. After starting with hand-coded HTML, Viv moved to juggling half veterinarian and half web development and eventually to fully sustaining a web development career. With 10 years of web experience, Viv communicates with local businesses and communities to convey their vision to their audience by creating clean, beautiful websites.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "An easy, full-ownership CMS transition",
+            "alignment": "right",
+            "content_markdown": "Having been in the industry for so long, Viv has gone through multiple changes in software. His journey started with .NET, Silverstripe, and Webpop, before moving to hosting on CloudCannon after learning about modern static sites. Having done a bit of research himself, he quickly got stuck in and found a static site generator which best suited his needs. Thereafter, having found CloudCannon to tick almost all his boxes, the rest was history. A straightforward setup and interface helps both him and his clients save time, who can now go in and easily edit the site themselves.&nbsp;&nbsp;",
+            "quote": "I can pull a site down on and run it on Jekyll on my local machine and it is a relatively straightforward process. For me that’s magic. I really like the fact that I have that control.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": false,
+            "image_path": "/uploads/case-study/lumina/lumina-img2.png",
+            "image_alt": "Image of a mobile phone showing Lumina's works page",
+            "heading": "Support that understands Lumina’s needs",
+            "content_markdown": "Establishing the right support relationship with an organization without feeling like a nuisance or another face in the crowd can sometimes be difficult. Having access to a responsive support team has given Viv the confidence to ask just about anything and feel understood.&nbsp;\n\nIn addition, Viv’s relationship with support has led to requests and suggestions for features on the platform and projects, which have ultimately been implemented alongside other general platform features that have benefited Lumina’s work.",
+            "link_url": null,
+            "link_content": null,
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": null
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Lumina and CloudCannon’s future together",
+            "alignment": "right",
+            "content_markdown": "Viv is continuing his mission to help the local community to realize their vision and creating great-looking, sleek sites to cater to individual needs. While he works on his passion, CloudCannon’s support team will be there to answer all his questions and needs.",
+            "quote": "It’s been really good because everybody has been proactive at getting back to me, and usually the problems are sorted out very quickly. I’ve even had a few feature requests that they’ve ended up applying and letting me know they’ve done this.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "social-block",
+            "text": "Share:",
+            "link_content": null,
+            "link_url": null,
+            "full_width": true,
+            "open_in_new_tab": true,
+            "social_sharing": [
+              "email",
+              "facebook",
+              "linkedin",
+              "twitter"
+            ]
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 4,
+            "tablet_unit_number": 6,
+            "laptop_unit_number": 8
+          }
+        ],
         "path": "_case_study/lumina.html",
         "collection": "case-studies",
-        "ext": ".html"
+        "ext": ".html",
+        "url": ""
       },
       {
+        "title": "Netflix",
+        "heading": "Simplicity, speed, seamless translation and more: the Netflix microsite story",
+        "layout": "case_study",
+        "permalink": "/customers/:title/",
+        "categories": [
+          "Microsites",
+          "Documentation"
+        ],
+        "featured": true,
+        "other_case_studies": [
+          "Lumina",
+          "Twitch",
+          "Netflix"
+        ],
+        "image": "/uploads/netflix-card-black.svg",
+        "image_alt": "Netflix logo",
+        "date": "2021-03-26 12:37:00 +1300",
+        "content_blocks": [
+          {
+            "_component_type": "hero",
+            "image_path": "/uploads/netflix-card-black.svg",
+            "image_alt": "Netflix logo",
+            "heading": "Simplicity, speed, seamless translation and more: the Netflix microsite story",
+            "hero_colour": "#034ad8",
+            "blog": true,
+            "author_image_path": "/uploads/1517429239690.jpg",
+            "author_image_alt": "Jason Adkins",
+            "author": "Jason Adkins - Creative Specialist"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "The problem",
+            "alignment": "right",
+            "content_markdown": "You’ll know Netflix as the world's largest streaming entertainment service with over 204 million customers in more than 190 countries and a market cap of $234 billion. What isn’t immediately obvious, however, is the extensive network of microsites the company relies on to maintain and manage relationships with its customers and partners.\n\nThose sites have been a headache for Netflix’s marketing team. Based on a range of content management systems (CMS) including WordPress, Drupal and Google Sites, they were time-consuming and expensive to create and cumbersome to maintain. Inconsistencies in branding were becoming apparent and some sites were going stale because the expertise required by each of the CMS platforms was siloed.\n\nIt was time for a better solution.",
+            "quote": "CloudCannon gives our developers total control over our microsites while giving the content team an easy-to-use interface.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/netflix-casestudy-2.png",
+            "image_alt": "Image of a laptop displaying the Netflix NPFP website",
+            "heading": "The answer: Jekyll and CloudCannon",
+            "content_markdown": "In late 2014, Netflix went looking for a solution that would allow the quick roll-out of highly customizable microsites. It selected Jekyll, a static site generator that was fast, didn’t require constant security updates, was simple enough for new developers to easily get up to speed and would readily scale to even a Netflix-sized audience.&nbsp;\n\nThe next step was a way to host and manage content on the new Jekyll sites.\n\nThe answer: CloudCannon. It was recommended by a new employee who had used CloudCannon as a freelancer. Netflix initially trialled it on a single project, [devices.netflix.com](https://devices.netflix.com/en/), which lists and recommends the vast range of Netflix-supported devices available to consumers.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": false,
+            "image_path": "/uploads/netflix-casestudy-3.png",
+            "image_alt": "Image of a tablet showcasing Netflix NPFP website",
+            "heading": "Fuss-free content changes, easy syncing and low overheads",
+            "content_markdown": "CloudCannon’s merits quickly became obvious. It lets developers work rapidly and frees them from the overhead of maintaining servers and updates. It gives content editors a staging environment that allows fuss-free content changes and gets everyone pulling in the same direction by syncing through Git.&nbsp;\n\nA further benefit is the integration of Netflix's internal translation system into CloudCannon, which allows for the seamless translation of Netflix sites into more than 30 languages.\n\nNetflix has steadily moved more of its microsites across to CloudCannon. In 2017 the effort stepped up with CloudCannon’s adoption by the Product Creative team, whose sites offer the welter of documentation that maintains relationships with Netflix’s creative agency partners.",
+            "link_url": null,
+            "link_content": null,
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": null
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": null,
+            "alignment": "left",
+            "content_markdown": "Today, 20 Netflix microsites and 80 editors are supported by CloudCannon. Among them are [openconnect](https://openconnect.netflix.com/en_gb/), which supports ISP partners, and a site promoting [No Rules Rules](https://www.norulesrules.com/), the book by Netflix co-founder Reed Hastings that explains the company’s unconventional culture.\n\nAs Netflix continues to adopt CloudCannon for microsites, the objective remains clear: a single, flexible platform that can handle all use cases and doesn’t grind system admins into the ground.",
+            "quote": "At Netflix, we cater to audiences all over the world. We need a CMS platform that can translate our microsites to the 30+ languages Netflix supports. CloudCannon integrates with our internal translation workflows and makes the entire process seamless.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "social-block",
+            "text": "Share:",
+            "link_content": null,
+            "link_url": null,
+            "full_width": true,
+            "open_in_new_tab": true,
+            "social_sharing": [
+              "email",
+              "facebook",
+              "linkedin",
+              "twitter"
+            ]
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 4,
+            "tablet_unit_number": 6,
+            "laptop_unit_number": 8
+          }
+        ],
         "path": "_case_study/netflix.html",
         "collection": "case-studies",
-        "ext": ".html"
+        "ext": ".html",
+        "url": ""
       },
       {
+        "title": "Ocupop",
+        "heading": "How Ocupop rapidly develops exceptional websites for clients",
+        "layout": "case_study",
+        "permalink": "/customers/:title/",
+        "categories": [
+          "Agency"
+        ],
+        "image": "/uploads/ocupop-card.svg",
+        "image_alt": "Ocupop logo",
+        "featured": true,
+        "date": "2021-03-26 12:37:00 +1300",
+        "other_case_studies": [
+          "Lumina",
+          "Twitch",
+          "Netflix"
+        ],
+        "content_blocks": [
+          {
+            "_component_type": "hero",
+            "image_path": "/uploads/ocupop-card.svg",
+            "image_alt": "Ocupop logo",
+            "heading": "How Ocupop rapidly develops exceptional websites for clients",
+            "hero_colour": "#034ad8",
+            "title_image_path": "/uploads/ocupop.png",
+            "title_image_alt": "Ocupop Logo",
+            "blog": true,
+            "author_image_path": "/uploads/ocupop-profile.png",
+            "author_image_alt": "Image of Tom Beck",
+            "author": "With Tom Beck, Creative Director"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "It's all about making things pop",
+            "alignment": "right",
+            "content_markdown": "Ocupop is a small creative agency who takes huge pride in their work. They call themselves \"a small super-powered creative agency with zero awards\", which is intentionally inaccurate. In reality, they've got plenty of accolades to throw around, and have grown a lot in recent years. But they aren't fixated on rapid growth or growth metrics. Instead, they thrive on being a small group of designers and developers with extensive experience, doing extraordinary work.",
+            "quote": "We love supporting CloudCannon growth because the platform is so much better for our clients than any other tool.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/ocupop-scene.png",
+            "image_alt": "Image of mobile phone showing Ocupop's Our Work page",
+            "heading": "Designers for everyone",
+            "content_markdown": "Ocupop might be a small organization, but they've worked with, and continue to work with, companies and situations of all size. From designing pixel-perfect sites for artisanal products to every detail of big-tech conferences, they have huge range. Oh, and ever seen the HTML 5 icon? That's Ocupop's work. You don't need to be a massive corporation to leave a big impression.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": false,
+            "image_path": "/uploads/ocupop-scene-2.png",
+            "image_alt": "Image of laptop showcasing Ocupop's website",
+            "heading": "Old problems from old solutions",
+            "content_markdown": "Having been around and working with the web since the early days, Ocupop have been through different technologies as the industry evolves. Naturally, WordPress was part of the equation for a number of their clients, due to its presence on the market and ease of installing. As a result, the company needed to have PHP developers on staff to help with managing these projects.\n\nBut the time and effort involved in managing WordPress sites was causing unnecessary headaches. Content often needed to be managed through separate admin portals, draining development time and resources, and the security of sites was always a lingering, potential concern. Ultimately, it just wasn't the right fit.",
+            "link_url": null,
+            "link_content": null,
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": null
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Finding the best tools for the team",
+            "alignment": "left",
+            "content_markdown": "In their interactions with clients, Ocupop had also learned another important fact: the majority didn't actually care about the tech stack that was being used, as long as they had a working solution. With this in mind, Ocupop wanted to experiment with other tools and instead make the choice for clients that would benefit the team.\n\nAt the time, static site generators such as Jekyll were just entering the scene, and Ocupop was interested in testing out a new experience. But for static sites to be a real solution, they needed to find hosting and editing options so that both the team and clients could work on projects effectively, without unnecessary admin and security issues. In their quest for the right solution for static sites, Ocupop tested a few options, but found some too restricting for development.",
+            "quote": "We are proud that we do good work for good people, with people. Above all we're proud of our professional relationships.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Full control of design and development flow with CloudCannon",
+            "alignment": "right",
+            "content_markdown": "CloudCannon came up as a suggestion in documentation and links to trusted hosting providers. After trying the platform out, the value was immediately clear to the team, with easy management, visual editing, and sharing, which gave clients autonomy and didn't just render them another account to manage and take note of. Increasingly, this meant that Ocupop could have full control over their design and development cycle, and they soon began to put together their own flows and designs to speed up future work.\n\nToday with CloudCannon, when working on a new project, the Ocupop team can simply pull from a library of their own custom templates, locally build the sites, and then iterate on design and development with greater agility. When they are happy with the result, it's simply a matter of using CloudCannon to hand off to clients, who can take control of their own content. With this flow, Ocupop focuses on what they do best - design and development - and controls how much time they spend with clients.",
+            "quote": "CloudCannon really helps us work better. It feels nice to commit clients to the platform, and they feel comfortable with it.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/ocupop-scene3.png",
+            "image_alt": "Image of someone holding a tablet looking at the Ocupop marketing site.",
+            "heading": "Ocupop and CloudCannon’s partnership",
+            "content_markdown": "It's all about managing the client's expectations. For managing content and keeping to their own effective workflow, Ocupop has found their comfort zone with CloudCannon as their all-in-one platform. Looking to the future, Ocupop is always interested in new features and options being implemented, and CloudCannon loves having the agency on board to support.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "social-block",
+            "text": "Share:",
+            "link_content": null,
+            "link_url": null,
+            "full_width": true,
+            "open_in_new_tab": true,
+            "social_sharing": [
+              "email",
+              "facebook",
+              "linkedin",
+              "twitter"
+            ]
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 4,
+            "tablet_unit_number": 6,
+            "laptop_unit_number": 8
+          }
+        ],
         "path": "_case_study/ocupop.html",
         "collection": "case-studies",
-        "ext": ".html"
+        "ext": ".html",
+        "url": ""
       },
       {
+        "title": "Twitch",
+        "heading": "Delivering microsites to Twitch's 26.5 million daily active users",
+        "layout": "case_study",
+        "permalink": "/customers/:title/",
+        "categories": [
+          "Documentation",
+          "Microsites"
+        ],
+        "image": "/uploads/twitch-card.svg",
+        "image_alt": "Twitch logo",
+        "other_case_studies": [
+          "Lumina",
+          "Hnry",
+          "Netflix"
+        ],
+        "featured": true,
+        "date": "2021-03-26 12:37:00 +1300",
+        "content_blocks": [
+          {
+            "_component_type": "hero",
+            "image_path": "/uploads/twitch-card.svg",
+            "image_alt": "Twitch logo",
+            "heading": "Delivering microsites to Twitch's 26.5 million daily active users",
+            "hero_colour": "#034ad8",
+            "blog": true,
+            "author_image_path": "/uploads/case-study/twitch-profile-small.png",
+            "author_image_alt": "Image of Sam Harnack",
+            "author": "With Sam Harnack, Technical Marketing Director"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Why the world’s leading streaming platform chose CloudCannon",
+            "alignment": "right",
+            "content_markdown": "Sam Harnack, Technical Marketing Director for San Francisco-based live streaming service Twitch, had a problem.&nbsp;\n\nTwitch’s marketing team relied on a slate of microsites to publish everything from developer documentation and advertising info to conference details, learning resources and brand guidelines. Built on Ruby on Rails, the sites made nobody happy. Developers found them cumbersome to build and magnets for support tickets, while the marketers bemoaned the lack of a preview or staging environment and the frequent failures of live sites that inevitably followed.\n\nEarly in 2017 Harnack, a recent arrival to Twitch, went looking for a better way. The first step was switching to the Jekyll static site generator, which was fast, secure and could easily scale to Twitch’s fast-growing global audience. Next, a new CMS.",
+            "quote": "CloudCannon provides a quality editing interface for our marketing team while allowing developers to use the tools and workflows they know.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/case-study/twitch-scene.png",
+            "image_alt": "Image of an Imac showing Twitch's brand site",
+            "heading": "What Twitch needed",
+            "content_markdown": "The requirements were demanding. It would need to stand up sites quickly, sharply reduce support requests, offer faultless performance under load, and support hosting on Amazon AWS infrastructure. The marketing team had its own shopping list: It needed a CMS it could use with a minimum of technical know-how and without recourse to developers, and would provide seamless translation into 27 languages.\n\nTwitch trialled numerous headless CMS but found in each case that they were too complex in use and that content was disconnected from the live site.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": false,
+            "image_path": "/uploads/case-study/twitch-scene-2.png",
+            "image_alt": "Image of a mobile phone showing Twitch's brand site",
+            "heading": "The right choice for a fast-moving business",
+            "content_markdown": "The breakthrough came when CloudCannon was put through its paces. It quickly matched the specification, allowing editors to write directly inline and to publish without the assistance of a developer. Importantly, it integrated with Twitch’s translation workflow to automate the translation process, letting marketers generate content in English and then export to human translators via Smartling. The result: frictionless creation of multiple language versions of Twitch’s marketing sites.",
+            "link_url": null,
+            "link_content": null,
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": null
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": null,
+            "alignment": "left",
+            "content_markdown": "Harnack first transitioned Twitch’s legal pages to CloudCannon and then made it the default for all the company’s microsites. “CloudCannon provides a quality editing interface for our marketing team,” he explains, “while allowing developers to use the tools and workflows they know.”&nbsp;\n\nTwitch’s CloudCannon-based sites today serve a streaming platform that supports 2.2 million content creators and attracts 26.5 million daily active users, making it easily the world’s number one in its category.&nbsp;",
+            "quote": "CloudCannon is the perfect mix - editors find it easy to update content inline and their content is saved back to our Git repository, so we never felt locked in.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/case-study/twitch-scene-laptop.png",
+            "image_alt": "Image of a laptop showing Twitch's brand site",
+            "heading": "Twitch and CloudCannon’s partnership",
+            "content_markdown": "With over 15 cutting-edge marketing sites on CloudCannon, Twitch continues to push the pace on providing timely content to their audience.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "right"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "social-block",
+            "text": "Share:",
+            "link_content": null,
+            "link_url": null,
+            "full_width": true,
+            "open_in_new_tab": true,
+            "social_sharing": [
+              "email",
+              "facebook",
+              "linkedin",
+              "twitter"
+            ]
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 6,
+            "tablet_unit_number": 6,
+            "laptop_unit_number": 10
+          }
+        ],
         "path": "_case_study/twitch.html",
         "collection": "case-studies",
-        "ext": ".html"
+        "ext": ".html",
+        "url": ""
       },
       {
+        "title": "Usecue",
+        "layout": "case_study",
+        "permalink": "/customers/:title/",
+        "heading": "Running a highly efficient digital agency on CloudCannon",
+        "categories": [
+          "Agency"
+        ],
+        "image": "/uploads/usecue-card.svg",
+        "image_alt": "Usecue logo",
+        "featured": true,
+        "date": "2021-03-26 12:37:00 +1300",
+        "other_case_studies": [
+          "Lumina",
+          "Hnry",
+          "Netflix"
+        ],
+        "content_blocks": [
+          {
+            "_component_type": "hero",
+            "image_path": "/uploads/usecue-card.svg",
+            "image_alt": "Usecue logo",
+            "heading": "Running a highly efficient digital agency on CloudCannon",
+            "hero_colour": "#034ad8",
+            "blog": true,
+            "author_image_path": "/uploads/joost-profile.png",
+            "author_image_alt": "Image of Joost van der Schee",
+            "author": "With Joost van der Schee, Owner and operator"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "Building quality solutions and transparency with clients",
+            "alignment": "right",
+            "content_markdown": "Technical excellence, beautiful design, integrity. All of these are important for Joost van der Schee, owner and operator of [Usecue B.V.](https://www.usecue.com/), to deliver amazing web solutions to clients, who can rest assured that speed and quality are a focus and not based on false promises.",
+            "quote": "Time is really expensive. With WordPress I was spending a lot of time reviewing and managing plugins. Switching to CloudCannon has meant I no longer need to spend as much time managing my clients' sites and can focus on development.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/usecue-scene-1.png",
+            "image_alt": "Image of an iMac showing Usecue website",
+            "heading": "Increasing demands require greater adaptation",
+            "content_markdown": "A product design engineer by trade, Joost has, over the years, moved from mainly frontend development to almost anything web-related - code, infrastructure, design, and more. Joost relishes the opportunity to learn new ideas and use new tools, and is always looking for solutions that work for both him and his clients.\n\nAfter experimenting with potential solutions and even a custom-made CMS, WordPress eventually filled the gap due to how easy it is to set up and manage a single site. But with increasing demand, changes, and management needs, the cracks in an aging ecosystem slowly made it apparent that it is less than optimal for his flourishing business's needs.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "left"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": false,
+            "image_path": "/uploads/usecue-scene-2.png",
+            "image_alt": "Image of a tablet showing a case study in Usecue's website",
+            "heading": "Legacy issues: security, maintenance, and high costs",
+            "content_markdown": "Being a freelancer means you have a hard limit to your capacities, but what you have created - and potentially need to manage - is constantly growing. With dozens of different WordPress setups for clients, much of Joost’s work was necessarily being offloaded to hosting environments, which made management difficult and sometimes led to security issues.\n\nNot wanting to deal with the headaches of constant maintenance, security, and any potential legal issues, Joost sought out a better management solution for servers, backups, and dashboards. However, the first solution he found, although giving peace of mind, came at a much higher price, making for a hard sell for customers and extra costs to absorb.",
+            "link_url": null,
+            "link_content": null,
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": null
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "A potential solution, with adoption hurdles",
+            "alignment": "left",
+            "content_markdown": "Joost has his finger on the pulse of the latest developments in tech through blogs, feeds, and YouTube. Through this, he discovered Jekyll and static sites as a potential way to make websites faster and their management easier. Being a developer, Joost was immediately convinced, but Jekyll's lack of a CMS and competing with household names such as WordPress led to heavy skepticism from colleagues, as well as concerns around allowing collaboration with less tech-savvy people.",
+            "quote": "I'm a developer. With CloudCannon, I do what I do best - develop - and then offload it to whoever wants to use it, without needing to look at it anymore.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": false,
+            "image_path": "/uploads/usecue-scene-3.png",
+            "image_alt": "Image of a mobile phone  showing Usecue's blog page",
+            "heading": "An all-in-one solution for modern static sites",
+            "content_markdown": "However, during this time, Joost discovered CloudCannon as a way to host and manage Jekyll sites, all under one roof, rather than through different login portals. With the ability to view created sites and monitor them - increasingly less - through a visual editor, management became easier and sites less fragile due to their architecture.\n\nThe transition from WordPress to hosted Jekyll sites was also simple, without the extra overhead of plugins. Previously, Joost's WordPress sites had also required various add-ons, such as for custom creating entities. However, Jekyll's collection system - combined with CloudCannon's tight integration of Jekyll conventions - made the process much easier.",
+            "link_url": null,
+            "link_content": null,
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": null
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-quote",
+            "tag": true,
+            "heading": "A new focus on speed and developer efficiency",
+            "alignment": "right",
+            "content_markdown": "An important result of Joost's new workflow with CloudCannon was the change in focus and greater control over content. Having sites consisting of only frontend static content made development of extremely fast, secure sites much simpler for Joost, as well as a fun learning experience. And with CloudCannon’s easy way to share content for editing with clients, Joost was able to focus even more on being a developer, and less on being a site manager.\n\nNow, when working with CloudCannon, Joost can create a site according to design with simple password authentication to hand to marketers and clients. And simple and customizable editing options mean that he can add placeholder text to functional websites, which marketers and clients can fill out, without him needing to be involved at all.",
+            "quote": "I think one thing was the risk of being responsible for all these minor issues, which I wanted to offload, but which cost me a lot of money. And then I found CloudCannon, and it fit the problem.",
+            "heading_type": "h2"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "left-right-block",
+            "tag": true,
+            "image_path": "/uploads/usecue-scene-4.png",
+            "image_alt": "Image of a laptop showing a blog article from Usecue's website",
+            "heading": "Joost and CloudCannon together",
+            "content_markdown": "While Joost grows his business further, for his marketing sites, CloudCannon will be there to help him make the process easier, giving him more time to focus on doing the work he loves.",
+            "link_url": null,
+            "link_content": "I am a link",
+            "link_open_in_new_tab": false,
+            "tag_content": null,
+            "tag_icon_path": null,
+            "heading_type": "h2",
+            "alignment": "right"
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 8,
+            "tablet_unit_number": 9,
+            "laptop_unit_number": 14
+          },
+          {
+            "_component_type": "social-block",
+            "text": "Share:",
+            "link_content": null,
+            "link_url": null,
+            "full_width": true,
+            "open_in_new_tab": true,
+            "social_sharing": [
+              "email",
+              "facebook",
+              "linkedin",
+              "twitter"
+            ]
+          },
+          {
+            "_component_type": "spacing",
+            "mobile_unit_number": 4,
+            "tablet_unit_number": 6,
+            "laptop_unit_number": 8
+          }
+        ],
         "path": "_case_study/usecue.html",
         "collection": "case-studies",
-        "ext": ".html"
+        "ext": ".html",
+        "url": ""
       }
     ]
   }

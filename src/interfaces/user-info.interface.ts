@@ -2,7 +2,7 @@ import { IPaths } from './paths.interface'
 import { Parsers } from '../enum/parser.enum'
 
 export interface IUserInfo {
-    collections: {};
+    collections: any;
     timezone: String;
     source?: String;
     'base-url'?: String;

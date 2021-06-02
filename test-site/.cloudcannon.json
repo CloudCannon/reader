@@ -5,7 +5,8 @@
             "path": "_posts"
         },
         "news": {
-            "path": "_news"
+            "path": "_news",
+            "url": "/news/:title/:slug"
         },
         "case-studies": {
             "path": "_case_study"
