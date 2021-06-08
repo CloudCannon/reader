@@ -8,7 +8,7 @@ describe('testing generateInfo', () => {
         expect.assertions(1);
 
         const readFileSpy = jest.spyOn(fs, "readFile");
-        const filePath = path.join(__dirname, 'test.json')
+        const filePath = path.join(__dirname, './fixture/test.json')
         
         await readLocalJSONFile(filePath);
         expect(readFileSpy).toHaveBeenCalledTimes(1);

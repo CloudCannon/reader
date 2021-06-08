@@ -2,7 +2,8 @@
     "base-url": "",
     "collections": {
         "posts": {
-            "path": "_posts"
+            "path": "_posts",
+            "loader": "md"
         },
         "news": {
             "path": "_news",
