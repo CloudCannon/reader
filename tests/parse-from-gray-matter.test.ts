@@ -24,8 +24,13 @@ describe('parseFromGrayMatter()', () => {
 
         })
 
-        it('should throw', async () => {
+        it('should throw if invalid file type', async () => {
             const filePath = path.join(__dirname, 'fixture/incorrect-input-collection-item.md');
+            await expect(parseFromGrayMatter(filePath)).rejects.toThrow();
+        })
+
+        it('should throw if invalid file name', async () => {
+            const filePath = path.join(__dirname, 'fake.md');
             await expect(parseFromGrayMatter(filePath)).rejects.toThrow();
         })
 

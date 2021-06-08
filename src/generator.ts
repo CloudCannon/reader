@@ -1,12 +1,13 @@
 import { writeFile, readdir } from 'fs/promises';
 import * as path from 'path';
 
-import { IParsersEnum, Parsers } from './enum/parser.enum'
+import { Parsers } from './enum/parser.enum'
 import { IUserInfo, ILoader } from './interfaces/user-info.interface';
 import { IInfo, IGeneratedInfo } from './interfaces/info.interface'
 import { readLocalJSONFile } from './helper/read-local-file';
 import { parseFromGrayMatter } from './parse-from-gray-matter'; 
-import { userInfo } from 'os';
+
+import { getLoaderType } from './helper/loader';
 
 export async function buildObject(userInput: IUserInfo): Promise<IInfo> {
 
@@ -23,7 +24,7 @@ export async function buildObject(userInput: IUserInfo): Promise<IInfo> {
     return configObject;
 }
 
-//Does the stuff we don't want to think about
+// Does the stuff we don't want to think about
 async function basicGeneratedInfo(): Promise<IGeneratedInfo> {
     const packageJsonFile = await readLocalJSONFile('../package.json');
 
@@ -83,15 +84,6 @@ async function getCollection(collectionConfig: any, key: string, loader?: ILoade
     return result
 }
 
-function getLoaderType(fileType: string, loader?: ILoader): Parsers {
-
-    let matchFileType = fileType.substring(1);
-    let parser = loader ? loader[matchFileType] : Object.values(Parsers)[Object.keys(Parsers).indexOf(matchFileType)];
-
-    // This will throw if the response is not in the IParserEnum. Would be a good one to test.
-    return IParsersEnum.parse(parser);
-
-}
 
 async function returnFrontMatterFromLoaderType(loaderType: string, filePath: string): Promise<any> {
     let frontMatter: Object;
