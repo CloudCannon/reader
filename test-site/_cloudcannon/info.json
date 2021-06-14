@@ -1,5 +1,4 @@
 {
-  "base-url": "",
   "collections": {
     "posts": {
       "default": "_defaults",
@@ -26,7 +25,8 @@
   "paths": {
     "uploads": "Key"
   },
-  "time": "2021-06-14T04:06:44.419Z",
+  "base-url": "I did a thing",
+  "time": "2021-06-14T05:22:37.300Z",
   "cloudcannon": {
     "name": "ssg-reader",
     "version": "0.0.1"

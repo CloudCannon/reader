@@ -1,10 +1,9 @@
-{
-    "base-url": "",
-    "collections": {
-        "posts": {
-            "default": "_defaults",
-            "path": "_posts",
-            "loader": "md"
+let cloudcannonConfig = {
+    collections: {
+        posts: {
+            default: "_defaults",
+            path: "_posts",
+            loader: "md"
         },
         "news": {
             "default": "_defaults",
@@ -27,3 +26,11 @@
         "uploads": "Key"
     }
 }
+
+function thing() {
+    cloudcannonConfig['base-url'] = "I did a thing"
+}
+
+thing();
+
+module.exports = { cloudcannonConfig }
