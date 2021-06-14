@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "jest --watchAll",
+    "test-coverage": "jest --coverage",
     "lint": "npx eslint src",
     "build": "tsc",
     "release": "gulp"

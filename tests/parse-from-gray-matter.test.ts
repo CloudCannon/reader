@@ -4,19 +4,14 @@ import { parseFromGrayMatter } from '../src/parse-from-gray-matter'
 describe('parseFromGrayMatter()', () => {
 
     describe('Valid file', () => {
+        const filePath = path.join(__dirname, 'fixture/input-collection-item.md');
 
         it('should return correct data', async () => {
             
-            const filePath = path.join(__dirname, 'fixture/input-collection-item.md');
+            const result = await parseFromGrayMatter(filePath);
             const expected = {
                 "title" : "Nice!"
             }
-
-            // expect(async () => {
-            //     await parseFromGrayMatter(filePath);
-            // }).not.toThrow();
-
-            const result = await parseFromGrayMatter(filePath);
 
             expect(result).toEqual(expected);
             expect(typeof result).toEqual('object');
@@ -24,7 +19,16 @@ describe('parseFromGrayMatter()', () => {
 
         })
 
-        it('should throw if invalid file type', async () => {
+        it('should not throw is filePath is correct', () => {
+            expect(async () => {
+                await parseFromGrayMatter(filePath);
+            }).not.toThrow();
+        })
+    })
+
+    describe('Invalid file', () => {
+
+        it('should throw if invalid fileType', async () => {
             const filePath = path.join(__dirname, 'fixture/incorrect-input-collection-item.md');
             await expect(parseFromGrayMatter(filePath)).rejects.toThrow();
         })
@@ -33,7 +37,5 @@ describe('parseFromGrayMatter()', () => {
             const filePath = path.join(__dirname, 'fake.md');
             await expect(parseFromGrayMatter(filePath)).rejects.toThrow();
         })
-
     })
-
 })

@@ -5,7 +5,7 @@ export async function readLocalJSONFile(file: string): Promise<any> {
         const contents = await readFile(file);
         return JSON.parse(contents.toString());
     }
-    catch(e) {
-        console.error(e)
+    catch(e : any) {
+        throw new Error(e.message);
     }
 }

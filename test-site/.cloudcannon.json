@@ -2,14 +2,18 @@
     "base-url": "",
     "collections": {
         "posts": {
+            "default": "_defaults",
             "path": "_posts",
             "loader": "md"
         },
         "news": {
+            "default": "_defaults",
             "path": "_news",
-            "url": "/news/:title/:slug"
+            "url": "/news/:title/",
+            "loader": "html"
         },
         "case-studies": {
+            "default": "_defaults",
             "path": "_case_study"
         }
     },

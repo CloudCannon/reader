@@ -183,8 +183,6 @@ function getCollections(loader, collectionsConfig) {
     });
 }
 function getLoaderType(filetype, loader) {
-    console.log(loader);
-    console.log(filetype);
     return "hello";
 }
 //# sourceMappingURL=generateInfo.js.map

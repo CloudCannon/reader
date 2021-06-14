@@ -15,4 +15,12 @@ describe('testing generateInfo', () => {
         readFileSpy.mockClear();
     })
 
+    it('should throw on fake file', async () => {
+        expect.assertions(1);
+
+        const filePath = path.join(__dirname, './fixture/fake.json')
+        await expect(() => readLocalJSONFile(filePath)).rejects.toThrow()
+  
+    })
+
 })

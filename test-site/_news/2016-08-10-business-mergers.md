@@ -1,5 +1,5 @@
 ---
-title: Business Mergers
+title: Business Merger's
 date: 2016-08-10 00:00:00
 categories:
   - Business

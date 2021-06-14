@@ -14,7 +14,7 @@ export interface IUserInfo {
     'array-structures'?: {};
     'select-data'?: {};
     paths?: IPaths;
-    loader?: ILoader
+    loader?: Parsers;
 }
 
 export interface ILoader {

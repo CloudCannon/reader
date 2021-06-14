@@ -2,13 +2,18 @@
   "base-url": "",
   "collections": {
     "posts": {
-      "path": "_posts"
+      "default": "_defaults",
+      "path": "_posts",
+      "loader": "md"
     },
     "news": {
+      "default": "_defaults",
       "path": "_news",
-      "url": "/news/:title/:slug"
+      "url": "/news/:title/",
+      "loader": "html"
     },
     "case-studies": {
+      "default": "_defaults",
       "path": "_case_study"
     }
   },
@@ -21,7 +26,7 @@
   "paths": {
     "uploads": "Key"
   },
-  "time": "2021-06-02T03:02:03.112Z",
+  "time": "2021-06-14T03:56:50.030Z",
   "cloudcannon": {
     "name": "ssg-reader",
     "version": "0.0.1"
@@ -56,24 +61,13 @@
         "ext": ".md",
         "url": ""
       },
-      {
-        "title": null,
-        "date": null,
-        "categories": null,
-        "author_staff_member": null,
-        "image": "https://placehold.it/600/450?a=.png",
-        "large_header": false,
-        "path": "_posts/_defaults.md",
-        "collection": "posts",
-        "ext": ".md",
-        "url": ""
-      }
+      null
     ]
   },
   "news": {
     "news": [
       {
-        "title": "Business Mergers",
+        "title": "Business Merger's",
         "date": "2016-08-10T00:00:00.000Z",
         "categories": [
           "Business"
@@ -84,7 +78,7 @@
         "path": "_news/2016-08-10-business-mergers.md",
         "collection": "news",
         "ext": ".md",
-        "url": "/news/"
+        "url": "/news/:title/"
       },
       {
         "title": "Real Estate Flipping",
@@ -98,41 +92,14 @@
         "path": "_news/2016-11-11-real-estate-flipping.md",
         "collection": "news",
         "ext": ".md",
-        "url": "/news/"
+        "url": "/news/:title/"
       },
-      {
-        "title": null,
-        "date": null,
-        "categories": null,
-        "author_staff_member": null,
-        "image": "https://placehold.it/600/450?a=.png",
-        "large_header": false,
-        "path": "_news/_defaults.md",
-        "collection": "news",
-        "ext": ".md",
-        "url": "/news/"
-      }
+      null
     ]
   },
   "case-studies": {
     "case-studies": [
-      {
-        "title": null,
-        "layout": "case_study",
-        "heading": null,
-        "permalink": "/customers/:title/",
-        "categories": null,
-        "featured": null,
-        "image": null,
-        "image_alt": null,
-        "date": null,
-        "other_case_studies": null,
-        "content_blocks": null,
-        "path": "_case_study/_default.html",
-        "collection": "case-studies",
-        "ext": ".html",
-        "url": ""
-      },
+      null,
       {
         "title": "Cubicflow",
         "layout": "case_study",
