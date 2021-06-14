@@ -5,8 +5,8 @@ import { Parsers } from './enum/parser.enum'
 import { IUserInfo, ILoader } from './interfaces/user-info.interface';
 import { IInfo, IGeneratedInfo } from './interfaces/info.interface'
 import { readLocalJSONFile } from './helper/read-local-file';
-import { parseFromGrayMatter } from './parse-from-gray-matter'; 
-import { getUrlFromFrontMatter } from './url-builder';
+import { parseFromGrayMatter } from './helper/parse-from-gray-matter'; 
+import { getUrlFromFrontMatter } from './helper/url-builder';
 
 import { getLoaderType } from './helper/loader';
 
@@ -40,12 +40,10 @@ async function basicGeneratedInfo(): Promise<IGeneratedInfo> {
 
 async function getCollections(userInput: IUserInfo): Promise<any> {
     const { collections: collectionsConfig } = userInput;
-    // const collectionsConfig: any = {} 
     const keys = Object.keys(collectionsConfig);
     let collections: any = {}
     for (let key of keys) {
         
-        // const collectionPath = collectionsConfig[key].path;
         let loader = collectionsConfig[key].loader || null;
         let collection = await getCollection(collectionsConfig[key], key, loader);
         collections[key] = collection;
@@ -101,11 +99,16 @@ async function getCollection(collectionConfig: any, key: string, loader?: Parser
 
 async function returnFrontMatterFromLoaderType(loaderType: string, filePath: string): Promise<any> {
 
-    // TODO: Allow people to parse JSON, YAML and TOML
     switch(loaderType) {
         case Parsers.md:
             return await parseFromGrayMatter(filePath);
         case Parsers.html:
+            return await parseFromGrayMatter(filePath);
+        case Parsers.toml:
+            return await parseFromGrayMatter(filePath);
+        case Parsers.yaml:
+            return await parseFromGrayMatter(filePath);
+        case Parsers.json:
             return await parseFromGrayMatter(filePath);
     }
 }

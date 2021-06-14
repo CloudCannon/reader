@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { parseFromGrayMatter } from '../src/parse-from-gray-matter'
+import { parseFromGrayMatter } from '../src/helper/parse-from-gray-matter'
 
 describe('parseFromGrayMatter()', () => {
 
