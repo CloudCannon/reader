@@ -4,7 +4,6 @@ import { IParsersEnum, Parsers } from '../enum/parser.enum'
 function getLoaderFromFiletype(fileType: string): Parsers {
     let matchFileType = fileType.substring(1);
 
-    // I'm sorry...
     const parser = Object.values(Parsers)[Object.keys(Parsers).indexOf(matchFileType)];
     return parser;
 }

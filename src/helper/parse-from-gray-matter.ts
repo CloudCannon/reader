@@ -7,5 +7,4 @@ export async function parseFromGrayMatter(filePath: string): Promise<Object> {
         const frontMatter = matter(readDataFile);
 
         return frontMatter.data;
-
 }

@@ -1,5 +1,5 @@
-export function getUrlFromFrontMatter(frontMatter: any, urlTemplate?: string): string {
-
+import { IFrontMatter } from '../interfaces/front-matter.interface'
+export function getUrlFromFrontMatter(frontMatter: IFrontMatter, urlTemplate?: string): string {
     if(!urlTemplate) {
         return ""
     }
@@ -8,19 +8,21 @@ export function getUrlFromFrontMatter(frontMatter: any, urlTemplate?: string): s
         return urlTemplate;
     }
 
-    const urlVariableArray = urlTemplate.match(/:[^/:]+/g);
+
+    const urlVariableArray = urlTemplate.split('/');
     let newUrlSlug;
-
-    newUrlSlug = urlVariableArray?.map(url => {
-        let formattedUrl = url.replace(':', '')
-
-        if(frontMatter[formattedUrl]) {
-            return frontMatter[formattedUrl];
-        }
-        else {
-            throw new Error(`${url} does not exist in config`)
+    newUrlSlug = urlVariableArray.map(url => {
+        if(url.includes(':')) {
+            let formattedUrl = url.replace(':', '')
+            if(frontMatter[formattedUrl]) {
+                return frontMatter[formattedUrl];
+            }
+            else {
+                throw new Error(`${url} does not exist in config`)
+            }
+        } else {
+            return url;
         }
     })
-    return urlTemplate.replace(/\/+/g, '/')
-
+        return newUrlSlug.join('/').replace(/\/+/g, '/')
 }
