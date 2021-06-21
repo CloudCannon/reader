@@ -11,22 +11,22 @@
       "url": "/news/:title/",
       "loader": "html"
     },
-    "case-studies": {
+    "casestudies": {
       "default": "_defaults",
       "path": "_case_study"
     }
   },
-  "comments": {},
-  "input-options": {},
-  "array-strictures": {},
-  "select-data": {},
+  "_comments": {},
+  "_options": {},
+  "_array_structures": {},
+  "_select_data": {},
   "generator": {},
-  "source-editor": {},
+  "_source_editor": {},
   "paths": {
     "uploads": "Key"
   },
   "base-url": "I did a thing",
-  "time": "2021-06-14T05:22:37.300Z",
+  "time": "2021-06-21T22:46:27.431Z",
   "cloudcannon": {
     "name": "ssg-reader",
     "version": "0.0.1"
@@ -78,7 +78,7 @@
         "path": "_news/2016-08-10-business-mergers.md",
         "collection": "news",
         "ext": ".md",
-        "url": "/news/:title/"
+        "url": "/news/Business Merger's/"
       },
       {
         "title": "Real Estate Flipping",
@@ -92,13 +92,13 @@
         "path": "_news/2016-11-11-real-estate-flipping.md",
         "collection": "news",
         "ext": ".md",
-        "url": "/news/:title/"
+        "url": "/news/Real Estate Flipping/"
       },
       null
     ]
   },
-  "case-studies": {
-    "case-studies": [
+  "casestudies": {
+    "casestudies": [
       null,
       {
         "title": "Cubicflow",
@@ -327,7 +327,7 @@
           }
         ],
         "path": "_case_study/cubicflow.html",
-        "collection": "case-studies",
+        "collection": "casestudies",
         "ext": ".html",
         "url": ""
       },
@@ -460,7 +460,7 @@
           }
         ],
         "path": "_case_study/hnry.html",
-        "collection": "case-studies",
+        "collection": "casestudies",
         "ext": ".html",
         "url": ""
       },
@@ -610,7 +610,7 @@
           }
         ],
         "path": "_case_study/insightly.html",
-        "collection": "case-studies",
+        "collection": "casestudies",
         "ext": ".html",
         "url": ""
       },
@@ -764,7 +764,7 @@
           }
         ],
         "path": "_case_study/lumina.html",
-        "collection": "case-studies",
+        "collection": "casestudies",
         "ext": ".html",
         "url": ""
       },
@@ -898,7 +898,7 @@
           }
         ],
         "path": "_case_study/netflix.html",
-        "collection": "case-studies",
+        "collection": "casestudies",
         "ext": ".html",
         "url": ""
       },
@@ -1069,7 +1069,7 @@
           }
         ],
         "path": "_case_study/ocupop.html",
-        "collection": "case-studies",
+        "collection": "casestudies",
         "ext": ".html",
         "url": ""
       },
@@ -1224,7 +1224,7 @@
           }
         ],
         "path": "_case_study/twitch.html",
-        "collection": "case-studies",
+        "collection": "casestudies",
         "ext": ".html",
         "url": ""
       },
@@ -1420,7 +1420,7 @@
           }
         ],
         "path": "_case_study/usecue.html",
-        "collection": "case-studies",
+        "collection": "casestudies",
         "ext": ".html",
         "url": ""
       }
