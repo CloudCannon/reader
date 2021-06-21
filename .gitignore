@@ -6,6 +6,9 @@ logs
 node_modules/
 jspm_packages/
 
+# Testing stuff
+coverage/
+
 # TypeScript cache
 *.tsbuildinfo
 
