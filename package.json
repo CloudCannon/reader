@@ -13,6 +13,9 @@
   "bin": {
     "ssg-reader-ts": "dist/index.js"
   },
+  "files": [
+    "dist/**/*.js"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
