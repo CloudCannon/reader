@@ -5,25 +5,25 @@ let cloudcannonConfig = {
             path: "_posts",
             loader: "md"
         },
-        "news": {
-            "default": "_defaults",
-            "path": "_news",
-            "url": "/news/:title/",
-            "loader": "html"
+        news: {
+            default: "_defaults",
+            path: "_news",
+            url: "/news/:title/",
+            loader: "html"
         },
-        "case-studies": {
-            "default": "_defaults",
-            "path": "_case_study"
+        casestudies: {
+            default: "_defaults",
+            path: "_case_study"
         }
     },
-    "comments": {},
-    "input-options": {},
-    "array-strictures": {},
-    "select-data": {},
-    "generator": {},
-    "source-editor": {},
-    "paths": {
-        "uploads": "Key"
+    _comments: {},
+    _options: {},
+    _array_structures: {},
+    _select_data: {},
+    generator: {},
+    _source_editor: {},
+    paths: {
+        uploads: "Key"
     }
 }
 

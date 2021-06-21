@@ -1,4 +1,5 @@
 import { getUrlFromFrontMatter } from '../src/helper/url-builder'; 
+
 describe('getUrlFromFrontMatter', () => {
     describe('Does not include a urlTemplate', () => {
         it('should return an empty string', () => {

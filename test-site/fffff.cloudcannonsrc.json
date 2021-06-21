@@ -18,12 +18,12 @@
                 "path": "_case_study"
             }
         },
-        "comments": {},
-        "input-options": {},
-        "array-strictures": {},
-        "select-data": {},
+        "_comments": {},
+        "_options": {},
+        "_array_structures": {},
+        "_select_data": {},
         "generator": {},
-        "source-editor": {},
+        "_source_editor": {},
         "paths": {
             "uploads": "Key"
         }

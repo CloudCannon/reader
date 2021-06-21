@@ -7,12 +7,12 @@ export interface IUserInfo {
     source?: String;
     'base-url'?: String;
     generator?: {};
-    comments?: {};
-    'input-options'?: {};
-    editor?: {};
-    'source-editor'?: {};
-    'array-structures'?: {};
-    'select-data'?: {};
+    _comments?: {};
+    _options?: {};
+    _editor?: {};
+    _source_editor?: {};
+    _array_structures?: {};
+    _select_data?: {};
     paths?: IPaths;
     loader?: Parsers;
 }
