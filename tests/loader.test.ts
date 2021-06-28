@@ -2,7 +2,7 @@ import { IParsersEnum, Parsers } from '../src/enum/parser.enum';
 import { getLoaderType } from '../src/helper/loader';
 
 //if file type with no loader : do something
-describe.only('getLoaderType()', () => {
+describe('getLoaderType()', () => {
     describe("if fileType with no loader", () => {
 
         it('should return file type', () => {
@@ -14,6 +14,7 @@ describe.only('getLoaderType()', () => {
             expect(() => getLoaderType(".fake")).toThrow()
         })
     })
+
     describe("if fileType and loader", () => {
         it('should listen to loader', () => {
             const response = getLoaderType(".md", "html")

@@ -17,7 +17,7 @@ describe('getUrlFromFrontMatter', () => {
         });
     });
 
-    describe('it should replace :title with the the variable', () => {
+    describe('Url includes variables', () => {
         it('should return title variable within the url', () => {
             const expected = '/url/my-title';
             const url = '/url/:title';
@@ -25,8 +25,10 @@ describe('getUrlFromFrontMatter', () => {
             const result = getUrlFromFrontMatter(frontMatter, "/url/:title")
             expect(result).toBe(expected);
         })
+
+        it('should throw if title variable doesn\'t exist', () => {
+            const frontMatter = { notTitle: 'my-title' };
+            expect(() => getUrlFromFrontMatter(frontMatter, "/url/:title")).toThrow();
+        })
     })
 });
-
-// If there are spaces in the front matter variable throw
-// If there is :title but title doesn't exist - throw

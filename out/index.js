@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -37,36 +38,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var promises_1 = require("fs/promises");
-var generateInfo_1 = require("./generateInfo");
-function readLocalFile(file) {
-    return __awaiter(this, void 0, void 0, function () {
-        var contents;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, promises_1.readFile(file)];
-                case 1:
-                    contents = _a.sent();
-                    return [2 /*return*/, JSON.parse(contents.toString())];
-            }
-        });
-    });
-}
+var generator_1 = require("./generator");
+var cosmiconfig_1 = require("cosmiconfig");
+//This file now creates and saves the info files.
 function start() {
     return __awaiter(this, void 0, void 0, function () {
-        var userInput;
+        var details, moduleName, explorer, configFile, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, readLocalFile('.cloudcannon.json')];
+                case 0:
+                    moduleName = 'cloudcannon';
+                    explorer = cosmiconfig_1.cosmiconfig(moduleName);
+                    return [4 /*yield*/, explorer.search()];
                 case 1:
-                    userInput = _a.sent();
-                    return [4 /*yield*/, promises_1.mkdir('./_cloudcannon', { recursive: true })];
+                    configFile = _a.sent();
+                    if (!configFile) return [3 /*break*/, 8];
+                    _a.label = 2;
                 case 2:
-                    _a.sent();
-                    return [4 /*yield*/, generateInfo_1.generateInfo(userInput)];
+                    _a.trys.push([2, 6, , 7]);
+                    return [4 /*yield*/, generator_1.buildObject(configFile.config.cloudcannonConfig)];
                 case 3:
+                    details = _a.sent();
+                    return [4 /*yield*/, promises_1.mkdir('./_cloudcannon', { recursive: true })];
+                case 4:
                     _a.sent();
-                    console.log('World');
-                    return [2 /*return*/];
+                    return [4 /*yield*/, promises_1.writeFile('./_cloudcannon/info.json', JSON.stringify(details, null, 2))];
+                case 5:
+                    _a.sent();
+                    return [3 /*break*/, 7];
+                case 6:
+                    error_1 = _a.sent();
+                    throw new Error("" + error_1);
+                case 7: return [3 /*break*/, 9];
+                case 8: throw new Error("can not find config file");
+                case 9: return [2 /*return*/];
             }
         });
     });

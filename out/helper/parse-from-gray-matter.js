@@ -35,27 +35,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readLocalJSONFile = void 0;
+exports.parseFromGrayMatter = void 0;
+var gray_matter_1 = __importDefault(require("gray-matter"));
 var promises_1 = require("fs/promises");
-function readLocalJSONFile(file) {
+function parseFromGrayMatter(filePath) {
     return __awaiter(this, void 0, void 0, function () {
-        var contents, error_1;
+        var readDataFile, frontMatter;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, promises_1.readFile(file)];
+                case 0: return [4 /*yield*/, promises_1.readFile(filePath, 'utf8')];
                 case 1:
-                    contents = _a.sent();
-                    return [2 /*return*/, JSON.parse(contents.toString())];
-                case 2:
-                    error_1 = _a.sent();
-                    throw new Error("" + error_1);
-                case 3: return [2 /*return*/];
+                    readDataFile = _a.sent();
+                    frontMatter = gray_matter_1.default(readDataFile);
+                    return [2 /*return*/, frontMatter.data];
             }
         });
     });
 }
-exports.readLocalJSONFile = readLocalJSONFile;
-//# sourceMappingURL=read-local-file.js.map
+exports.parseFromGrayMatter = parseFromGrayMatter;
+//# sourceMappingURL=parse-from-gray-matter.js.map

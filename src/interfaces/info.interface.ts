@@ -1,9 +1,10 @@
+import { ICollection } from './collections.interface';
 import { IUserInfo } from './user-info.interface';
 
 export interface IInfo extends IUserInfo, IGeneratedInfo {
-    pages?: Array<{}>;
-    static?: Array<{}>;
-    'collections-config'?: {};
+    pages?: Array<object>;
+    'static-pages'?: Array<object>;
+    collections: Array<ICollection>
 }
 
 export interface IGeneratedInfo {

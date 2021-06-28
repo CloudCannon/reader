@@ -11,10 +11,10 @@
     "release": "gulp"
   },
   "bin": {
-    "ssg-reader-ts": "dist/index.js"
+    "ssg-reader": "out/index.js"
   },
   "files": [
-    "dist/**/*.js"
+    "out/**/*.js"
   ],
   "author": "",
   "license": "ISC",
@@ -33,6 +33,8 @@
     "cosmiconfig": "^7.0.0",
     "gray-matter": "^4.0.3",
     "gulp-all": "^1.1.0",
+    "pkginfo": "^0.4.1",
+    "toml": "^3.0.0",
     "ts-to-zod": "^1.0.3",
     "zod": "^3.0.0"
   }

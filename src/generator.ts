@@ -1,18 +1,17 @@
-import { writeFile, readdir } from 'fs/promises';
+import { readdir } from 'fs/promises';
 import * as path from 'path';
 
 import { Parsers } from './enum/parser.enum'
-import { IUserInfo, ILoader } from './interfaces/user-info.interface';
+import { IUserInfo } from './interfaces/user-info.interface';
 import { IInfo, IGeneratedInfo } from './interfaces/info.interface'
-import { readLocalJSONFile } from './helper/read-local-file';
 import { parseFromGrayMatter } from './helper/parse-from-gray-matter'; 
 import { getUrlFromFrontMatter } from './helper/url-builder';
+const pkginfo = require('pkginfo')(module, 'version', 'name');
 
 import { getLoaderType } from './helper/loader';
 
 export async function buildObject(userInput: IUserInfo): Promise<IInfo> {
 
-    // TODO: Validate the userInput object is correct..?? 
     let configObject: IInfo;
     let generatedInfo = await basicGeneratedInfo();
     let collections = await getCollections(userInput);
@@ -20,28 +19,25 @@ export async function buildObject(userInput: IUserInfo): Promise<IInfo> {
     configObject = {
         ...userInput, 
         ...generatedInfo, 
-        ...collections
+        collections: collections
     };
     return configObject;
 }
 
-// Does the stuff we don't want to think about
-async function basicGeneratedInfo(): Promise<IGeneratedInfo> {
-    const packageJsonFile = await readLocalJSONFile('../package.json');
-
+async function basicGeneratedInfo(): Promise<IGeneratedInfo> {    
     return {
         time: new Date().toISOString(),
         cloudcannon: {
-            name: packageJsonFile.name,
-            version: packageJsonFile.version
+            name: module.exports.name,
+            version: module.exports.version
         }
     }
 }
 
 async function getCollections(userInput: IUserInfo): Promise<any> {
-    const { collections: collectionsConfig } = userInput;
+    const { 'collections-config': collectionsConfig } = userInput;
     const keys = Object.keys(collectionsConfig);
-    let collections: any = {}
+    let collections: any = new Object();
     for (let key of keys) {
         
         let loader = collectionsConfig[key].loader || null;
@@ -52,33 +48,31 @@ async function getCollections(userInput: IUserInfo): Promise<any> {
 }
 
 async function getCollection(collectionConfig: any, key: string, loader?: Parsers) {
-
     let files;
-    let result: any = {}
+    let result;
 
     const defaultTheme = collectionConfig.default ?? null;
     
     try {
         files = await readdir(path.join('.', collectionConfig.path));
 
-        result[key] = await Promise.all(files.map(async file => {
+        result = await Promise.all(files.map(async file => {
             const fileWithoutExtention = file.replace(/\.[^/.]+$/, "");
-            if(fileWithoutExtention == defaultTheme) {
+            if(fileWithoutExtention === defaultTheme) {
                 return;
             }
 
-            if(collectionConfig.default) {
-                const defaultWithoutFileExtention = collectionConfig.default.replace(/\.[^/.]+$/, "")
-                if(file === collectionConfig.default.replace(/\.[^/.]+$/, "") ) {
-                }
-
-            }
             const filePath = path.join('.', collectionConfig.path, file);
             const fileType = path.extname(filePath);
             const loaderType = getLoaderType(fileType, loader);
-            
             const frontMatter = await returnFrontMatterFromLoaderType(loaderType, filePath);
-            let url = getUrlFromFrontMatter(frontMatter, collectionConfig.url);
+            
+            let url;
+            if (typeof collectionConfig.url === 'function') {
+                url = collectionConfig.url(filePath, frontMatter);
+            } else {
+                url = getUrlFromFrontMatter(frontMatter, collectionConfig.url);
+            }
 
             return {
                 ...frontMatter,
@@ -90,10 +84,9 @@ async function getCollection(collectionConfig: any, key: string, loader?: Parser
             };
         }));
     } catch (e) {
-        //Should set up a better error catch
-        console.log("error", e);
+        throw new Error(`${e}`)
     }
-    return result
+    return result?.filter((a: object) => !!a);
 }
 
 

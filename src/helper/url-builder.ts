@@ -24,5 +24,5 @@ export function getUrlFromFrontMatter(frontMatter: IFrontMatter, urlTemplate?: s
             return url;
         }
     })
-        return newUrlSlug.join('/').replace(/\/+/g, '/')
+    return newUrlSlug.join('/').replace(/\/+/g, '/')
 }
