@@ -40,10 +40,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var promises_1 = require("fs/promises");
 var generator_1 = require("./generator");
 var cosmiconfig_1 = require("cosmiconfig");
-//This file now creates and saves the info files.
 function start() {
     return __awaiter(this, void 0, void 0, function () {
-        var details, moduleName, explorer, configFile, error_1;
+        var details, moduleName, explorer, configFile, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -67,8 +66,8 @@ function start() {
                     _a.sent();
                     return [3 /*break*/, 7];
                 case 6:
-                    error_1 = _a.sent();
-                    throw new Error("" + error_1);
+                    e_1 = _a.sent();
+                    throw new Error("" + e_1);
                 case 7: return [3 /*break*/, 9];
                 case 8: throw new Error("can not find config file");
                 case 9: return [2 /*return*/];

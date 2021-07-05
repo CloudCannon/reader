@@ -1,3 +1,3 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=collections.interface.js.map
+//# sourceMappingURL=source-editor.interface.js.map

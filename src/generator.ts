@@ -24,7 +24,7 @@ export async function buildObject(userInput: IUserInfo): Promise<IInfo> {
     return configObject;
 }
 
-async function basicGeneratedInfo(): Promise<IGeneratedInfo> {    
+async function basicGeneratedInfo(): Promise<IGeneratedInfo> {
     return {
         time: new Date().toISOString(),
         cloudcannon: {
@@ -39,7 +39,6 @@ async function getCollections(userInput: IUserInfo): Promise<any> {
     const keys = Object.keys(collectionsConfig);
     let collections: any = new Object();
     for (let key of keys) {
-        
         let loader = collectionsConfig[key].loader || null;
         let collection = await getCollection(collectionsConfig[key], key, loader);
         collections[key] = collection;
@@ -50,12 +49,10 @@ async function getCollections(userInput: IUserInfo): Promise<any> {
 async function getCollection(collectionConfig: any, key: string, loader?: Parsers) {
     let files;
     let result;
-
     const defaultTheme = collectionConfig.default ?? null;
-    
+
     try {
         files = await readdir(path.join('.', collectionConfig.path));
-
         result = await Promise.all(files.map(async file => {
             const fileWithoutExtention = file.replace(/\.[^/.]+$/, "");
             if(fileWithoutExtention === defaultTheme) {

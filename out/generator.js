@@ -92,7 +92,6 @@ function buildObject(userInput) {
     });
 }
 exports.buildObject = buildObject;
-// Does the stuff we don't want to think about
 function basicGeneratedInfo() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -142,7 +141,6 @@ function getCollection(collectionConfig, key, loader) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    console.log(typeof collectionConfig);
                     defaultTheme = (_a = collectionConfig.default) !== null && _a !== void 0 ? _a : null;
                     _b.label = 1;
                 case 1:
@@ -180,9 +178,7 @@ function getCollection(collectionConfig, key, loader) {
                     return [3 /*break*/, 5];
                 case 4:
                     e_1 = _b.sent();
-                    //Should set up a better error catch
-                    console.log("error", e_1);
-                    return [3 /*break*/, 5];
+                    throw new Error("" + e_1);
                 case 5: return [2 /*return*/, result === null || result === void 0 ? void 0 : result.filter(function (a) { return !!a; })];
             }
         });

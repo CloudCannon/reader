@@ -8,7 +8,6 @@ export function getUrlFromFrontMatter(frontMatter: IFrontMatter, urlTemplate?: s
         return urlTemplate;
     }
 
-
     const urlVariableArray = urlTemplate.split('/');
     let newUrlSlug;
     newUrlSlug = urlVariableArray.map(url => {

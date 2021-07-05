@@ -1,5 +1,4 @@
 import * as path from 'path';
-import { Parsers } from '../src/enum/parser.enum';
 import { parseFromGrayMatter } from '../src/helper/parse-from-gray-matter'
 
 describe('parseFromGrayMatter()', () => {

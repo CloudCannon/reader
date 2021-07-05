@@ -42,14 +42,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseFromGrayMatter = void 0;
 var gray_matter_1 = __importDefault(require("gray-matter"));
 var promises_1 = require("fs/promises");
+var toml_1 = __importDefault(require("toml"));
+var path_1 = __importDefault(require("path"));
 function parseFromGrayMatter(filePath) {
     return __awaiter(this, void 0, void 0, function () {
-        var readDataFile, frontMatter;
+        var readDataFile, fileExt, file, frontMatter;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, promises_1.readFile(filePath, 'utf8')];
                 case 1:
                     readDataFile = _a.sent();
+                    fileExt = path_1.default.extname(filePath);
+                    if (fileExt === '.toml') {
+                        file = gray_matter_1.default(readDataFile, {
+                            engines: {
+                                toml: toml_1.default.parse.bind(toml_1.default)
+                            }
+                        });
+                        return [2 /*return*/, file.data];
+                    }
                     frontMatter = gray_matter_1.default(readDataFile);
                     return [2 /*return*/, frontMatter.data];
             }
