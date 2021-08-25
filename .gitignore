@@ -1,21 +1,4 @@
-# Logs
-logs
-*.log
-
-# Dependency directories
 node_modules/
-jspm_packages/
-
-# Testing stuff
+.nyc_output/
 coverage/
-
-# TypeScript cache
-*.tsbuildinfo
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
 .eslintcache
-
-.vscode
