@@ -1,30 +1,31 @@
 #!/usr/bin/env node
 
 import { mkdir, writeFile } from 'fs/promises';
-import { buildObject } from './generator';
+import { generateInfo } from './generator';
 import { cosmiconfig } from 'cosmiconfig';
 
 async function start(): Promise<void> {
-    let details;
-    const moduleName = 'cloudcannon';
-    const explorer = cosmiconfig(moduleName);
+	const explorer = cosmiconfig('cloudcannon');
+	const configFile = await explorer.search();
 
-    let configFile = await explorer.search()
+	if (configFile) {
+		try {
+			const info = await generateInfo(configFile.config);
 
-    if(configFile) {
-
-        try {
-            details = await buildObject(configFile.config.cloudcannonConfig);
-            await mkdir('./_cloudcannon', { recursive: true });
-            await writeFile('./_cloudcannon/info.json', JSON.stringify(details, null, 2));
-        } catch(e) {
-            throw new Error(`${e}`)
-        }
-    }
-    else {
-        throw new Error("can not find config file")
-
-    }
+			try {
+				await mkdir('./_cloudcannon', { recursive: true });
+				await writeFile('./_cloudcannon/info.json', JSON.stringify(info, null, '\t'));
+			} catch (e) {
+				console.error('Failed to write info.');
+				throw e;
+			}
+		} catch (e) {
+			console.error('Failed to generate info.');
+			throw e;
+		}
+	} else {
+		throw new Error('No config file found.');
+	}
 }
 
-start();
+start().then(() => console.log('Generated ./_cloudcannon/info.json successfully.'));

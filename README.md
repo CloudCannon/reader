@@ -1,42 +1,85 @@
-To start project in Dev environment:
-Run `npm install`
-Run `npm i -g ts-node-dev`
-In project folder run `npx ts-node-dev --respawn [./path/to/index.ts]`
+# SSG Reader
 
-DOCUMENTATION:
+Parses config, files and folder structures to create a JSON file with information about
+sites made with any static site generator.
 
-We use cosmiconfig to search and load config files from your repository.
-Files that will be accepted:
-- `cloudcannonconfig` property in package.json
-- `cloudcannonrc` file in JSON or YAML format
-- `.cloudcannon.json`, `.cloudcannon.yaml`, `.cloudcannon.yml`, `.cloudcannon.js`, or `.cloudcannon.cjs`
-`cloudcannon.config.js` or `cloudcannon.config.cjs` CommonJS module exporting an object
+[Usage](#usage) &bull; [Documentation](#documentation) &bull; [Development](#development)
 
-We require you to set an object of your collections for CloudCannon to be able to know where to find them:
-example:
-```'collections-config': {
-    posts: { 
-    //Collections name
-        
-        default: "_defaults", 
-        //This is your default collections theme file, we will not include this file in our build but will use it to create a new collection item.
-        
-        path: "_posts", 
-        //Where we can find your collections folder from root
-        
-        loader: "md", 
-        //(Optional) - Check out our docs, this is optional, and if it is not set we will use our loader associated with your file extention
-        
-        url: urlBuilder 
-        //We require you to set the url for your individual post collection items. This listens to frontmatter and can be formatted like '/post/:title' where ':title' is a value on the post's frontmatter. Alternatively you are able to use a function if using a js or cjs config extention to dynamically set them based on your own logic.
-        functions set in in `url` get `filePath` and `frontMatter`
+## Usage
+
+### Configuration
+
+SSG Reader supports a number of different config formats.
+Config files should be in the root of your repository.
+
+Formats include:
+
+- `cloudcannon.config.js` or `cloudcannon.config.cjs`
+- `cloudcannonconfig` property in `package.json`
+- `.cloudcannon.json`
+- `.cloudcannon.yml` or `.cloudcannon.yaml`
+- `.cloudcannon.js` or `.cloudcannon.cjs`
+- `cloudcannonrc` as JSON or YAML
+
+Example content for `cloudcannon.config.js`:
+
+```javascript
+module.exports = {
+  TODO: 'add other keys in here',
+
+  'collections-config': {
+    posts: { // Collection name as key
+      // The collections default filename. Excluded from the build info, used to create a new file in app.
+      default: '_defaults',
+
+      // Path to collection folder relative to source
+      path: '_posts',
+
+      // (Optional) - The loader used to parse the files in this collection
+      // If unset, defaults to the loader associated with file extention.
+      loader: 'md',
+
+      // The URL pattern for items in this collection (i.e. permalink in many SSGs). Either a string or function.
+      //
+      // The string supports front matter placeholders (e.g. '/post/:title' where ':title' is defined in front matter for each file).
+      //
+      // Functions are supported with `.js` or `.cjs` configs files to dynamically set URLs.
+      // The function is passed `filePath` and `frontMatter` and should return a slash-prefixed URL string.
+      url: (filePath, frontMatter) {
+        return `/posts/${frontMatter.title.toLowerCase()}`;
+      }
     }
-},```
+  }
+};
+```
 
-loader: 
-We currently only have one loader which is `gray-matter` so regardless of the input here it will parse through `gray-matter`. Files we accept for collection items:
-- md
-- html
-- toml
-- yaml
-- json
+TODO list config options here, move comments from above to here.
+
+## Documentation
+
+### Loaders
+
+In development.
+
+There's only one loader at the moment which is `gray-matter`. Files we accept for collection items:
+
+- `.md`
+- `.html`
+- `.yml` or `.yaml`
+- `.json`
+- `.toml`
+
+## Development
+
+Install dependencies in for `ssg-reader`:
+
+```
+npm install
+npm i -g ts-node-dev
+```
+
+Then, from your site folder:
+
+```
+npx ts-node-dev --respawn [./path/to/index.ts]
+```

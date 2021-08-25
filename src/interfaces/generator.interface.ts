@@ -1,6 +1,11 @@
 export interface IGenerator {
-    name: String,
-    version: String,
-    environment?: String,
-    metadata?: Object
+	name: string;
+	version: string;
+	environment?: string;
+	metadata?: IGeneratorMetadata;
+}
+
+interface IGeneratorMetadata {
+	markdown: string;
+	[key: string]: Record<string, unknown>;
 }

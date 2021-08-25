@@ -1,105 +1,78 @@
 import { readdir } from 'fs/promises';
 import * as path from 'path';
-
-import { Parsers } from './enum/parser.enum'
-import { IUserInfo } from './interfaces/user-info.interface';
-import { IInfo, IGeneratedInfo } from './interfaces/info.interface'
+import { IConfig, ICollectionConfig } from './interfaces/config.interface';
+import { IInfo, ICollections, ICollectionItem } from './interfaces/info.interface'
+import { IFrontMatter } from './interfaces/front-matter.interface'
 import { parseFromGrayMatter } from './helper/parse-from-gray-matter'; 
-import { getUrlFromFrontMatter } from './helper/url-builder';
-const pkginfo = require('pkginfo')(module, 'version', 'name');
+import { buildUrl } from './helper/url-builder';
+import { getLoader } from './helper/loader';
 
-import { getLoaderType } from './helper/loader';
+// Populates module.exports.name and module.exports.version
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('pkginfo')(module, 'version', 'name');
 
-export async function buildObject(userInput: IUserInfo): Promise<IInfo> {
+export async function generateInfo(config: IConfig): Promise<IInfo> {
+	const collections = await getCollections(config);
 
-    let configObject: IInfo;
-    let generatedInfo = await basicGeneratedInfo();
-    let collections = await getCollections(userInput);
-
-    configObject = {
-        ...userInput, 
-        ...generatedInfo, 
-        collections: collections
-    };
-    return configObject;
+	return {
+		...config,
+		time: new Date().toISOString(),
+		cloudcannon: {
+			name: module.exports.name,
+			version: module.exports.version
+		},
+		collections: collections
+	};
 }
 
-async function basicGeneratedInfo(): Promise<IGeneratedInfo> {
-    return {
-        time: new Date().toISOString(),
-        cloudcannon: {
-            name: module.exports.name,
-            version: module.exports.version
-        }
-    }
+async function getCollections(config: IConfig): Promise<ICollections> {
+	const { 'collections-config': collectionsConfig } = config;
+	const keys = Object.keys(collectionsConfig);
+	const collections: ICollections = {};
+
+	for (const key of keys) {
+		const loaderKey = collectionsConfig[key].loader;
+		collections[key] = await getCollection(collectionsConfig[key], key, loaderKey);
+	}
+
+	return collections;
 }
 
-async function getCollections(userInput: IUserInfo): Promise<any> {
-    const { 'collections-config': collectionsConfig } = userInput;
-    const keys = Object.keys(collectionsConfig);
-    let collections: any = new Object();
-    for (let key of keys) {
-        let loader = collectionsConfig[key].loader || null;
-        let collection = await getCollection(collectionsConfig[key], key, loader);
-        collections[key] = collection;
-    }
-    return collections;
+async function getCollection(collectionConfig: ICollectionConfig, key: string, loaderKey?: string): Promise<Array<ICollectionItem>> {
+	const files = await readdir(path.join('.', collectionConfig.path));
+	const parsedItems = await Promise.all(files.map(async (file) => {
+		const fileWithoutExtention = file.replace(/\.[^/.]+$/, '');
+
+		if (collectionConfig.default && collectionConfig.default === fileWithoutExtention) {
+			return;
+		}
+
+		const filePath = path.join('.', collectionConfig.path, file);
+		const fileType = path.extname(filePath);
+		const loaderType = getLoader(fileType, loaderKey);
+		const frontMatter = await parseFrontMatter(loaderType, filePath);
+
+		const url = (typeof collectionConfig.url === 'function')
+			? collectionConfig.url(filePath, frontMatter)
+			: buildUrl(frontMatter, collectionConfig.url);
+
+		return {
+			...frontMatter,
+			path: filePath,
+			collection: key,
+			url: url
+		};
+	}));
+
+	return parsedItems?.filter((a) => !!a);
 }
 
-async function getCollection(collectionConfig: any, key: string, loader?: Parsers) {
-    let files;
-    let result;
-    const defaultTheme = collectionConfig.default ?? null;
-
-    try {
-        files = await readdir(path.join('.', collectionConfig.path));
-        result = await Promise.all(files.map(async file => {
-            const fileWithoutExtention = file.replace(/\.[^/.]+$/, "");
-            if(fileWithoutExtention === defaultTheme) {
-                return;
-            }
-
-            const filePath = path.join('.', collectionConfig.path, file);
-            const fileType = path.extname(filePath);
-            const loaderType = getLoaderType(fileType, loader);
-            const frontMatter = await returnFrontMatterFromLoaderType(loaderType, filePath);
-            
-            let url;
-            if (typeof collectionConfig.url === 'function') {
-                url = collectionConfig.url(filePath, frontMatter);
-            } else {
-                url = getUrlFromFrontMatter(frontMatter, collectionConfig.url);
-            }
-
-            return {
-                ...frontMatter,
-                path: filePath,
-                collection: key,
-                ext: fileType,
-                url
-                
-            };
-        }));
-    } catch (e) {
-        throw new Error(`${e}`)
-    }
-    return result?.filter((a: object) => !!a);
-}
-
-
-async function returnFrontMatterFromLoaderType(loaderType: string, filePath: string): Promise<any> {
-
-    switch(loaderType) {
-        case Parsers.md:
-            return await parseFromGrayMatter(filePath);
-        case Parsers.html:
-            return await parseFromGrayMatter(filePath);
-        case Parsers.toml:
-            return await parseFromGrayMatter(filePath);
-        case Parsers.yaml:
-            return await parseFromGrayMatter(filePath);
-        case Parsers.json:
-            return await parseFromGrayMatter(filePath);
-    }
+async function parseFrontMatter(loaderType: string, filePath: string): Promise<IFrontMatter> {
+	switch (loaderType) {
+	case 'gray-matter':
+		return await parseFromGrayMatter(filePath);
+	default:
+		throw new Error(`Unsupported loader: ${loaderType}`);
+	}
 }
 

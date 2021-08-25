@@ -1,3 +1,3 @@
 export interface IFrontMatter {
-    [key: string]: string
+	[key: string]: string;
 }

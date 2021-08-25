@@ -1,8 +1,9 @@
 export interface IPaths {
-    uploads?: String;
-    data?: String;
-    pages?: String;
-    collections?: String;
-    includes?: String;
-    layouts?: String;
+	uploads?: string;
+	static?: string;
+	data?: string;
+	pages?: string;
+	collections?: string;
+	includes?: string;
+	layouts?: string;
 }

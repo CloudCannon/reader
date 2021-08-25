@@ -1,3 +1,3 @@
 export interface IEditor {
-    default_path: String;
+	default_path: string;
 }

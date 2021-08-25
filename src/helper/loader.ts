@@ -1,21 +1,12 @@
+const DEFAULT_LOADERS: Record<string, string> = {
+	md: 'gray-matter',
+	html: 'gray-matter',
+	toml: 'gray-matter',
+	yml: 'gray-matter',
+	yaml: 'gray-matter',
+	json: 'gray-matter'
+};
 
-import { IParsersEnum, Parsers } from '../enum/parser.enum'
-
-function getLoaderFromFiletype(fileType: string): Parsers {
-    let matchFileType = fileType.substring(1);
-    const parser = Object.values(Parsers)[Object.keys(Parsers).indexOf(matchFileType)];
-    return parser;
+export function getLoader(fileType: string, loaderKey?: string): string {
+	return DEFAULT_LOADERS[loaderKey || ''] || DEFAULT_LOADERS[fileType?.substring(1)];
 }
-
-export function getLoaderType(fileType: string, loader?: string): Parsers {
-    let parser;
-    if(loader) {
-        parser = Parsers[loader as keyof typeof Parsers];  
-    } 
-    if(!parser) {
-        parser = getLoaderFromFiletype(fileType);
-    }
-    return IParsersEnum.parse(parser);
-}
-
-

@@ -1,5 +1,5 @@
 export interface ISourceEditor {
-    tab_size?: Number;
-    show_gutter?: boolean;
-    theme?: string;
+	tab_size?: number;
+	show_gutter?: boolean;
+	theme?: string;
 }

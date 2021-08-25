@@ -1,18 +1,28 @@
-import { ICollection } from './collections.interface';
-import { IUserInfo } from './user-info.interface';
+import { IConfig } from './config.interface';
 
-export interface IInfo extends IUserInfo, IGeneratedInfo {
-    pages?: Array<object>;
-    'static-pages'?: Array<object>;
-    collections: Array<ICollection>
+export interface IInfo extends IConfig {
+	time: string;
+	cloudcannon: ICloudCannon;
+	pages?: Array<IPage>;
+	'static-pages'?: Array<IPage>;
+	collections: ICollections;
 }
 
-export interface IGeneratedInfo {
-    time: String;
-    cloudcannon: ICloudCannon;
+export interface IPage {
+	path: string;
+	url: string;
+	[key: string]: unknown;
+}
+
+export interface ICollectionItem extends IPage {
+	collection: string;
+}
+
+export interface ICollections {
+	[key: string]: Array[ICollectionItem]
 }
 
 interface ICloudCannon {
-    name: String;
-    version: String;
+	name: string;
+	version: string;
 }
