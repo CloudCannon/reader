@@ -2,7 +2,7 @@
 
 import { mkdir, writeFile } from 'fs/promises';
 import { cosmiconfig } from 'cosmiconfig';
-import { generateInfo } from './generator.js';
+import { generateInfo } from './generators/info.js';
 
 async function start() {
 	const explorer = cosmiconfig('cloudcannon');

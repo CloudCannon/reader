@@ -2,6 +2,9 @@
 	"extends": [
 		"eslint:recommended"
 	],
+	"rules": {
+		"quotes": ["warn", "single"]
+	},
 	"env": {
 		"es6": true,
 		"node": true

@@ -27,6 +27,18 @@ Example content for `cloudcannon.config.js`:
 module.exports = {
   TODO: 'add other keys in here',
 
+  'data-config': {
+    authors: {
+      // Reads the contents of this file
+      path: 'data/authors.csv'
+    },
+    offices: {
+      // Reads the contents of each file in this directory
+      path: 'data/offices'
+      parser: 'json'
+    }
+  },
+
   'collections-config': {
     posts: { // Collection name as key
       // The collections default filename. Excluded from the build info, used to create a new file in app.
@@ -35,9 +47,9 @@ module.exports = {
       // Path to collection folder relative to source
       path: '_posts',
 
-      // (Optional) - The loader used to parse the files in this collection
-      // If unset, defaults to the loader associated with file extention.
-      loader: 'md',
+      // (Optional) - The parser used to parse the files in this collection
+      // If unset, defaults to the parser associated with file extention.
+      parser: 'front-matter',
 
       // The URL pattern for items in this collection (i.e. permalink in many SSGs). Either a string or function.
       //
@@ -57,17 +69,20 @@ TODO list config options here, move comments from above to here.
 
 ## Documentation
 
-### Loaders
+### Parsers
 
-In development.
+Parsers define how SSG Reader processes your collection files into the JSON
+object listed in `info.json`. You can set the parser per collection under
+`collection-config`, if the default is not what you need.
 
-There's only one loader at the moment which is `gray-matter`. Files we accept for collection items:
+These are the available parsers and default file extensions covered:
 
-- `.md`
-- `.html`
-- `.yml` or `.yaml`
-- `.json`
-- `.toml`
+- `csv` (`.csv`)
+- `front-matter` (`.md`, `.mkd`, `.markdown`, `.html`, `.htm`)
+- `json` (`.json`)
+- `properties` (`.properties`)
+- `toml` (`.toml`)
+- `yaml` (`.yaml`, `.yml`)
 
 ## Development
 

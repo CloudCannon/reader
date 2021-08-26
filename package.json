@@ -6,8 +6,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "ava",
-    "test:watch": "ava --watch",
-    "test:coverage": "echo 'this does not work yet' && nyc --all npm run test",
+    "test:watch": "ava --watch --verbose",
+    "test:coverage": "echo 'WARN: nyc does not support ES6 modules yet:' && nyc --all npm run test",
     "lint": "eslint src"
   },
   "bin": {
@@ -27,6 +27,9 @@
   "dependencies": {
     "cosmiconfig": "^7.0.1",
     "gray-matter": "^4.0.3",
+    "js-yaml": "^3.14.1",
+    "papaparse": "^5.3.1",
+    "properties": "^1.2.1",
     "toml": "^3.0.0"
   }
 }

@@ -1,23 +1,27 @@
 import test from 'ava';
 import { readFile } from 'fs/promises';
 import MockDate from 'mockdate';
-import { generateInfo } from '../src/generator.js';
+import { generateInfo } from '../../src/generators/info.js';
 
-test.before((t) => {
+test.before(() => {
 	MockDate.set('2000-11-22');
 });
 
-test.after((t) => {
+test.after(() => {
 	MockDate.reset();
 });
 
 test('should generate JSON info', async (t) => {
 	const config = {
+		'data-config': {
+			authors: {
+				path: 'tests/generators/fixtures/data/authors.csv'
+			}
+		},
 		'collections-config': {
 			posts: {
 				default: '_defaults',
-				path: 'tests/generator-site/_posts',
-				loader: 'md',
+				path: 'tests/generators/fixtures/_posts',
 				url: 'hello/:title'
 			}
 		},
@@ -33,8 +37,7 @@ test('should generate JSON info', async (t) => {
 		'base-url': ''
 	};
 
-	const expectedUrl = new URL('./generator-site/_cloudcannon/info.json', import.meta.url);
-	const expectedFile = await readFile(expectedUrl.pathname);
+	const expectedFile = await readFile(new URL('./info.json', import.meta.url));
 	const expectedObject = JSON.parse(expectedFile.toString());
 	const expected = JSON.stringify(expectedObject, null, 2);
 

@@ -1,5 +1,5 @@
 import test from 'ava';
-import { buildUrl } from '../src/helpers/url-builder.js';
+import { buildUrl } from '../../src/util/url-builder.js';
 
 test('Should return an empty string given no URL template', (t) => {
 	const frontMatter = { string: 'string' };
