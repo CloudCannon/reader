@@ -3,12 +3,9 @@ import { join } from 'path';
 import { parseFile } from '../parsers/parser.js';
 
 export async function generateData(dataConfig = {}) {
-	const dataKeys = Object.keys(dataConfig);
-
-	return await dataKeys.reduce(async (memo, key) => {
+	return await Object.keys(dataConfig).reduce(async (memo, key) => {
 		const datumConfig = dataConfig[key];
 		const stats = await stat(datumConfig.path);
-
 		const data = stats.isDirectory()
 			? await readDataFiles(datumConfig)
 			: await readDataFile(join('.', datumConfig.path), datumConfig);

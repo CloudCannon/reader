@@ -7,7 +7,7 @@
   "scripts": {
     "test": "ava",
     "test:watch": "ava --watch --verbose",
-    "test:coverage": "echo 'WARN: nyc does not support ES6 modules yet:' && nyc --all npm run test",
+    "test:coverage": "c8 --all npm run test",
     "lint": "eslint src"
   },
   "bin": {
@@ -20,9 +20,9 @@
   "license": "ISC",
   "devDependencies": {
     "ava": "^3.15.0",
+    "c8": "^7.8.0",
     "eslint": "^7.32.0",
-    "mockdate": "^3.0.5",
-    "nyc": "^15.1.0"
+    "mockdate": "^3.0.5"
   },
   "dependencies": {
     "cosmiconfig": "^7.0.1",

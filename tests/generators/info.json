@@ -1,4 +1,9 @@
 {
+  "data-config": {
+    "authors": {
+      "path": "tests/generators/fixtures/data/authors.csv"
+    }
+  },
   "collections-config": {
     "posts": {
       "default": "_defaults",

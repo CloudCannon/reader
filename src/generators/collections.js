@@ -4,9 +4,7 @@ import { buildUrl } from '../util/url-builder.js';
 import { parseFile } from '../parsers/parser.js';
 
 export async function generateCollections(collectionsConfig = {}) {
-	const collectionKeys = Object.keys(collectionsConfig);
-
-	return await collectionKeys.reduce(async (memo, key) => {
+	return await Object.keys(collectionsConfig).reduce(async (memo, key) => {
 		const collection = await readCollection(collectionsConfig[key], key);
 		return { ...(await memo), [key]: collection };
 	}, {});
