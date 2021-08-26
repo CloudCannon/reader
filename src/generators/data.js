@@ -5,7 +5,6 @@ import { parseFile } from '../parsers/parser.js';
 export async function generateData(dataConfig = {}) {
 	const dataKeys = Object.keys(dataConfig);
 
-	console.log(dataKeys);
 	return await dataKeys.reduce(async (memo, key) => {
 		const datumConfig = dataConfig[key];
 		const stats = await stat(datumConfig.path);
