@@ -21,6 +21,15 @@ const defaultParsers = {
 	yml: 'yaml'
 };
 
+const parsers = {
+	csv: parseCsv,
+	'front-matter': parseFrontMatter,
+	json: parseJson,
+	toml: parseToml,
+	yaml: parseYaml,
+	properties: parseProperties
+};
+
 export async function parseFile(filePath, parser) {
 	const raw = await readFile(filePath, 'utf8');
 
@@ -30,20 +39,10 @@ export async function parseFile(filePath, parser) {
 
 	parser = parser || defaultParsers[extname(filePath).replace(/^\.+/, '')];
 
-	switch (parser) {
-	case 'csv':
-		return parseCsv(raw);
-	case 'front-matter':
-		return parseFrontMatter(raw);
-	case 'json':
-		return parseJson(raw);
-	case 'toml':
-		return parseToml(raw);
-	case 'yaml':
-		return parseYaml(raw);
-	case 'properties':
-		return parseProperties(raw);
-	default:
+	const parse = parsers[parser];
+	if (!parse) {
 		throw new Error(`Unsupported parser: ${parser}`);
 	}
+
+	return parse(raw);
 }

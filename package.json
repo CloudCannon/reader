@@ -7,7 +7,7 @@
   "scripts": {
     "test": "ava",
     "test:watch": "ava --watch --verbose",
-    "test:coverage": "c8 --all npm run test",
+    "test:coverage": "c8 --all npm test",
     "lint": "eslint src"
   },
   "bin": {
