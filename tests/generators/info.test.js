@@ -16,6 +16,9 @@ test('Should generate JSON info', async (t) => {
 		'data-config': {
 			authors: {
 				path: 'tests/generators/fixtures/data/authors.csv'
+			},
+			fruit: {
+				path: 'tests/generators/fixtures/data/fruit'
 			}
 		},
 		'collections-config': {
@@ -32,7 +35,7 @@ test('Should generate JSON info', async (t) => {
 		generator: {},
 		_source_editor: {},
 		paths: {
-			uploads: 'Key'
+			uploads: 'assets/uploads'
 		},
 		'base-url': ''
 	};

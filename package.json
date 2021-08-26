@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "cosmiconfig": "^7.0.1",
+    "fdir": "^5.1.0",
     "gray-matter": "^4.0.3",
     "js-yaml": "^3.14.1",
     "papaparse": "^5.3.1",

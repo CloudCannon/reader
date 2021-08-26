@@ -1,5 +1,5 @@
-import { readdir } from 'fs/promises';
-import { join, basename, extname } from 'path';
+import { fdir } from 'fdir';
+import { join } from 'path';
 import { buildUrl } from '../util/url-builder.js';
 import { parseFile } from '../parsers/parser.js';
 
@@ -17,27 +17,22 @@ function getCollectionItemUrl(sourcePath, collectionConfig, data) {
 }
 
 async function readCollectionItem(filePath, collectionConfig, key) {
-	const sourcePath = join('.', collectionConfig.path, filePath);
-	const data = await parseFile(sourcePath, collectionConfig.parser);
+	const data = await parseFile(filePath, collectionConfig.parser);
 
 	return {
 		...data,
-		path: sourcePath,
+		path: filePath,
 		collection: key,
-		url: getCollectionItemUrl(sourcePath, collectionConfig, data)
+		url: getCollectionItemUrl(filePath, collectionConfig, data)
 	};
 }
 
 async function readCollection(collectionConfig, key) {
-	let filePaths = await readdir(join('.', collectionConfig.path)); // TODO: support nested folders?
-
-	if (collectionConfig.default) {
-		// Remove collection defaults file
-		filePaths = filePaths.filter((filePath) => {
-			const filenameWithoutExtension = basename(filePath, extname(filePath));
-			return collectionConfig.default !== filenameWithoutExtension;
-		});
-	}
+	const filePaths = await new fdir()
+		.withBasePath()
+		.filter((filePath, isDirectory) => !isDirectory && !filePath.includes('/_defaults.'))
+		.crawl(join('.', collectionConfig.path))
+		.withPromise();
 
 	return await Promise.all(filePaths.map(async (filePath) => {
 		return await readCollectionItem(filePath, collectionConfig, key);

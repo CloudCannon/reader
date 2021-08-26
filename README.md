@@ -7,10 +7,16 @@ sites made with any static site generator.
 
 ## Usage
 
+Generates a JSON file at `./_cloudcannon/info.json`:
+
+```bash
+ssg-reader
+```
+
 ### Configuration
 
-SSG Reader supports a number of different config formats.
-Config files should be in the root of your repository.
+SSG Reader supports a number of different configuration formats.
+Configuration files should be in the root of your repository.
 
 Formats include:
 
@@ -65,9 +71,13 @@ module.exports = {
 };
 ```
 
-TODO list config options here, move comments from above to here.
-
 ## Documentation
+
+The `./_cloudcannon/info.json` file is initially populated with the contents
+of your configuration. SSG Reader then generates values for `collections`,
+`data`, `time`, and `cloudcannon`.
+
+TODO list config options here, move comments from above to here:
 
 ### Parsers
 
@@ -88,13 +98,18 @@ These are the available parsers and default file extensions covered:
 
 Install dependencies in for `ssg-reader`:
 
-```
-npm install
-npm i -g ts-node-dev
+```bash
+npm i
 ```
 
-Then, from your site folder:
+You can link this package locally to test it on a site folder.
 
+```bash
+npm link
 ```
-npx ts-node-dev --respawn [./path/to/index.ts]
+
+Run it within your site folder:
+
+```bash
+ssg-reader
 ```

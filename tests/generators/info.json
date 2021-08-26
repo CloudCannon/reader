@@ -2,6 +2,9 @@
   "data-config": {
     "authors": {
       "path": "tests/generators/fixtures/data/authors.csv"
+    },
+    "fruit": {
+      "path": "tests/generators/fixtures/data/fruit"
     }
   },
   "collections-config": {
@@ -18,7 +21,7 @@
   "generator": {},
   "_source_editor": {},
   "paths": {
-    "uploads": "Key"
+    "uploads": "assets/uploads"
   },
   "base-url": "",
   "time": "2000-11-22T00:00:00.000Z",
@@ -35,6 +38,16 @@
       {
         "name": "pam",
         "interest": "art"
+      }
+    ],
+    "fruit": [
+      {
+        "name": "apple",
+        "rating": 5
+      },
+      {
+        "name": "banana",
+        "rating": 4
       }
     ]
   },
@@ -96,6 +109,17 @@
         "path": "tests/generators/fixtures/_posts/2016-08-12-the-history-of-marketing.md",
         "collection": "posts",
         "url": "hello/The history of marketing"
+      },
+      {
+        "date": "2020-07-22T00:00:00.000Z",
+        "title": "Egg",
+        "categories": [
+          "tips"
+        ],
+        "author_staff_member": "betty",
+        "path": "tests/generators/fixtures/_posts/nested/2020-07-22-egg.md",
+        "collection": "posts",
+        "url": "hello/Egg"
       }
     ]
   }
