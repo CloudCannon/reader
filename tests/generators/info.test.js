@@ -23,9 +23,12 @@ test('Should generate JSON info', async (t) => {
 		},
 		'collections-config': {
 			posts: {
-				default: '_defaults',
 				path: 'tests/generators/fixtures/_posts',
+				output: true,
 				url: 'hello/:title'
+			},
+			vegetables: {
+				path: 'tests/generators/fixtures/vegetables'
 			}
 		},
 		_comments: {},

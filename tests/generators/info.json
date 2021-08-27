@@ -9,9 +9,12 @@
   },
   "collections-config": {
     "posts": {
-      "default": "_defaults",
       "path": "tests/generators/fixtures/_posts",
+      "output": true,
       "url": "hello/:title"
+    },
+    "vegetables": {
+      "path": "tests/generators/fixtures/vegetables"
     }
   },
   "_comments": {},
@@ -32,21 +35,21 @@
   "data": {
     "authors": [
       {
-        "name": "jim",
+        "name": "Jim",
         "interest": "kayaks"
       },
       {
-        "name": "pam",
+        "name": "Pam",
         "interest": "art"
       }
     ],
     "fruit": [
       {
-        "name": "apple",
+        "name": "Apple",
         "rating": 5
       },
       {
-        "name": "banana",
+        "name": "Banana",
         "rating": 4
       }
     ]
@@ -120,6 +123,22 @@
         "path": "tests/generators/fixtures/_posts/nested/2020-07-22-egg.md",
         "collection": "posts",
         "url": "hello/Egg"
+      }
+    ],
+    "vegetables": [
+      {
+        "name": "Potato",
+        "rating": 5,
+        "path": "tests/generators/fixtures/vegetables/potato.yml",
+        "collection": "vegetables",
+        "url": ""
+      },
+      {
+        "name": "Yam",
+        "rating": 4,
+        "path": "tests/generators/fixtures/vegetables/yam.yml",
+        "collection": "vegetables",
+        "url": ""
       }
     ]
   }

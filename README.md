@@ -33,6 +33,9 @@ Example content for `cloudcannon.config.js`:
 module.exports = {
   TODO: 'add other keys in here',
 
+  // Writes to ./output/_cloudcannon/info.json instead of default ./_cloudcannon/info.json
+  destination: 'output',
+
   'data-config': {
     authors: {
       // Reads the contents of this file
@@ -47,9 +50,6 @@ module.exports = {
 
   'collections-config': {
     posts: { // Collection name as key
-      // The collections default filename. Excluded from the build info, used to create a new file in app.
-      default: '_defaults',
-
       // Path to collection folder relative to source
       path: '_posts',
 
