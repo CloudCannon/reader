@@ -8,7 +8,7 @@ const mockRunner = {
 	write: async () => Promise.resolve()
 };
 
-test('Should handle error with no config', async (t) => {
+test('Handle error with no config', async (t) => {
 	const mockRunnerNoConfig = {
 		...mockRunner,
 		readConfig: async () => Promise.resolve(),
@@ -20,7 +20,7 @@ test('Should handle error with no config', async (t) => {
 	);
 });
 
-test('Should handle error on generate', async (t) => {
+test('Handle error on generate', async (t) => {
 	const mockRunnerThrow = {
 		...mockRunner,
 		generate: async () => { throw new Error('Test'); },
@@ -32,7 +32,7 @@ test('Should handle error on generate', async (t) => {
 	);
 });
 
-test('Should handle error on write', async (t) => {
+test('Handle error on write', async (t) => {
 	const mockRunnerThrow = {
 		...mockRunner,
 		write: async () => { throw new Error('Test'); },
@@ -44,7 +44,7 @@ test('Should handle error on write', async (t) => {
 	);
 });
 
-test('Should run', async (t) => {
+test('Run', async (t) => {
 	let resultInfo;
 	let resultDestinationDir;
 

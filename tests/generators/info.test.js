@@ -11,7 +11,7 @@ test.after(() => {
 	MockDate.reset();
 });
 
-test('Should generate JSON info', async (t) => {
+test('Generate JSON info', async (t) => {
 	const config = {
 		'data-config': {
 			authors: {

@@ -1,7 +1,7 @@
 import test from 'ava';
 import { buildUrl } from '../../src/util/url-builder.js';
 
-test('Should return an empty string given no URL template', (t) => {
+test('Return an empty string given no URL template', (t) => {
 	const frontMatter = { string: 'string' };
 	const expected = '';
 	const result = buildUrl(frontMatter);
@@ -9,7 +9,7 @@ test('Should return an empty string given no URL template', (t) => {
 	t.is(result, expected);
 });
 
-test('Should return URL argument when URL template has no placeholders', (t) => {
+test('Return URL argument when URL template has no placeholders', (t) => {
 	const frontMatter = { thing: '/thing/' }
 	const url = '/url';
 	const result = buildUrl(frontMatter, url);
@@ -17,7 +17,7 @@ test('Should return URL argument when URL template has no placeholders', (t) => 
 	t.is(result, url);
 });
 
-test('Should replace a placeholder in URL template', (t) => {
+test('Replace a placeholder in URL template', (t) => {
 	const expected = '/url/my-title';
 	const frontMatter = { title: 'my-title' };
 	const result = buildUrl(frontMatter, '/url/:title')
@@ -25,7 +25,7 @@ test('Should replace a placeholder in URL template', (t) => {
 	t.is(result, expected);
 });
 
-test('Should throw if a placeholder has no matching data', (t) => {
+test('Error if placeholder has no matching data', (t) => {
 	const frontMatter = { notTitle: 'my-title' };
 	const error = t.throws(() => buildUrl(frontMatter, '/url/:title'), { instanceOf: Error });
 
