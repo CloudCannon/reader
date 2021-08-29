@@ -33,6 +33,9 @@ Example content for `cloudcannon.config.js`:
 module.exports = {
   TODO: 'add other keys in here',
 
+  // Reads from ./src instead of default .
+  source: 'src',
+
   // Writes to ./output/_cloudcannon/info.json instead of default ./_cloudcannon/info.json
   destination: 'output',
 

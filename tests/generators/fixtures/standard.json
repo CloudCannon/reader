@@ -1,0 +1,30 @@
+{
+	"data-config": {
+		"authors": {
+			"path": "tests/generators/fixtures/standard/data/authors.csv"
+		},
+		"fruit": {
+			"path": "tests/generators/fixtures/standard/data/fruit"
+		}
+	},
+	"collections-config": {
+		"posts": {
+			"path": "tests/generators/fixtures/standard/_posts",
+			"output": true,
+			"url": "hello/:title"
+		},
+		"vegetables": {
+			"path": "tests/generators/fixtures/standard/vegetables"
+		}
+	},
+	"_comments": {},
+	"_options": {},
+	"_array_structures": {},
+	"_select_data": {},
+	"generator": {},
+	"_source_editor": {},
+	"paths": {
+		"uploads": "assets/uploads"
+	},
+	"base-url": ""
+}

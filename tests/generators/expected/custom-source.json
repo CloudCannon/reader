@@ -1,0 +1,146 @@
+{
+  "source": "tests/generators/fixtures/custom-source",
+  "data-config": {
+    "authors": {
+      "path": "data/authors.csv"
+    },
+    "fruit": {
+      "path": "data/fruit"
+    }
+  },
+  "collections-config": {
+    "posts": {
+      "path": "_posts",
+      "output": true,
+      "url": "hello/:title"
+    },
+    "vegetables": {
+      "path": "vegetables"
+    }
+  },
+  "_comments": {},
+  "_options": {},
+  "_array_structures": {},
+  "_select_data": {},
+  "generator": {},
+  "_source_editor": {},
+  "paths": {
+    "uploads": "assets/uploads"
+  },
+  "base-url": "",
+  "time": "2000-11-22T00:00:00.000Z",
+  "cloudcannon": {
+    "name": "ssg-reader",
+    "version": "0.0.1"
+  },
+  "data": {
+    "authors": [
+      {
+        "name": "Jim",
+        "interest": "kayaks"
+      },
+      {
+        "name": "Pam",
+        "interest": "art"
+      }
+    ],
+    "fruit": [
+      {
+        "name": "Apple",
+        "rating": 5
+      },
+      {
+        "name": "Banana",
+        "rating": 4
+      }
+    ]
+  },
+  "collections": {
+    "posts": [
+      {
+        "date": "2020-07-20T00:00:00.000Z",
+        "title": "The process for direct sales",
+        "categories": [
+          "sales"
+        ],
+        "author_staff_member": "anna",
+        "path": "_posts/2016-07-20-the-process-for-direct-sales.md",
+        "collection": "posts",
+        "url": "hello/The process for direct sales"
+      },
+      {
+        "date": "2020-07-28T00:00:00.000Z",
+        "title": "Effective upselling techniques",
+        "categories": [
+          "sales",
+          "tips"
+        ],
+        "author_staff_member": "betty",
+        "path": "_posts/2016-07-28-effective-upselling-techniques.md",
+        "collection": "posts",
+        "url": "hello/Effective upselling techniques"
+      },
+      {
+        "date": "2020-08-02T00:00:00.000Z",
+        "title": "Sales effectiveness",
+        "categories": [
+          "sales",
+          "tips"
+        ],
+        "author_staff_member": "gerald",
+        "path": "_posts/2016-08-02-sales-effectiveness.md",
+        "collection": "posts",
+        "url": "hello/Sales effectiveness"
+      },
+      {
+        "date": "2020-08-06T00:00:00.000Z",
+        "title": "Definition of sales",
+        "categories": [
+          "sales"
+        ],
+        "author_staff_member": "james",
+        "path": "_posts/2016-08-06-definition-of-sales.md",
+        "collection": "posts",
+        "url": "hello/Definition of sales"
+      },
+      {
+        "date": "2020-08-12T00:00:00.000Z",
+        "title": "The history of marketing",
+        "categories": [
+          "marketing"
+        ],
+        "author_staff_member": "robin",
+        "path": "_posts/2016-08-12-the-history-of-marketing.md",
+        "collection": "posts",
+        "url": "hello/The history of marketing"
+      },
+      {
+        "date": "2020-07-22T00:00:00.000Z",
+        "title": "Egg",
+        "categories": [
+          "tips"
+        ],
+        "author_staff_member": "betty",
+        "path": "_posts/nested/2020-07-22-egg.md",
+        "collection": "posts",
+        "url": "hello/Egg"
+      }
+    ],
+    "vegetables": [
+      {
+        "name": "Potato",
+        "rating": 5,
+        "path": "vegetables/potato.yml",
+        "collection": "vegetables",
+        "url": ""
+      },
+      {
+        "name": "Yam",
+        "rating": 4,
+        "path": "vegetables/yam.yml",
+        "collection": "vegetables",
+        "url": ""
+      }
+    ]
+  }
+}

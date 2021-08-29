@@ -11,44 +11,29 @@ test.after(() => {
 	MockDate.reset();
 });
 
+async function readJsonFile(path) {
+	const expectedFile = await readFile(new URL(path, import.meta.url));
+	return JSON.parse(expectedFile.toString());
+}
+
 test('Generate JSON info', async (t) => {
-	const config = {
-		'data-config': {
-			authors: {
-				path: 'tests/generators/fixtures/data/authors.csv'
-			},
-			fruit: {
-				path: 'tests/generators/fixtures/data/fruit'
-			}
-		},
-		'collections-config': {
-			posts: {
-				path: 'tests/generators/fixtures/_posts',
-				output: true,
-				url: 'hello/:title'
-			},
-			vegetables: {
-				path: 'tests/generators/fixtures/vegetables'
-			}
-		},
-		_comments: {},
-		_options: {},
-		_array_structures: {},
-		_select_data: {},
-		generator: {},
-		_source_editor: {},
-		paths: {
-			uploads: 'assets/uploads'
-		},
-		'base-url': ''
-	};
+	const config = await readJsonFile('./fixtures/standard.json');
+	const expectedObject = await readJsonFile('./expected/standard.json');
+	const expectedInfo = JSON.stringify(expectedObject, null, 2);
 
-	const expectedFile = await readFile(new URL('./info.json', import.meta.url));
-	const expectedObject = JSON.parse(expectedFile.toString());
-	const expected = JSON.stringify(expectedObject, null, 2);
+	const infoObject = await generateInfo(config);
+	const info = JSON.stringify(infoObject, null, 2);
 
-	const info = await generateInfo(config);
-	const result = JSON.stringify(info, null, 2);
+	t.is(info, expectedInfo);
+});
 
-	t.is(result, expected);
+test('Generate JSON info with custom source', async (t) => {
+	const config = await readJsonFile('./fixtures/custom-source.json');
+	const expectedObject = await readJsonFile('./expected/custom-source.json');
+	const expectedInfo = JSON.stringify(expectedObject, null, 2);
+
+	const infoObject = await generateInfo(config);
+	const info = JSON.stringify(infoObject, null, 2);
+
+	t.is(info, expectedInfo);
 });
