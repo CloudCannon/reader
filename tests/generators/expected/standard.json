@@ -11,7 +11,7 @@
     "posts": {
       "path": "tests/generators/fixtures/standard/_posts",
       "output": true,
-      "url": "hello/:title"
+      "url": "hello/{title|slugify}"
     },
     "vegetables": {
       "path": "tests/generators/fixtures/standard/vegetables"
@@ -65,7 +65,7 @@
         "author_staff_member": "anna",
         "path": "tests/generators/fixtures/standard/_posts/2016-07-20-the-process-for-direct-sales.md",
         "collection": "posts",
-        "url": "hello/The process for direct sales"
+        "url": "hello/the-process-for-direct-sales"
       },
       {
         "date": "2020-07-28T00:00:00.000Z",
@@ -77,7 +77,7 @@
         "author_staff_member": "betty",
         "path": "tests/generators/fixtures/standard/_posts/2016-07-28-effective-upselling-techniques.md",
         "collection": "posts",
-        "url": "hello/Effective upselling techniques"
+        "url": "hello/effective-upselling-techniques"
       },
       {
         "date": "2020-08-02T00:00:00.000Z",
@@ -89,7 +89,7 @@
         "author_staff_member": "gerald",
         "path": "tests/generators/fixtures/standard/_posts/2016-08-02-sales-effectiveness.md",
         "collection": "posts",
-        "url": "hello/Sales effectiveness"
+        "url": "hello/sales-effectiveness"
       },
       {
         "date": "2020-08-06T00:00:00.000Z",
@@ -100,7 +100,7 @@
         "author_staff_member": "james",
         "path": "tests/generators/fixtures/standard/_posts/2016-08-06-definition-of-sales.md",
         "collection": "posts",
-        "url": "hello/Definition of sales"
+        "url": "hello/definition-of-sales"
       },
       {
         "date": "2020-08-12T00:00:00.000Z",
@@ -111,7 +111,7 @@
         "author_staff_member": "robin",
         "path": "tests/generators/fixtures/standard/_posts/2016-08-12-the-history-of-marketing.md",
         "collection": "posts",
-        "url": "hello/The history of marketing"
+        "url": "hello/the-history-of-marketing"
       },
       {
         "date": "2020-07-22T00:00:00.000Z",
@@ -122,7 +122,7 @@
         "author_staff_member": "betty",
         "path": "tests/generators/fixtures/standard/_posts/nested/2020-07-22-egg.md",
         "collection": "posts",
-        "url": "hello/Egg"
+        "url": "hello/egg"
       }
     ],
     "vegetables": [

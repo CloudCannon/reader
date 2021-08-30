@@ -1,28 +1,41 @@
-export function buildUrl(frontMatter, urlTemplate) {
+import { parse } from 'path';
+import slugify from '@sindresorhus/slugify';
+
+const filters = {
+	uppercase: (value) => value?.toUpperCase?.(),
+	lowercase: (value) => value?.toLowerCase?.(),
+	slugify
+};
+
+function processFileTemplates(urlTemplate, filePath) {
+	const { name, ext } = parse(filePath);
+
+	return urlTemplate
+		.replace(/\[ext\]/g, ext)
+		.replace(/\[slug\]/g, name)
+		.replace(/\[filename\]/g, name)
+		.replace(/\[path\]/g, filePath);
+}
+
+function processDataTemplates(urlTemplate, data) {
+	return urlTemplate.replace(/(\{[^}]+\})/g, function (match) {
+		const [key, ...filterKeys] = match.slice(1, -1).split('|');
+		const value = data[key] || '';
+
+		return filterKeys.reduce((memo, filterKey) => {
+			const filter = filters[filterKey];
+			return (filter ? filter(memo) : memo) || '';
+		}, value);
+	});
+}
+
+export function buildUrl(filePath, data, urlTemplate) {
 	if (!urlTemplate) {
 		return '';
 	}
 
-	if (!urlTemplate.includes(':')) {
-		return urlTemplate;
-	}
+	const fileTemplated = processFileTemplates(urlTemplate, filePath);
+	const templated = processDataTemplates(fileTemplated, data);
 
-	const parts = urlTemplate.split('/');
-
-	const templated = parts.map((url) => {
-		if (url.includes(':')) {
-			// TODO do a regex here instead so we can multiple in one part, e.g. /:year-:month-:day/:title:ext
-			const formattedUrl = url.replace(':', '');
-
-			if (frontMatter[formattedUrl]) {
-				return frontMatter[formattedUrl];
-			} else {
-				throw new Error(`${url} does not exist in config`);
-			}
-		}
-
-		return url;
-	});
-
-	return templated.join('/').replace(/\/+/g, '/');
+	return templated.replace(/\/+/g, '/');
 }

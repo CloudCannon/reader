@@ -1,33 +1,41 @@
 import test from 'ava';
 import { buildUrl } from '../../src/util/url-builder.js';
 
-test('Return an empty string given no URL template', (t) => {
-	const frontMatter = { string: 'string' };
-	const expected = '';
-	const result = buildUrl(frontMatter);
+const filePath = 'content/_posts/example-post.md';
 
-	t.is(result, expected);
+const data = {
+	id: 2,
+	title: 'My Title!',
+	description: 'This is a longer than usual field'
+};
+
+test('Return an empty string given no URL template', (t) => {
+	t.is(buildUrl(filePath, data), '');
 });
 
 test('Return URL argument when URL template has no placeholders', (t) => {
-	const frontMatter = { thing: '/thing/' }
-	const url = '/url';
-	const result = buildUrl(frontMatter, url);
-
-	t.is(result, url);
+	t.is(buildUrl(filePath, data, '/url'), '/url');
 });
 
-test('Replace a placeholder in URL template', (t) => {
-	const expected = '/url/my-title';
-	const frontMatter = { title: 'my-title' };
-	const result = buildUrl(frontMatter, '/url/:title')
-
-	t.is(result, expected);
+test('Replace file placeholders in URL template', (t) => {
+	t.is(buildUrl(filePath, data, '/url/[path]'), '/url/content/_posts/example-post.md');
+	t.is(buildUrl(filePath, data, '/url/[filename]'), '/url/example-post');
+	t.is(buildUrl(filePath, data, '/url/[slug]'), '/url/example-post');
+	t.is(buildUrl(filePath, data, '/url/[ext]'), '/url/.md');
 });
 
-test('Error if placeholder has no matching data', (t) => {
-	const frontMatter = { notTitle: 'my-title' };
-	const error = t.throws(() => buildUrl(frontMatter, '/url/:title'), { instanceOf: Error });
+test('Replace data placeholders in URL template', (t) => {
+	t.is(buildUrl(filePath, data, '/url/{title}'), '/url/My Title!');
+	t.is(buildUrl(filePath, data, '/url/{title}{id}'), '/url/My Title!2');
+});
 
-	t.is(error.message, ':title does not exist in config');
+test('Replace data placeholders with filters in URL template', (t) => {
+	t.is(buildUrl(filePath, data, '/url/{title|uppercase}/'), '/url/MY TITLE!/');
+	t.is(buildUrl(filePath, data, '/url/{title|lowercase}/'), '/url/my title!/');
+	t.is(buildUrl(filePath, data, '/url/{title|slugify}/'), '/url/my-title/');
+	t.is(buildUrl(filePath, data, '/url/{title|slugify|uppercase}/'), '/url/MY-TITLE/');
+});
+
+test('Collapses placeholders with no value', (t) => {
+	t.is(buildUrl(filePath, data, '/url/{nothing}/about.html'), '/url/about.html');
 });

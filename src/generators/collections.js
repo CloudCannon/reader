@@ -12,10 +12,10 @@ export async function generateCollections(collectionsConfig = {}, options) {
 	}, {});
 }
 
-function getCollectionItemUrl(sourcePath, collectionConfig, data) {
+function getCollectionItemUrl(itemPath, collectionConfig, data) {
 	return (typeof collectionConfig.url === 'function')
-		? collectionConfig.url(sourcePath, data)
-		: buildUrl(data, collectionConfig.url);
+		? collectionConfig.url(itemPath, data)
+		: buildUrl(itemPath, data, collectionConfig.url);
 }
 
 async function readCollectionItem(filePath, collectionConfig, key, source) {
@@ -28,7 +28,7 @@ async function readCollectionItem(filePath, collectionConfig, key, source) {
 		...data,
 		path: itemPath,
 		collection: key,
-		url: getCollectionItemUrl(filePath, collectionConfig, data)
+		url: getCollectionItemUrl(itemPath, collectionConfig, data)
 	};
 }
 

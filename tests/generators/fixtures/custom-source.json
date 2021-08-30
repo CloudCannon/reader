@@ -12,7 +12,7 @@
 		"posts": {
 			"path": "_posts",
 			"output": true,
-			"url": "hello/:title"
+			"url": "hello/{title|slugify}"
 		},
 		"vegetables": {
 			"path": "vegetables"

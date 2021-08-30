@@ -5,6 +5,8 @@ sites made with any static site generator.
 
 [Usage](#usage) &bull; [Documentation](#documentation) &bull; [Development](#development)
 
+***
+
 ## Usage
 
 Generates a JSON file at `./_cloudcannon/info.json`:
@@ -52,6 +54,10 @@ module.exports = {
   },
 
   'collections-config': {
+    people: {
+      path: 'content/people',
+      url: '/people/[slug]'
+    },
     posts: { // Collection name as key
       // Path to collection folder relative to source
       path: '_posts',
@@ -62,17 +68,18 @@ module.exports = {
 
       // The URL pattern for items in this collection (i.e. permalink in many SSGs). Either a string or function.
       //
-      // The string supports front matter placeholders (e.g. '/post/:title' where ':title' is defined in front matter for each file).
+      // The string supports front matter placeholders (e.g. '/post/{title}' where '{title}' is defined in front matter for each file).
       //
       // Functions are supported with `.js` or `.cjs` configs files to dynamically set URLs.
       // The function is passed `filePath` and `frontMatter` and should return a slash-prefixed URL string.
-      url: (filePath, frontMatter) {
-        return `/posts/${frontMatter.title.toLowerCase()}`;
-      }
+      url: (filePath, frontMatter) => `/posts/${frontMatter.title.toLowerCase()}`
+      // url: '/posts/{title|lowercase}' // Same result as above
     }
   }
 };
 ```
+
+***
 
 ## Documentation
 
@@ -81,6 +88,31 @@ of your configuration. SSG Reader then generates values for `collections`,
 `data`, `time`, and `cloudcannon`.
 
 TODO list config options here, move comments from above to here:
+
+### URL
+
+The `url` in each collection config is used to build the `url` field for items in the collection.
+Can be a string or a function.
+
+Functions are given file path and front matter as arguments. The return value should be the URL.
+
+Strings are used as a template to build the URL.
+There are two types of placeholders available, file and data.
+Placeholders resulting in empty values are supported. Sequential slashes in URLs are condensed to one.
+
+File placeholders are always available, and provided by SSG Reader:
+
+- `[path]` is the full path of the file, relative to `source`.
+- `[slug]` is the filename, excluding extension.
+- `[ext]` is the last extension, including `.`.
+
+Data placeholders are populated from front matter or data values in the file, and support a number of filters:
+
+- `{title}` is the `title` from inside the file.
+- `{id}` is the `id` from inside the file.
+- `{title|lowercase}` is `title` from inside the file, lower cased.
+- `{category|slugify}` is `category` from inside the file, slugified.
+- `{tag|slugify|uppercase}` is `tag` from inside the file, slugified, then upper cased.
 
 ### Parsers
 
@@ -96,6 +128,8 @@ These are the available parsers and default file extensions covered:
 - `properties` (`.properties`)
 - `toml` (`.toml`)
 - `yaml` (`.yaml`, `.yml`)
+
+***
 
 ## Development
 
