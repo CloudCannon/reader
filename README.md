@@ -1,7 +1,6 @@
 # SSG Reader
 
-Parses config, files and folder structures to create a JSON file with information about
-sites made with any static site generator. The JSON is structured with the [build-info-schema](https://github.com/CloudCannon/build-info-schema) for [CloudCannon](https://cloudcannon.com/) to create an editing interface.
+Parses config, files and folder structures to create a JSON file with information about sites made with any static site generator. The JSON is structured with the [build-info-schema](https://github.com/CloudCannon/build-info-schema) for [CloudCannon](https://cloudcannon.com/) to create an editing interface.
 
 - [Usage](#usage)
 - [Configuration](#configuration)
@@ -96,14 +95,11 @@ module.exports = {
 
 ## Documentation
 
-The `./_cloudcannon/info.json` file is initially populated with the contents
-of your configuration. `ssg-reader` then generates values for `collections`,
-`data`, `time`, and `cloudcannon`.
+The `./_cloudcannon/info.json` file is initially populated with the contents of your configuration. `ssg-reader` then generates values for `collections`, `data`, `time`, and `cloudcannon`.
 
 ### Source
 
-The `source` configuration tells `ssg-reader` to read from another folder.
-The `path` value for collection items is relative to `source`. Defaults to `'.'`.
+The `source` configuration tells `ssg-reader` to read from another folder. The `path` value for collection items is relative to `source`. Defaults to `'.'`.
 
 ### Destination
 
@@ -132,22 +128,20 @@ The available keys in each data set configuration are:
 <details>
   <summary><code>path</code></summary>
 
-#### Path
+> The `path` is a reference to either:
+>
+> - The top-most folder where the files in this data set are stored.
+> - The file containing the data.
+>
+> Both options are relative to `source`.
 
-The `path` is a reference to either:
-
-- The top-most folder where the files in this data set are stored.
-- The file containing the data.
-
-Both options are relative to `source`.
 </details>
 
 <details>
   <summary><code>parser</code> (optional)</summary>
 
-#### Parser
+> The `parser` field should state which [Parser](#parsers) you want to use to read the file or files in this data set.
 
-The `parser` field should state which [Parser](#parsers) you want to use to read the file or files in this data set.
 </details>
 
 ### Collections
@@ -173,50 +167,40 @@ The keys available in each collection configuration are:
 <details>
   <summary><code>path</code></summary>
 
-#### Path
+> The `path` is the top-most folder where the files in this collection are stored. It is relative to `source`.
 
-The `path` is the top-most folder where the files in this collection are stored. It is relative to `source`.
 </details>
 
 <details>
   <summary><code>url</code> (optional)</summary>
 
-#### URL
-
-The URL pattern for items in this collection. More details in [URL](#url) section below.
-
-The `url` in each collection config is used to build the `url` field for items in the collection. Similar to permalink in many SSGs.
-
-Can be a string or a function. Defaults to `''`.
-
-Functions are are supported with `.js` or `.cjs` files. Given file path, front matter and filters as arguments. The return value should be the slash-prefixed URL string.
-
-Strings are used as a template to build the URL.
-There are two types of placeholders available, file and data.
-Placeholders resulting in empty values are supported. Sequential slashes in URLs are condensed to one.
-
-File placeholders are always available, and provided by `ssg-reader`:
-
-- `[path]` is the full path of the file, relative to `source`.
-- `[slug]` is the filename, excluding extension.
-- `[ext]` is the last extension, including `.`.
-
-Data placeholders are populated from front matter or data values in the file, and support a number of filters:
-
-- `{title}` is the `title` from inside the file.
-- `{id}` is the `id` from inside the file.
-- `{title|lowercase}` is `title` from inside the file, lower cased.
-- `{category|slugify}` is `category` from inside the file, slugified.
-- `{tag|slugify|uppercase}` is `tag` from inside the file, slugified, then upper cased.
+> The `url` is used to build the `url` field for items in the collection. Similar to permalink in many SSGs. Can be a string or a function. Defaults to `''`.
+>
+> Functions are are supported with `.js` or `.cjs` files. Given file path, front matter and filters as arguments. The return value should be the slash-prefixed URL string.
+>
+> Strings are used as a template to build the URL. There are two types of placeholders available, file and data. Placeholders resulting in empty values are supported. Sequential slashes in URLs are condensed to one.
+>
+> File placeholders are always available, and provided by `ssg-reader`:
+>
+> - `[path]` is the full path of the file, relative to `source`.
+> - `[slug]` is the filename, excluding extension.
+> - `[ext]` is the last extension, including `.`.
+>
+> Data placeholders are populated from front matter or data values in the file, and support a number of filters:
+>
+> - `{title}` is the `title` from inside the file.
+> - `{id}` is the `id` from inside the file.
+> - `{title|lowercase}` is `title` from inside the file, lower cased.
+> - `{category|slugify}` is `category` from inside the file, slugified.
+> - `{tag|slugify|uppercase}` is `tag` from inside the file, slugified, then upper cased.
 
 </details>
 
 <details>
   <summary><code>parser</code> (optional)</summary>
 
-#### Parser
+> The `parser` field should state which [Parser](#parsers) you want to use to read the files in this collection.
 
-The `parser` field should state which [Parser](#parsers) you want to use to read the files in this collection.
 </details>
 
 ### CloudCannon
@@ -239,8 +223,7 @@ CloudCannon then reads these in the app and applies them to your editing interfa
 
 ## Parsers
 
-Parsers define how `ssg-reader` processes your files into the JSON
-object listed in `info.json`. You can set the parser for data sets or collections under `data-config` and `collection-config`.
+Parsers define how `ssg-reader` processes your files into the JSON object listed in `info.json`. You can set the parser for data sets or collections under `data-config` and `collection-config`.
 
 These are the available parsers and default file extensions covered:
 
