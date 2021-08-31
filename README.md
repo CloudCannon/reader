@@ -10,7 +10,7 @@ Parses config, files and folder structures to create a JSON file with informatio
   - [Data](#data)
   - [Collections](#collections)
   - [CloudCannon](#cloudcannon)
-  - [Parsers](#parsers)
+- [Parsers](#parsers)
 - [Development](#development)
 - [License](#license)
 
