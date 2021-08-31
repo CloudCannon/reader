@@ -1,7 +1,7 @@
 import { parse } from 'path';
 import slugify from '@sindresorhus/slugify';
 
-const filters = {
+export const filters = {
 	uppercase: (value) => value?.toUpperCase?.(),
 	lowercase: (value) => value?.toLowerCase?.(),
 	slugify

@@ -1,6 +1,6 @@
 import { fdir } from 'fdir';
 import { join } from 'path';
-import { buildUrl } from '../util/url-builder.js';
+import { buildUrl, filters } from '../util/url-builder.js';
 import { parseFile } from '../parsers/parser.js';
 
 export async function generateCollections(collectionsConfig = {}, options) {
@@ -14,7 +14,7 @@ export async function generateCollections(collectionsConfig = {}, options) {
 
 function getCollectionItemUrl(itemPath, collectionConfig, data) {
 	return (typeof collectionConfig.url === 'function')
-		? collectionConfig.url(itemPath, data)
+		? collectionConfig.url(itemPath, data, filters)
 		: buildUrl(itemPath, data, collectionConfig.url);
 }
 

@@ -1,44 +1,53 @@
 # SSG Reader
 
 Parses config, files and folder structures to create a JSON file with information about
-sites made with any static site generator.
+sites made with any static site generator. The JSON is structured with the [build-info-schema](https://github.com/CloudCannon/build-info-schema) for [CloudCannon](https://cloudcannon.com/) to create an editing interface.
 
-[Usage](#usage) &bull; [Documentation](#documentation) &bull; [Development](#development)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Documentation](#documentation)
+  - [Source](#source)
+  - [Destination](#destination)
+  - [Data](#data)
+  - [Collections](#collections)
+  - [CloudCannon](#cloudcannon)
+  - [Parsers](#parsers)
+- [Development](#development)
 
 ***
 
 ## Usage
 
-Generates a JSON file at `./_cloudcannon/info.json`:
+To generate a JSON file at `./_cloudcannon/info.json`:
 
 ```bash
 ssg-reader
 ```
 
-### Configuration
+## Configuration
 
-SSG Reader supports a number of different configuration formats.
-Configuration files should be in the root of your repository.
+Configuration files must be in the same directory you run `ssg-reader`. The first file found is used, the files supported are:
 
-Formats include:
+- `cloudcannon` property in `package.json`
+- `cloudcannon.config.json`
+- `cloudcannon.config.yaml`
+- `cloudcannon.config.yml`
+- `cloudcannon.config.js`
+- `cloudcannon.config.cjs`
 
-- `cloudcannon.config.js` or `cloudcannon.config.cjs`
-- `cloudcannonconfig` property in `package.json`
-- `.cloudcannon.json`
-- `.cloudcannon.yml` or `.cloudcannon.yaml`
-- `.cloudcannon.js` or `.cloudcannon.cjs`
-- `cloudcannonrc` as JSON or YAML
-
-Example content for `cloudcannon.config.js`:
+Example content for `cloudcannon.config.cjs`:
 
 ```javascript
 module.exports = {
-  TODO: 'add other keys in here',
+  // Global CloudCannon configuration
+  _comments: {
+    title: 'The title of your page.'
+  },
 
-  // Reads from ./src instead of default .
+  // Read from ./src instead of .
   source: 'src',
 
-  // Writes to ./output/_cloudcannon/info.json instead of default ./_cloudcannon/info.json
+  // Write to ./output/_cloudcannon/info.json instead of ./_cloudcannon/info.json
   destination: 'output',
 
   'data-config': {
@@ -48,32 +57,36 @@ module.exports = {
     },
     offices: {
       // Reads the contents of each file in this directory
-      path: 'data/offices'
+      path: 'data/offices',
       parser: 'json'
     }
   },
 
   'collections-config': {
     people: {
+      // Reads the contents of each file in this directory
       path: 'content/people',
-      url: '/people/[slug]'
+
+      // The URL template for items in this collection
+      url: '/people/{department|slugify}/[slug]/',
+
+      // CloudCannon collection-level configuration
+      name: 'Personnel',
+      _enabled_editors: ['data']
     },
-    posts: { // Collection name as key
-      // Path to collection folder relative to source
+    posts: {
+      // Reads the contents of each file in this directory
       path: '_posts',
 
-      // (Optional) - The parser used to parse the files in this collection
-      // If unset, defaults to the parser associated with file extention.
+      // How to parse the files in this collection
       parser: 'front-matter',
 
-      // The URL pattern for items in this collection (i.e. permalink in many SSGs). Either a string or function.
-      //
-      // The string supports front matter placeholders (e.g. '/post/{title}' where '{title}' is defined in front matter for each file).
-      //
-      // Functions are supported with `.js` or `.cjs` configs files to dynamically set URLs.
-      // The function is passed `filePath` and `frontMatter` and should return a slash-prefixed URL string.
-      url: (filePath, frontMatter) => `/posts/${frontMatter.title.toLowerCase()}`
-      // url: '/posts/{title|lowercase}' // Same result as above
+      // The URL function for items in this collection
+      url: (filePath, frontMatter, filters) => {
+        const year = new Date(frontMatter.date).getFullYear();
+        const slug = filters.slugify(frontMatter.title || '');
+        return `/posts/${year}/${slug}/`;
+      }
     }
   }
 };
@@ -84,23 +97,105 @@ module.exports = {
 ## Documentation
 
 The `./_cloudcannon/info.json` file is initially populated with the contents
-of your configuration. SSG Reader then generates values for `collections`,
+of your configuration. `ssg-reader` then generates values for `collections`,
 `data`, `time`, and `cloudcannon`.
 
-TODO list config options here, move comments from above to here:
+### Source
 
-### URL
+The `source` configuration tells `ssg-reader` to read from another folder.
+The `path` value for collection items is relative to `source`. Defaults to `'.'`.
 
-The `url` in each collection config is used to build the `url` field for items in the collection.
-Can be a string or a function.
+### Destination
 
-Functions are given file path and front matter as arguments. The return value should be the URL.
+The `destination` configuration tells `ssg-reader` where to write the `_cloudcannon` folder containing `info.json`. Defaults to `'.'`.
+
+### Data
+
+The `data-config` defines how data files should be read and parsed into the JSON representation. Defaults to `{}`.
+
+```json
+{
+  "data-config": {
+    "locations": {
+      "path": "data/locations.csv"
+    },
+    "offices": {
+      "path": "data/offices",
+      "parser": "front-matter"
+    }
+  }
+}
+```
+
+The available keys in each data set configuration are:
+
+<details>
+  <summary><code>path</code></summary>
+
+#### Path
+
+The `path` is a reference to either:
+
+- The top-most folder where the files in this data set are stored.
+- The file containing the data.
+
+Both options are relative to `source`.
+</details>
+
+<details>
+  <summary><code>parser</code> (optional)</summary>
+
+#### Parser
+
+The `parser` field should state which [Parser](#parsers) you want to use to read the file or files in this data set.
+</details>
+
+### Collections
+
+The `collections-config` object defines how collections and their files should be read and parsed into the JSON representation. Defaults to `{}`.
+
+```json
+{
+  "collections-config": {
+    "posts": {
+      "path": "content/posts",
+      "parser": "yaml",
+      "url": "/posts/{category|slugify}/[slug].html"
+    }
+  }
+}
+```
+
+Matches the collection-level configuration format for CloudCannon, which is also set here (e.g. `name`, `_enabled_editors`, `_add_options`).
+
+The keys available in each collection configuration are:
+
+<details>
+  <summary><code>path</code></summary>
+
+#### Path
+
+The `path` is the top-most folder where the files in this collection are stored. It is relative to `source`.
+</details>
+
+<details>
+  <summary><code>url</code> (optional)</summary>
+
+#### URL
+
+The URL pattern for items in this collection. More details in [URL](#url) section below.
+
+The `url` in each collection config is used to build the `url` field for items in the collection. Similar to permalink in many SSGs.
+
+Can be a string or a function. Defaults to `''`.
+
+Functions are are supported with `.js` or `.cjs` files. Given file path, front matter and filters as arguments. The return value should be the slash-prefixed URL string.
 
 Strings are used as a template to build the URL.
 There are two types of placeholders available, file and data.
 Placeholders resulting in empty values are supported. Sequential slashes in URLs are condensed to one.
 
-File placeholders are always available, and provided by SSG Reader:
+File placeholders are always available, and provided by `ssg-reader`:
 
 - `[path]` is the full path of the file, relative to `source`.
 - `[slug]` is the filename, excluding extension.
@@ -114,11 +209,38 @@ Data placeholders are populated from front matter or data values in the file, an
 - `{category|slugify}` is `category` from inside the file, slugified.
 - `{tag|slugify|uppercase}` is `tag` from inside the file, slugified, then upper cased.
 
-### Parsers
+</details>
 
-Parsers define how SSG Reader processes your collection files into the JSON
-object listed in `info.json`. You can set the parser per collection under
-`collection-config`, if the default is not what you need.
+<details>
+  <summary><code>parser</code> (optional)</summary>
+
+#### Parser
+
+The `parser` field should state which [Parser](#parsers) you want to use to read the files in this collection.
+</details>
+
+### CloudCannon
+
+Set [global CloudCannon configuration](https://cloudcannon.com/documentation/edit/editing/configuration/#configuration) as top level keys in your `ssg-reader` configuration and they'll be copied across to `./_cloudcannon/info.json`.
+
+CloudCannon then reads these in the app and applies them to your editing interface. These include:
+
+- `_options`
+- `_select_data`
+- `_array_structures`
+- `_comments`
+- `_instance_values`
+- `_collection_groups`
+- `_enabled_editors`
+- `uploads_dir`
+- `_source_editor`
+
+***
+
+## Parsers
+
+Parsers define how `ssg-reader` processes your files into the JSON
+object listed in `info.json`. You can set the parser for data sets or collections under `data-config` and `collection-config`.
 
 These are the available parsers and default file extensions covered:
 
@@ -128,6 +250,8 @@ These are the available parsers and default file extensions covered:
 - `properties` (`.properties`)
 - `toml` (`.toml`)
 - `yaml` (`.yaml`, `.yml`)
+
+`ssg-reader` exits in error if no suitable parser is found.
 
 ***
 
@@ -150,3 +274,7 @@ Run it within your site folder:
 ```bash
 ssg-reader
 ```
+
+## License
+
+ISC

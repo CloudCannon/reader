@@ -4,10 +4,34 @@ import { cosmiconfig } from 'cosmiconfig';
 import { generateInfo } from './generators/info.js';
 
 export default {
-	readConfig: async function () {
-		const explorer = cosmiconfig('cloudcannon');
-		const configFile = await explorer.search();
-		return configFile?.config;
+	readConfig: async function (configPath) {
+		const moduleName = 'cloudcannon';
+		const explorer = cosmiconfig(moduleName, {
+			searchPlaces: [
+				'package.json',
+				`${moduleName}.config.json`,
+				`${moduleName}.config.yaml`,
+				`${moduleName}.config.yml`,
+				`${moduleName}.config.js`,
+				`${moduleName}.config.cjs`
+			]
+		});
+
+		try {
+			const config = configPath
+				? await explorer.load(configPath)
+				: await explorer.search();
+
+			if (config) {
+				console.log(`Using config file: ${config.filepath}`);
+				return config.config || {};
+			}
+		} catch (e) {
+			console.err(e);
+		}
+
+		console.log('No config file found.');
+		return {};
 	},
 
 	generate: async function (config) {
@@ -20,10 +44,7 @@ export default {
 	},
 
 	run: async function () {
-		const config = await this.readConfig();
-		if (!config) {
-			throw new Error('No configuration file found.');
-		}
+		const config = await this.readConfig() || {};
 
 		let info;
 

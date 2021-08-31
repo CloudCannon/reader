@@ -8,18 +8,6 @@ const mockRunner = {
 	write: async () => Promise.resolve()
 };
 
-test('Handle error with no config', async (t) => {
-	const mockRunnerNoConfig = {
-		...mockRunner,
-		readConfig: async () => Promise.resolve(),
-	};
-
-	await t.throwsAsync(
-		async () => await mockRunnerNoConfig.run(),
-		{ instanceOf: Error, message: 'No configuration file found.' }
-	);
-});
-
 test('Handle error on generate', async (t) => {
 	const mockRunnerThrow = {
 		...mockRunner,
