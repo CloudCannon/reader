@@ -1,8 +1,18 @@
 {
-  "name": "ssg-reader",
+  "name": "@cloudcannon/reader",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Parses config, files and folder structures to create a JSON file with information about sites made with any static site generator.",
+  "keywords": ["static site generator", "cloudcannon"],
+  "homepage": "https://github.com/CloudCannon/reader#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CloudCannon/reader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CloudCannon/reader/issues",
+    "email": "support@cloudcannon.com"
+  },
   "main": "src/index.js",
   "scripts": {
     "test": "ava",
@@ -11,7 +21,7 @@
     "lint": "eslint src"
   },
   "bin": {
-    "ssg-reader": "src/index.js"
+    "cloudcannon-reader": "src/index.js"
   },
   "files": [
     "src/**/*.js"

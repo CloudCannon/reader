@@ -1,4 +1,4 @@
-# SSG Reader
+# Reader
 
 Parses config, files and folder structures to create a JSON file with information about sites made with any static site generator. The JSON is structured with the [build-info-schema](https://github.com/CloudCannon/build-info-schema) for [CloudCannon](https://cloudcannon.com/) to create an editing interface.
 
@@ -21,12 +21,12 @@ Parses config, files and folder structures to create a JSON file with informatio
 To generate a JSON file at `./_cloudcannon/info.json`:
 
 ```bash
-$ ssg-reader
+$ cloudcannon-reader
 ```
 
 ## Configuration
 
-Configuration files must be in the same directory you run `ssg-reader`. The first file found is used, the files supported are:
+Configuration files must be in the same directory you run `cloudcannon-reader`. The first file found is used, the files supported are:
 
 - `cloudcannon` property in `package.json`
 - `cloudcannon.config.json`
@@ -96,15 +96,15 @@ module.exports = {
 
 ## Documentation
 
-The `./_cloudcannon/info.json` file is initially populated with the contents of your configuration. `ssg-reader` then generates values for `collections`, `data`, `time`, and `cloudcannon`.
+The `./_cloudcannon/info.json` file is initially populated with the contents of your configuration. `cloudcannon-reader` then generates values for `collections`, `data`, `time`, and `cloudcannon`.
 
 ### Source
 
-The `source` configuration tells `ssg-reader` to read from another folder. The `path` value for collection items is relative to `source`. Defaults to `'.'`.
+The `source` settings changes where to read from another folder. The `path` value for collection items is relative to `source`. Defaults to `'.'`.
 
 ### Destination
 
-The `destination` configuration tells `ssg-reader` where to write the `_cloudcannon` folder containing `info.json`. Defaults to `'.'`.
+The `destination` settings changes where to write the `_cloudcannon` folder containing `info.json`. Defaults to `'.'`.
 
 ### Data
 
@@ -181,7 +181,7 @@ The keys available in each collection configuration are:
 >
 > Strings are used as a template to build the URL. There are two types of placeholders available, file and data. Placeholders resulting in empty values are supported. Sequential slashes in URLs are condensed to one.
 >
-> File placeholders are always available, and provided by `ssg-reader`:
+> File placeholders are always available, and provided by `cloudcannon-reader`:
 >
 > - `[path]` is the full path of the file, relative to `source`.
 > - `[slug]` is the filename, excluding extension.
@@ -206,7 +206,7 @@ The keys available in each collection configuration are:
 
 ### CloudCannon
 
-Set [global CloudCannon configuration](https://cloudcannon.com/documentation/edit/editing/configuration/#configuration) as top level keys in your `ssg-reader` configuration and they'll be copied across to `./_cloudcannon/info.json`.
+Set global [CloudCannon configuration](https://cloudcannon.com/documentation/edit/editing/configuration/#configuration) as top level keys in your `cloudcannon-reader` configuration and they'll be copied across to `./_cloudcannon/info.json`.
 
 CloudCannon then reads these in the app and applies them to your editing interface. These include:
 
@@ -224,7 +224,7 @@ CloudCannon then reads these in the app and applies them to your editing interfa
 
 ## Parsers
 
-Parsers define how `ssg-reader` processes your files into the JSON object listed in `info.json`. You can set the parser for data sets or collections under `data-config` and `collection-config`.
+Parsers define how `cloudcannon-reader` processes your files into the JSON written to `info.json`. You can set the parser for data and collections under `data-config` and `collection-config`.
 
 These are the available parsers and default file extensions covered:
 
@@ -235,28 +235,38 @@ These are the available parsers and default file extensions covered:
 - `toml` (`.toml`)
 - `yaml` (`.yaml`, `.yml`)
 
-`ssg-reader` exits in error if no suitable parser is found.
+`cloudcannon-reader` exits in error if no suitable parser is found.
 
 ***
 
 ## Development
 
-Install dependencies in for `ssg-reader`:
+Install dependencies:
 
 ```bash
 $ npm i
 ```
 
-You can link this package locally to test it on a site folder.
+Run tests:
+
+```bash
+$ npm test
+$ npm run test:watch
+$ npm run test:coverage
+```
+
+Lint code:
+
+```bash
+$ npm run lint
+```
+
+Link this package locally to test it on a site folder, then run it within your site folder:
 
 ```bash
 $ npm link
-```
-
-Run it within your site folder:
-
-```bash
-$ ssg-reader
+$ cd ../my-ssg-site
+$ cloudcannon-reader
 ```
 
 ## License
