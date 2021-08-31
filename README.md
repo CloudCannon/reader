@@ -2,6 +2,10 @@
 
 Parses config, files and folder structures to create a JSON file with information about sites made with any static site generator. The JSON is structured with the [build-info-schema](https://github.com/CloudCannon/build-info-schema) for [CloudCannon](https://cloudcannon.com/) to create an editing interface.
 
+[![npm version](https://badge.fury.io/js/@cloudcannon%2Freader.svg)](https://www.npmjs.com/package/@cloudcannon/reader)
+
+***
+
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Documentation](#documentation)
