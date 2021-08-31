@@ -18,7 +18,8 @@
     "test": "ava",
     "test:watch": "ava --watch --verbose",
     "test:coverage": "c8 --all ava",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "release": "npx np"
   },
   "bin": {
     "cloudcannon-reader": "src/index.js"
@@ -33,6 +34,9 @@
     "c8": "^7.8.0",
     "eslint": "^7.32.0",
     "mockdate": "^3.0.5"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^2.1.0",
