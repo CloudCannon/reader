@@ -12,6 +12,7 @@ Parses config, files and folder structures to create a JSON file with informatio
   - [CloudCannon](#cloudcannon)
   - [Parsers](#parsers)
 - [Development](#development)
+- [License](#license)
 
 ***
 
@@ -20,7 +21,7 @@ Parses config, files and folder structures to create a JSON file with informatio
 To generate a JSON file at `./_cloudcannon/info.json`:
 
 ```bash
-ssg-reader
+$ ssg-reader
 ```
 
 ## Configuration
@@ -243,19 +244,19 @@ These are the available parsers and default file extensions covered:
 Install dependencies in for `ssg-reader`:
 
 ```bash
-npm i
+$ npm i
 ```
 
 You can link this package locally to test it on a site folder.
 
 ```bash
-npm link
+$ npm link
 ```
 
 Run it within your site folder:
 
 ```bash
-ssg-reader
+$ ssg-reader
 ```
 
 ## License
