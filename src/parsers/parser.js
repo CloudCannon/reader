@@ -30,7 +30,7 @@ const parsers = {
 	properties: parseProperties
 };
 
-export async function parseFile(filePath, parser, options) {
+export async function parseFile(filePath, parser) {
 	const raw = await readFile(filePath, 'utf8');
 
 	if (typeof parser === 'function') {
