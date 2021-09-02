@@ -34,18 +34,18 @@ test('Handle error on write', async (t) => {
 
 test('Run', async (t) => {
 	let resultInfo;
-	let resultDestinationDir;
+	let resultOutputDir;
 
-	runner.readConfig = async () => Promise.resolve({ destination: 'over/here' });
+	runner.readConfig = async () => Promise.resolve({ output: 'over/here' });
 	runner.generate = async (config) => Promise.resolve({ ...config, info: true });
 	runner.write = async (info, config) => {
 		resultInfo = info;
-		resultDestinationDir = config;
+		resultOutputDir = config;
 		return Promise.resolve();
 	}
 
 	await runner.run();
 
-	t.deepEqual(resultInfo, { destination: 'over/here', info: true });
-	t.deepEqual(resultDestinationDir, 'over/here/_cloudcannon');
+	t.deepEqual(resultInfo, { output: 'over/here', info: true });
+	t.deepEqual(resultOutputDir, 'over/here/_cloudcannon');
 });

@@ -27,7 +27,7 @@ export default {
 				return config.config || {};
 			}
 		} catch (e) {
-			console.err(e);
+			console.error(e);
 		}
 
 		console.log('No config file found.');
@@ -38,13 +38,14 @@ export default {
 		return await generateInfo(config);
 	},
 
-	write: async function (info, destinationDir) {
-		await mkdir(destinationDir, { recursive: true });
-		await writeFile(join(destinationDir, 'info.json'), JSON.stringify(info, null, '\t'));
+	write: async function (info, outputDir) {
+		await mkdir(outputDir, { recursive: true });
+		await writeFile(join(outputDir, 'info.json'), JSON.stringify(info, null, '\t'));
 	},
 
-	run: async function () {
-		const config = await this.readConfig() || {};
+	run: async function (flags = {}) {
+		const config = await this.readConfig(flags?.config) || {};
+		config.output = flags?.output || config.output;
 
 		let info;
 
@@ -56,8 +57,8 @@ export default {
 		}
 
 		try {
-			const destinationDir = join('.', config.destination || '', '_cloudcannon');
-			await this.write(info, destinationDir);
+			const outputDir = join('.', config.output || '', '_cloudcannon');
+			await this.write(info, outputDir);
 		} catch (e) {
 			e.message = `Failed to write info: ${e.message}`;
 			throw e;

@@ -10,7 +10,7 @@ Parses config, files and folder structures to create a JSON file with informatio
 - [Configuration](#configuration)
 - [Documentation](#documentation)
   - [Source](#source)
-  - [Destination](#destination)
+  - [Output](#output)
   - [Data](#data)
   - [Collections](#collections)
   - [CloudCannon](#cloudcannon)
@@ -26,6 +26,21 @@ To generate a JSON file at `./_cloudcannon/info.json`:
 
 ```bash
 $ cloudcannon-reader
+```
+
+```bash
+$ cloudcannon-reader --help
+
+Usage
+  $ cloudcannon-reader [options]
+
+Options
+  --config, -c  Use a specific configuration file
+  --output, -o  Write to a different location than .
+
+Examples
+  $ cloudcannon-reader --config "cloudcannon.dev.config.json"
+  $ cloudcannon-reader --output "public"
 ```
 
 ## Configuration
@@ -52,7 +67,7 @@ module.exports = {
   source: 'src',
 
   // Write to ./output/_cloudcannon/info.json instead of ./_cloudcannon/info.json
-  destination: 'output',
+  output: 'output',
 
   'data-config': {
     authors: {
@@ -106,9 +121,9 @@ The `./_cloudcannon/info.json` file is initially populated with the contents of 
 
 The `source` settings changes where to read from another folder. The `path` value for collection items is relative to `source`. Defaults to `'.'`.
 
-### Destination
+### Output
 
-The `destination` settings changes where to write the `_cloudcannon` folder containing `info.json`. Defaults to `'.'`.
+The `output` settings changes where to write the `_cloudcannon` folder containing `info.json`. Defaults to `'.'`.
 
 ### Data
 
