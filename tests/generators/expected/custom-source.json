@@ -30,7 +30,7 @@
   "base-url": "",
   "time": "2000-11-22T00:00:00.000Z",
   "cloudcannon": {
-    "name": "ssg-reader",
+    "name": "cloudcannon-reader",
     "version": "0.0.1"
   },
   "data": {

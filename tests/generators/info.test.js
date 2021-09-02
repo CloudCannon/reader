@@ -21,7 +21,7 @@ test('Generate JSON info', async (t) => {
 	const expectedObject = await readJsonFile('./expected/standard.json');
 	const expectedInfo = JSON.stringify(expectedObject, null, 2);
 
-	const infoObject = await generateInfo(config);
+	const infoObject = await generateInfo(config, { version: '0.0.1' });
 	const info = JSON.stringify(infoObject, null, 2);
 
 	t.is(info, expectedInfo);
@@ -32,7 +32,7 @@ test('Generate JSON info with custom source', async (t) => {
 	const expectedObject = await readJsonFile('./expected/custom-source.json');
 	const expectedInfo = JSON.stringify(expectedObject, null, 2);
 
-	const infoObject = await generateInfo(config);
+	const infoObject = await generateInfo(config, { version: '0.0.1' });
 	const info = JSON.stringify(infoObject, null, 2);
 
 	t.is(info, expectedInfo);

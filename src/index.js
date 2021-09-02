@@ -8,6 +8,7 @@ const cli = meow(`
 	  $ cloudcannon-reader [options]
 
 	Options
+	  --version     Print the current version
 	  --config, -c  Use a specific configuration file
 	  --output, -o  Write to a different location than .
 
@@ -28,4 +29,5 @@ const cli = meow(`
 	}
 });
 
-runner.run(cli.flags).then(() => console.log('Generated info.json successfully.'));
+runner.run(cli.flags, cli.pkg)
+	.then(() => console.log('Generated info.json successfully.'));

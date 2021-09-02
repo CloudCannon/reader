@@ -34,8 +34,8 @@ export default {
 		return {};
 	},
 
-	generate: async function (config) {
-		return await generateInfo(config);
+	generate: async function (config, options) {
+		return await generateInfo(config, options);
 	},
 
 	write: async function (info, outputDir) {
@@ -43,14 +43,14 @@ export default {
 		await writeFile(join(outputDir, 'info.json'), JSON.stringify(info, null, '\t'));
 	},
 
-	run: async function (flags = {}) {
+	run: async function (flags, pkg) {
 		const config = await this.readConfig(flags?.config) || {};
 		config.output = flags?.output || config.output;
 
 		let info;
 
 		try {
-			info = await this.generate(config);
+			info = await this.generate(config, { version: pkg?.version });
 		} catch (e) {
 			e.message = `Failed to generate info: ${e.message}`;
 			throw e;
