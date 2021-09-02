@@ -1,7 +1,7 @@
 {
   "name": "@cloudcannon/reader",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Parses config, files and folder structures to create a JSON file with information about sites made with any static site generator.",
   "keywords": [
     "static site generator",
