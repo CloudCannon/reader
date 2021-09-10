@@ -9,11 +9,12 @@ export const filters = {
 
 function processFileTemplates(urlTemplate, filePath) {
 	const { name, ext } = parse(filePath);
+	const slug = name === 'index' ? '' : name;
 
 	return urlTemplate
 		.replace(/\[ext\]/g, ext)
-		.replace(/\[slug\]/g, name)
-		.replace(/\[filename\]/g, name)
+		.replace(/\[slug\]/g, slug)
+		.replace(/\[filename\]/g, slug)
 		.replace(/\[path\]/g, filePath);
 }
 

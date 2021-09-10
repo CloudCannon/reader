@@ -2,6 +2,7 @@ import test from 'ava';
 import { buildUrl } from '../../src/util/url-builder.js';
 
 const filePath = 'content/_posts/example-post.md';
+const indexFilePath = 'content/pages/index.md';
 
 const data = {
 	id: 2,
@@ -22,6 +23,12 @@ test('Replace file placeholders in URL template', (t) => {
 	t.is(buildUrl(filePath, data, '/url/[filename]'), '/url/example-post');
 	t.is(buildUrl(filePath, data, '/url/[slug]'), '/url/example-post');
 	t.is(buildUrl(filePath, data, '/url/[ext]'), '/url/.md');
+});
+
+test('Replace index for file placeholders in URL template', (t) => {
+	t.is(buildUrl(indexFilePath, data, '/[slug]'), '/');
+	t.is(buildUrl(indexFilePath, data, '/nested/[slug]'), '/nested/');
+	t.is(buildUrl(indexFilePath, data, '/nested/[slug]/'), '/nested/');
 });
 
 test('Replace data placeholders in URL template', (t) => {
