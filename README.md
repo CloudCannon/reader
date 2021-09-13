@@ -69,18 +69,7 @@ module.exports = {
   // Write to ./output/_cloudcannon/info.json instead of ./_cloudcannon/info.json
   output: 'output',
 
-  'data-config': {
-    authors: {
-      // Reads the contents of this file
-      path: 'data/authors.csv'
-    },
-    offices: {
-      // Reads the contents of each file in this directory
-      path: 'data/offices',
-      parser: 'json'
-    }
-  },
-
+  // Populates the sidebar navigation and provides metadata for the editor
   'collections-config': {
     people: {
       // Reads the contents of each file in this directory
@@ -101,11 +90,35 @@ module.exports = {
       parser: 'front-matter',
 
       // The URL function for items in this collection
-      url: (filePath, frontMatter, filters) => {
-        const year = new Date(frontMatter.date).getFullYear();
-        const slug = filters.slugify(frontMatter.title || '');
+      url: (filePath, parsed, { filters }) => {
+        const year = new Date(parsed.date).getFullYear();
+        const slug = filters.slugify(parsed.title || '');
         return `/posts/${year}/${slug}/`;
       }
+    },
+    data: {
+      // Reads the contents of each file in this directory
+      path: 'data',
+
+      // How to parse the files in this collection
+      parser: (filePath, raw, { parsers, filters }) => {
+        const parsed = parsers['front-matter'].parse(raw);
+        const slug = filters.slugify(parsed.title || '');
+        return { ...data, slug };
+      }
+    }
+  },
+
+  // Generates the data for select and multiselect inputs matching these names
+  'data-config': {
+    authors: {
+      // Reads the contents of this file
+      path: 'data/authors.csv'
+    },
+    offices: {
+      // Reads the contents of each file in this directory
+      path: 'data/offices',
+      parser: 'json'
     }
   }
 };
@@ -196,7 +209,7 @@ The keys available in each collection configuration are:
 
 > The `url` is used to build the `url` field for items in the collection. Similar to permalink in many SSGs. Can be a string or a function. Defaults to `''`.
 >
-> Functions are are supported with `.js` or `.cjs` files. Given file path, front matter and filters as arguments. The return value should be the slash-prefixed URL string.
+> Functions are are supported with `.js` or `.cjs` files. Given file path, parsed file content and an object with filters as arguments. The return value should be the slash-prefixed URL string.
 >
 > Strings are used as a template to build the URL. There are two types of placeholders available, file and data. Placeholders resulting in empty values are supported. Sequential slashes in URLs are condensed to one.
 >
@@ -253,6 +266,8 @@ These are the available parsers and default file extensions covered:
 - `properties` (`.properties`)
 - `toml` (`.toml`)
 - `yaml` (`.yaml`, `.yml`)
+
+Functions are are supported with `.js` or `.cjs` files. Given file path, raw file content and an object with parsers and filters as arguments. The return value should be an object representing this file.
 
 `cloudcannon-reader` exits in error if no suitable parser is found.
 

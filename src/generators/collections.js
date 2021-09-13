@@ -1,6 +1,6 @@
 import { fdir } from 'fdir';
 import { join } from 'path';
-import { buildUrl, filters } from '../util/url-builder.js';
+import { buildUrl } from '../util/url-builder.js';
 import { parseFile } from '../parsers/parser.js';
 
 export async function generateCollections(collectionsConfig = {}, options) {
@@ -10,12 +10,6 @@ export async function generateCollections(collectionsConfig = {}, options) {
 		const collection = await readCollection(collectionsConfig[key], key, source);
 		return { ...(await memo), [key]: collection };
 	}, {});
-}
-
-function getCollectionItemUrl(itemPath, collectionConfig, data) {
-	return (typeof collectionConfig.url === 'function')
-		? collectionConfig.url(itemPath, data, filters)
-		: buildUrl(itemPath, data, collectionConfig.url);
 }
 
 async function readCollectionItem(filePath, collectionConfig, key, source) {
@@ -28,7 +22,7 @@ async function readCollectionItem(filePath, collectionConfig, key, source) {
 		...data,
 		path: itemPath,
 		collection: key,
-		url: getCollectionItemUrl(itemPath, collectionConfig, data)
+		url: buildUrl(itemPath, data, collectionConfig.url)
 	};
 }
 

@@ -6,6 +6,7 @@ import { parse as parseJson } from './json.js';
 import { parse as parseToml } from './toml.js';
 import { parse as parseYaml } from './yaml.js';
 import { parse as parseProperties } from './properties.js';
+import { filters } from '../util/url-builder.js';
 
 const defaultParsers = {
 	csv: 'csv',
@@ -34,7 +35,7 @@ export async function parseFile(filePath, parser) {
 	const raw = await readFile(filePath, 'utf8');
 
 	if (typeof parser === 'function') {
-		return parser(raw, filePath);
+		return parser(filePath, raw, { parsers, filters });
 	}
 
 	parser = parser || defaultParsers[extname(filePath).replace(/^\.+/, '')];

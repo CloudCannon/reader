@@ -46,3 +46,19 @@ test('Replace data placeholders with filters in URL template', (t) => {
 test('Collapses placeholders with no value', (t) => {
 	t.is(buildUrl(filePath, data, '/url/{nothing}/about.html'), '/url/about.html');
 });
+
+test('Builds URL with function template', async (t) => {
+	let passedFilters = {};
+
+	const url = buildUrl('abc', { hi: 'there' }, (filePath, parsed, { filters }) => {
+		passedFilters = filters;
+		return `/${parsed.hi}/${filters.uppercase(filePath)}`;
+	})
+
+	t.is(url, '/there/ABC');
+	t.deepEqual(Object.keys(passedFilters), [
+		'uppercase',
+		'lowercase',
+		'slugify'
+	]);
+});

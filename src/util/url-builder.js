@@ -35,6 +35,10 @@ export function buildUrl(filePath, data, urlTemplate) {
 		return '';
 	}
 
+	if (typeof urlTemplate === 'function') {
+		return urlTemplate(filePath, data, { filters });
+	}
+
 	const fileTemplated = processFileTemplates(urlTemplate, filePath);
 	const templated = processDataTemplates(fileTemplated, data);
 
