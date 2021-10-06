@@ -2,6 +2,7 @@
 
 import meow from 'meow';
 import runner from './runner.js';
+import log, { toggleLogging } from './util/logger.js';
 
 const cli = meow(`
 	Usage
@@ -11,6 +12,7 @@ const cli = meow(`
 	  --version     Print the current version
 	  --config, -c  Use a specific configuration file
 	  --output, -o  Write to a different location than .
+	  --quiet, -q   Disable logging
 
 	Examples
 	  $ cloudcannon-reader --config "cloudcannon.dev.config.json"
@@ -25,9 +27,17 @@ const cli = meow(`
 		output: {
 			type: 'string',
 			alias: 'o'
+		},
+		quiet: {
+			quiet: 'string',
+			alias: 'q'
 		}
 	}
 });
 
+if (cli.flags.quiet) {
+	toggleLogging(false);
+}
+
 runner.run(cli.flags, cli.pkg)
-	.then(() => console.log('Generated info.json successfully.'));
+	.then(() => log('Generated info.json successfully.'));

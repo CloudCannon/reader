@@ -35,8 +35,10 @@ Usage
   $ cloudcannon-reader [options]
 
 Options
+  --version     Print the current version
   --config, -c  Use a specific configuration file
   --output, -o  Write to a different location than .
+  --quiet, -q   Disable logging
 
 Examples
   $ cloudcannon-reader --config "cloudcannon.dev.config.json"

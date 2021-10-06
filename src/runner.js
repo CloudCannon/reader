@@ -2,6 +2,7 @@ import { mkdir, writeFile } from 'fs/promises';
 import { join } from 'path';
 import { cosmiconfig } from 'cosmiconfig';
 import { generateInfo } from './generators/info.js';
+import log from './util/logger.js';
 
 export default {
 	readConfig: async function (configPath) {
@@ -23,14 +24,14 @@ export default {
 				: await explorer.search();
 
 			if (config) {
-				console.log(`Using config file: ${config.filepath}`);
+				log(`Using config file: ${config.filepath}`);
 				return config.config || {};
 			}
 		} catch (e) {
-			console.error(e);
+			log(e, 'error');
 		}
 
-		console.log('No config file found.');
+		log('No config file found.');
 		return {};
 	},
 
