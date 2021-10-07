@@ -16,7 +16,7 @@ test('Handle error on generate', async (t) => {
 
 	await t.throwsAsync(
 		async () => await mockRunnerThrow.run(),
-		{ instanceOf: Error, message: 'Failed to generate info: Test' }
+		{ instanceOf: Error, message: 'Test' }
 	);
 });
 
@@ -28,7 +28,7 @@ test('Handle error on write', async (t) => {
 
 	await t.throwsAsync(
 		async () => await mockRunnerThrow.run(),
-		{ instanceOf: Error, message: 'Failed to write info: Test' }
+		{ instanceOf: Error, message: 'Test' }
 	);
 });
 

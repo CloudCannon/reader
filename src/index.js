@@ -2,7 +2,7 @@
 
 import meow from 'meow';
 import runner from './runner.js';
-import log, { toggleLogging } from './util/logger.js';
+import { toggleLogging } from './util/logger.js';
 
 const cli = meow(`
 	Usage
@@ -39,5 +39,4 @@ if (cli.flags.quiet) {
 	toggleLogging(false);
 }
 
-runner.run(cli.flags, cli.pkg)
-	.then(() => log('Generated info.json successfully.'));
+runner.run(cli.flags, cli.pkg);

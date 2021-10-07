@@ -1,8 +1,10 @@
 import { mkdir, writeFile } from 'fs/promises';
-import { join } from 'path';
+import { join, relative } from 'path';
 import { cosmiconfig } from 'cosmiconfig';
 import { generateInfo } from './generators/info.js';
 import log from './util/logger.js';
+import report from './util/reporter.js';
+import chalk from 'chalk';
 
 export default {
 	readConfig: async function (configPath) {
@@ -24,44 +26,60 @@ export default {
 				: await explorer.search();
 
 			if (config) {
-				log(`Using config file: ${config.filepath}`);
+				const relativeConfigPath = relative(process.cwd(), config.filepath);
+				log(`⚙️ Using config file at ${chalk.bold(relativeConfigPath)}`);
 				return config.config || {};
 			}
 		} catch (e) {
-			log(e, 'error');
+			if (e.code === 'ENOENT') {
+				log(`⚠️ ${chalk.red('No config file found at')} ${chalk.red.bold(configPath)}`);
+				return false;
+			} else {
+				log(`⚠️ ${chalk.red('Error reading config file')}`, 'error');
+				throw e;
+			}
 		}
 
-		log('No config file found.');
-		return {};
+		log('⚙️ No config file found, see the instructions at https://github.com/CloudCannon/reader');
+		return false;
 	},
 
 	generate: async function (config, options) {
 		return await generateInfo(config, options);
 	},
 
-	write: async function (info, outputDir) {
+	write: async function (info, outputDir, outputPath) {
 		await mkdir(outputDir, { recursive: true });
-		await writeFile(join(outputDir, 'info.json'), JSON.stringify(info, null, '\t'));
+		await writeFile(outputPath, JSON.stringify(info, null, '\t'));
 	},
 
 	run: async function (flags, pkg) {
-		const config = await this.readConfig(flags?.config) || {};
+		log('⭐️ Starting cloudcannon-reader');
+
+		const config = await this.readConfig(flags?.config);
+		if (config === false) {
+			return;
+		}
+
 		config.output = flags?.output || config.output;
 
+		const outputDir = join('.', config.output || '', '_cloudcannon');
+		const outputPath = join(outputDir, 'info.json');
 		let info;
 
 		try {
 			info = await this.generate(config, { version: pkg?.version });
 		} catch (e) {
-			e.message = `Failed to generate info: ${e.message}`;
+			log(`⚠️ ${chalk.red('Failed to generate')} ${chalk.red.bold(outputPath)}`, 'error');
 			throw e;
 		}
 
 		try {
-			const outputDir = join('.', config.output || '', '_cloudcannon');
-			await this.write(info, outputDir);
+			await this.write(info, outputDir, outputPath);
+			report(info);
+			log(`🏁 Generated ${chalk.bold(outputPath)} successfully`);
 		} catch (e) {
-			e.message = `Failed to write info: ${e.message}`;
+			log(`⚠️ ${chalk.red('Failed to write')} ${chalk.red.bold(outputPath)}`, 'error');
 			throw e;
 		}
 	}

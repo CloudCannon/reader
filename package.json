@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@sindresorhus/slugify": "^2.1.0",
+    "chalk": "^4.1.2",
     "cosmiconfig": "^7.0.1",
     "fdir": "^5.1.0",
     "gray-matter": "^4.0.3",
