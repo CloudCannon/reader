@@ -22,7 +22,8 @@
     "test:watch": "ava --watch --verbose",
     "test:coverage": "c8 --all ava",
     "lint": "eslint src",
-    "release": "npx np"
+    "release:latest": "npx np",
+    "release:next": "npx np --tag=next"
   },
   "bin": {
     "cloudcannon-reader": "src/index.js"

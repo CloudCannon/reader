@@ -72,3 +72,11 @@ test('Builds URL with function template', async (t) => {
 		'day'
 	]);
 });
+
+test('Builds URL with function template buildUrl fallback', async (t) => {
+	const url = buildUrl('abc', { hi: 'there' }, (filePath, content, { buildUrl }) => {
+		return buildUrl(filePath, content, '/{hi|uppercase}.hello');
+	})
+
+	t.is(url, '/THERE.hello');
+});
