@@ -50,6 +50,7 @@
     "js-yaml": "^4.1.0",
     "meow": "^10.1.1",
     "papaparse": "^5.3.1",
+    "picomatch": "^2.3.0",
     "properties": "^1.2.1",
     "toml": "^3.0.0"
   }

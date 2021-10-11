@@ -16,24 +16,17 @@ async function readJsonFile(path) {
 	return JSON.parse(expectedFile.toString());
 }
 
-test('Generate JSON info', async (t) => {
-	const config = await readJsonFile('./fixtures/standard.json');
-	const expectedObject = await readJsonFile('./expected/standard.json');
+async function runTest(t, key) {
+	const config = await readJsonFile(`./fixtures/${key}.json`);
+	const expectedObject = await readJsonFile(`./expected/${key}.json`);
 	const expectedInfo = JSON.stringify(expectedObject, null, 2);
 
 	const infoObject = await generateInfo(config, { version: '0.0.1' });
 	const info = JSON.stringify(infoObject, null, 2);
 
 	t.is(info, expectedInfo);
-});
+}
 
-test('Generate JSON info with custom source', async (t) => {
-	const config = await readJsonFile('./fixtures/custom-source.json');
-	const expectedObject = await readJsonFile('./expected/custom-source.json');
-	const expectedInfo = JSON.stringify(expectedObject, null, 2);
-
-	const infoObject = await generateInfo(config, { version: '0.0.1' });
-	const info = JSON.stringify(infoObject, null, 2);
-
-	t.is(info, expectedInfo);
-});
+test('Generate JSON info', async (t) => runTest(t, 'standard'));
+test('Generate JSON info with custom source', async (t) => runTest(t, 'custom-source'));
+test('Generate JSON info with globs', async (t) => runTest(t, 'globs'));

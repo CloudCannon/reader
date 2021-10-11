@@ -80,6 +80,9 @@ module.exports = {
       // The URL template for items in this collection
       url: '/people/{department|slugify}/[slug]/',
 
+      // Tells CloudCannon this collection produces output files
+      output: true
+
       // CloudCannon collection-level configuration
       name: 'Personnel',
       _enabled_editors: ['data']
@@ -96,7 +99,24 @@ module.exports = {
         const year = new Date(parsed.date).getFullYear();
         const slug = filters.slugify(parsed.title || '');
         return `/posts/${year}/${slug}/`;
-      }
+      },
+
+      // Tells CloudCannon this collection produces output files
+      output: true
+    },
+    pages: {
+      // Tells CloudCannon to navigate to this path for this collection
+      path: '',
+
+      // Reads the contents of each file for this pattern (takes priority over path)
+      glob: ['**/*.md', './src/pages/*.html'],
+
+      // Tells CloudCannon to only show successfully parsed files for this collection
+      // Useful for excluding other collections when using '' as path
+      filter: 'strict',
+
+      // Tells CloudCannon this collection produces output files
+      output: true
     },
     data: {
       // Reads the contents of each file in this directory

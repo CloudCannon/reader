@@ -54,7 +54,7 @@ export default {
 	},
 
 	run: async function (flags, pkg) {
-		log('⭐️ Starting cloudcannon-reader');
+		log(`⭐️ Starting ${chalk.blue('cloudcannon-reader')}`);
 
 		const config = await this.readConfig(flags?.config);
 		if (config === false) {
@@ -77,7 +77,7 @@ export default {
 		try {
 			await this.write(info, outputDir, outputPath);
 			report(info);
-			log(`🏁 Generated ${chalk.bold(outputPath)} successfully`);
+			log(`🏁 Generated ${chalk.bold(outputPath)} ${chalk.green('successfully')}`);
 		} catch (e) {
 			log(`⚠️ ${chalk.red('Failed to write')} ${chalk.red.bold(outputPath)}`, 'error');
 			throw e;

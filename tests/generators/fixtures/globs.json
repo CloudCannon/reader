@@ -11,11 +11,16 @@
 	"collections-config": {
 		"posts": {
 			"path": "_posts",
+			"glob": [
+				"tests/generators/fixtures/standard/_posts/2016-08-12-*",
+				"**/nested/*"
+			],
 			"output": true,
 			"url": "hello/{title|slugify}"
 		},
 		"vegetables": {
-			"path": "vegetables"
+			"path": "vegetables",
+			"glob": "**/po*"
 		}
 	},
 	"_comments": {},

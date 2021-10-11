@@ -11,11 +11,16 @@
   "collections-config": {
     "posts": {
       "path": "_posts",
+      "glob": [
+        "tests/generators/fixtures/standard/_posts/2016-08-12-*",
+        "**/nested/*"
+      ],
       "output": true,
       "url": "hello/{title|slugify}"
     },
     "vegetables": {
-      "path": "vegetables"
+      "path": "vegetables",
+      "glob": "**/po*"
     }
   },
   "_comments": {},
@@ -58,52 +63,6 @@
   "collections": {
     "posts": [
       {
-        "date": "2020-07-20T00:00:00.000Z",
-        "title": "The process for direct sales",
-        "categories": [
-          "sales"
-        ],
-        "author_staff_member": "anna",
-        "path": "_posts/2016-07-20-the-process-for-direct-sales.md",
-        "collection": "posts",
-        "url": "hello/the-process-for-direct-sales"
-      },
-      {
-        "date": "2020-07-28T00:00:00.000Z",
-        "title": "Effective upselling techniques",
-        "categories": [
-          "sales",
-          "tips"
-        ],
-        "author_staff_member": "betty",
-        "path": "_posts/2016-07-28-effective-upselling-techniques.md",
-        "collection": "posts",
-        "url": "hello/effective-upselling-techniques"
-      },
-      {
-        "date": "2020-08-02T00:00:00.000Z",
-        "title": "Sales effectiveness",
-        "categories": [
-          "sales",
-          "tips"
-        ],
-        "author_staff_member": "gerald",
-        "path": "_posts/2016-08-02-sales-effectiveness.md",
-        "collection": "posts",
-        "url": "hello/sales-effectiveness"
-      },
-      {
-        "date": "2020-08-06T00:00:00.000Z",
-        "title": "Definition of sales",
-        "categories": [
-          "sales"
-        ],
-        "author_staff_member": "james",
-        "path": "_posts/2016-08-06-definition-of-sales.md",
-        "collection": "posts",
-        "url": "hello/definition-of-sales"
-      },
-      {
         "date": "2020-08-12T00:00:00.000Z",
         "title": "The history of marketing",
         "categories": [
@@ -131,13 +90,6 @@
         "name": "Potato",
         "rating": 5,
         "path": "vegetables/potato.yml",
-        "collection": "vegetables",
-        "url": ""
-      },
-      {
-        "name": "Yam",
-        "rating": 4,
-        "path": "vegetables/yam.yml",
         "collection": "vegetables",
         "url": ""
       }

@@ -42,7 +42,7 @@ export async function parseFile(filePath, parser) {
 
 	const parse = parsers[parser];
 	if (!parse) {
-		throw new Error(`Unsupported parser: ${parser}`);
+		throw new Error(parser ? `unsupported parser ${parser}` : 'unknown parser');
 	}
 
 	return parse(raw);

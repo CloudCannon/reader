@@ -24,6 +24,6 @@ test('Parse file with custom parser', async (t) => {
 test('Error for unsupported parser', async (t) => {
 	await t.throwsAsync(
 		async () => await parseFile(filePaths['test.md'], 'banana'),
-		{ instanceOf: Error, message: 'Unsupported parser: banana' }
+		{ instanceOf: Error, message: 'unsupported parser banana' }
 	);
 });
