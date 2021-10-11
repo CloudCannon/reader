@@ -263,6 +263,9 @@ The keys available in each collection configuration are:
 > - `{title|lowercase}` is `title` from inside the file, lower cased.
 > - `{category|slugify}` is `category` from inside the file, slugified.
 > - `{tag|slugify|uppercase}` is `tag` from inside the file, slugified, then upper cased.
+> - `{date|year}` is `date` from inside the file, with the 4-digit year extracted.
+> - `{date|month}` is `date` from inside the file, with the 2-digit month extracted.
+> - `{date|day}` is `date` from inside the file, with the 2-digit day extracted.
 
 </details>
 

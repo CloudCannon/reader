@@ -6,6 +6,7 @@ const indexFilePath = 'content/pages/index.md';
 
 const data = {
 	id: 2,
+	date: new Date('2021-01-09T09:39:05.237Z'),
 	title: 'My Title!',
 	description: 'This is a longer than usual field'
 };
@@ -43,6 +44,12 @@ test('Replace data placeholders with filters in URL template', (t) => {
 	t.is(buildUrl(filePath, data, '/url/{title|slugify|uppercase}/'), '/url/MY-TITLE/');
 });
 
+test('Replace data placeholders with date filters in URL template', (t) => {
+	t.is(buildUrl(filePath, data, '/url/{date|year}/'), '/url/2021/');
+	t.is(buildUrl(filePath, data, '/url/{date|month}/'), '/url/01/');
+	t.is(buildUrl(filePath, data, '/url/{date|day}/'), '/url/09/');
+});
+
 test('Collapses placeholders with no value', (t) => {
 	t.is(buildUrl(filePath, data, '/url/{nothing}/about.html'), '/url/about.html');
 });
@@ -59,6 +66,9 @@ test('Builds URL with function template', async (t) => {
 	t.deepEqual(Object.keys(passedFilters), [
 		'uppercase',
 		'lowercase',
-		'slugify'
+		'slugify',
+		'year',
+		'month',
+		'day'
 	]);
 });

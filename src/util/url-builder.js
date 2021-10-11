@@ -4,7 +4,16 @@ import slugify from '@sindresorhus/slugify';
 export const filters = {
 	uppercase: (value) => value?.toUpperCase?.(),
 	lowercase: (value) => value?.toLowerCase?.(),
-	slugify
+	slugify,
+	year: (value) => value?.getFullYear?.(),
+	month: (value) => {
+		const month = value?.getMonth?.();
+		return month === undefined ? month : ('0' + (month + 1)).slice(-2);
+	},
+	day: (value) => {
+		const day = value?.getDate?.();
+		return day === undefined ? day : ('0' + day).slice(-2);
+	}
 };
 
 function processFileTemplates(urlTemplate, filePath) {
