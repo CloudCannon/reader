@@ -45,7 +45,7 @@ export function buildUrl(filePath, data, urlTemplate) {
 	}
 
 	if (typeof urlTemplate === 'function') {
-		return urlTemplate(filePath, data, { filters });
+		return urlTemplate(filePath, data, { filters, buildUrl });
 	}
 
 	const fileTemplated = processFileTemplates(urlTemplate, filePath);

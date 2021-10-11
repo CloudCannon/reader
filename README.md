@@ -233,6 +233,14 @@ The keys available in each collection configuration are:
 
 > The `glob` is a string or array of strings containing patterns to filter the files parsed into this collection. Globs are **not** relative to `source`. Patterns are matched with [picomatch](https://github.com/micromatch/picomatch#basic-globbing). If set as an array, files only have to match one glob pattern to be parsed.
 >
+> ```javascript
+> glob: ['**/*.md', '**/*.html'] // All .md and .html files
+> ```
+>
+> ```javascript
+> glob: './src/**/*.liquid' // All .liquid files inside the src folder and subfolders
+> ```
+>
 > This is used to find files instead of `path`, but path is still required as a base path for the collection.
 >
 > - `'./src/*.md'` matches `.md` files in the `src` folder.
@@ -246,9 +254,25 @@ The keys available in each collection configuration are:
 
 > The `url` is used to build the `url` field for items in the collection. Similar to permalink in many SSGs. Can be a string or a function. Defaults to `''`.
 >
-> Functions are are supported with `.js` or `.cjs` files. Given file path, parsed file content and an object with filters as arguments. The return value should be the slash-prefixed URL string.
+> Functions are are supported with `.js` or `.cjs` files. Given file path, parsed file content and an object with filters and the `buildUrl` function as arguments. The return value should be the slash-prefixed URL string.
+>
+> ```javascript
+> url: (filePath, content, { filters, buildUrl }) => {
+>   if (content.permalink) {
+>     // Returns a lower case permalink front matter field
+>     return filters.lowercase(content.permalink);
+>   }
+>
+>   // Falls back to processing a url string
+>   return buildUrl(filePath, content, '/[slug]/');
+> }
+> ```
 >
 > Strings are used as a template to build the URL. There are two types of placeholders available, file and data. Placeholders resulting in empty values are supported. Sequential slashes in URLs are condensed to one.
+>
+> ```javascript
+> url: '/blog/{date|year}/[slug]/'
+> ```
 >
 > File placeholders are always available, and provided by `cloudcannon-reader`:
 >
@@ -273,6 +297,10 @@ The keys available in each collection configuration are:
   <summary><code>parser</code> (optional)</summary>
 
 > The `parser` field should state which [Parser](#parsers) you want to use to read the files in this collection.
+>
+> ```javascript
+> parser: 'front-matter'
+> ```
 
 </details>
 
