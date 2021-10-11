@@ -28,6 +28,8 @@ To generate a JSON file at `./_cloudcannon/info.json`:
 $ cloudcannon-reader
 ```
 
+To print usage details:
+
 ```bash
 $ cloudcannon-reader --help
 
@@ -223,6 +225,19 @@ The keys available in each collection configuration are:
   <summary><code>path</code></summary>
 
 > The `path` is the top-most folder where the files in this collection are stored. It is relative to `source`.
+
+</details>
+
+<details>
+  <summary><code>glob</code> (optional)</summary>
+
+> The `glob` is a string or array of strings containing patterns to filter the files parsed into this collection. Globs are **not** relative to `source`. Patterns are matched with [picomatch](https://github.com/micromatch/picomatch#basic-globbing). If set as an array, files only have to match one glob pattern to be parsed.
+>
+> This is used to find files instead of `path`, but path is still required as a base path for the collection.
+>
+> - `'./src/*.md'` matches `.md` files in the `src` folder.
+> - `'**/*.html'` matches `.html` files in any folder or subfolder.
+> - `['**/*.md', './pages/*.html']` matches `.md` files in any folder, or `.html` files in the `pages` folder.
 
 </details>
 
