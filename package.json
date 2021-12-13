@@ -35,8 +35,8 @@
   "license": "ISC",
   "devDependencies": {
     "ava": "^3.15.0",
-    "c8": "^7.8.0",
-    "eslint": "^7.32.0",
+    "c8": "^7.10.0",
+    "eslint": "^8.4.1",
     "mockdate": "^3.0.5"
   },
   "publishConfig": {
@@ -44,12 +44,12 @@
   },
   "dependencies": {
     "@sindresorhus/slugify": "^2.1.0",
-    "chalk": "^4.1.2",
+    "chalk": "^5.0.0",
     "cosmiconfig": "^7.0.1",
     "fdir": "^5.1.0",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
-    "meow": "^10.1.1",
+    "meow": "^10.1.2",
     "papaparse": "^5.3.1",
     "picomatch": "^2.3.0",
     "properties": "^1.2.1",
