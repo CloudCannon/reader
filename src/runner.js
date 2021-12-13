@@ -21,7 +21,7 @@ export default {
 	run: async function (flags, pkg) {
 		log(`⭐️ Starting ${chalk.blue('cloudcannon-reader')}`);
 
-		const config = await this.readConfig(flags?.config);
+		const config = await this.readConfig(flags?.config || process.env.CLOUDCANNON_CONFIG_PATH);
 		if (config === false) {
 			return;
 		}

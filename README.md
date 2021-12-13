@@ -1,12 +1,18 @@
 # Reader
 
-Parses config, files and folder structures to create a JSON file with information about sites made with any static site generator. The JSON is structured with the [build-info-schema](https://github.com/CloudCannon/build-info-schema) for [CloudCannon](https://cloudcannon.com/) to create an editing interface.
+Creates [CloudCannon](https://cloudcannon.com/) build information for sites made with any static
+site generator.
 
-[![npm version](https://badge.fury.io/js/@cloudcannon%2Freader.svg)](https://www.npmjs.com/package/@cloudcannon/reader)
+This tool runs after your SSG build, reading your configuration to find pages, collections, and
+data files to create a JSON file used to automatically integrate the site with CloudCannon. This
+JSON file is written to `_cloudcannon/info.json`.
+
+[<img src="https://img.shields.io/npm/v/@cloudcannon%2Freader?logo=npm" alt="version badge">](https://www.npmjs.com/package/@cloudcannon%2Freader)
+[<img src="https://img.shields.io/npm/dt/@cloudcannon%2Freader" alt="downloads badge">](https://www.npmjs.com/package/@cloudcannon%2Freader)
 
 ***
 
-- [Usage](#usage)
+- [Installation](#installation)
 - [Configuration](#configuration)
 - [Documentation](#documentation)
   - [Source](#source)
@@ -18,11 +24,29 @@ Parses config, files and folder structures to create a JSON file with informatio
 - [Development](#development)
 - [License](#license)
 
+
 ***
 
-## Usage
+## Installation
 
-To generate a JSON file at `./_cloudcannon/info.json`:
+**You don't have to install anything** when building on CloudCannon. This tool is automatically
+installed before your site is built. This gives you the latest support, new features, and fixes
+as they are released.
+
+**If required**, you can install the tool manually to test the integration and diagnose issues.
+
+```bash
+npm install --global @cloudcannon/reader
+```
+
+This gives you access to the `cloudcannon-reader` binary.
+
+<details>
+<summary>Usage</summary>
+
+<blockquote>
+
+To generate a JSON file at `_cloudcannon/info.json`:
 
 ```sh
 $ cloudcannon-reader
@@ -42,20 +66,41 @@ Options
   --output, -o  Write to a different location than .
   --quiet, -q   Disable logging
 
+Environment
+  CLOUDCANNON_CONFIG_PATH  Use a specific configuration file
+
 Examples
   $ cloudcannon-reader --config "cloudcannon.dev.config.json"
   $ cloudcannon-reader --output "public"
+  $ CLOUDCANNON_CONFIG_PATH=src/cloudcannon.config.js cloudcannon-reader
 ```
+
+</blockquote>
+</details>
+
+***
 
 ## Configuration
 
-Configuration files must be in the same directory you run `cloudcannon-reader`. The first file found is used, the files supported are:
+Configuration files should be in the root directory (or the same directory you run
+`cloudcannon-reader`). The first supported file found in this order is used:
 
 - `cloudcannon.config.json`
 - `cloudcannon.config.yaml`
 - `cloudcannon.config.yml`
 - `cloudcannon.config.js`
 - `cloudcannon.config.cjs`
+
+Alternatively, use a specific file with the `CLOUDCANNON_CONFIG_PATH`
+environment variable or the `--config` command line option:
+
+```sh
+$ CLOUDCANNON_CONFIG_PATH=src/cloudcannon.config.js cloudcannon-reader
+$ cloudcannon-reader --config "src/cloudcannon.config.js"
+```
+
+Your global CloudCannon configuration is set in this file as well, as it's used as a base to
+generate `_cloudcannon/info.json` (used to integrate your site with CloudCannon).
 
 Example content for `cloudcannon.config.cjs`:
 
@@ -64,8 +109,12 @@ module.exports = {
   // Global CloudCannon configuration
   _inputs: {
     title: {
+      type: 'text',
       comment: 'The title of your page.'
     }
+  },
+  _select_data: {
+    colors: ['Red', 'Green', 'Blue']
   },
 
   // Read from ./src instead of .
@@ -153,7 +202,7 @@ module.exports = {
 
 ## Documentation
 
-The `./_cloudcannon/info.json` file is initially populated with the contents of your configuration. `cloudcannon-reader` then generates values for `collections`, `data`, `time`, and `cloudcannon`.
+The `_cloudcannon/info.json` file is initially populated with the contents of your configuration. `cloudcannon-reader` then generates values for `collections`, `data`, `time`, `version`, and `cloudcannon`.
 
 ### Source
 
@@ -218,7 +267,7 @@ The `collections_config` object defines how collections and their files should b
 }
 ```
 
-Matches the collection-level configuration format for CloudCannon, which is also set here (e.g. `name`, `_enabled_editors`, `_add_options`).
+Matches the collection-level configuration format for CloudCannon, which is also set here (e.g. `name`, `_enabled_editors`, `add_options`).
 
 The keys available in each collection configuration are:
 
@@ -307,19 +356,18 @@ The keys available in each collection configuration are:
 
 ### CloudCannon
 
-Set global [CloudCannon configuration](https://cloudcannon.com/documentation/edit/editing/configuration/#configuration) as top level keys in your `cloudcannon-reader` configuration and they'll be copied across to `./_cloudcannon/info.json`.
+Set global [CloudCannon configuration](https://cloudcannon.com/documentation/edit/editing/configuration/#configuration) as top level keys in your `cloudcannon-reader` configuration and they'll be copied across to `_cloudcannon/info.json`.
 
 CloudCannon then reads these in the app and applies them to your editing interface. These include:
 
-- `_options`
+- `collection_groups`
+- `editor`
+- `source_editor`
+- `_enabled_editors`
+- `_inputs`
+- `_editables`
 - `_select_data`
 - `_structures`
-- `_comments`
-- `_instance_values`
-- `_collection_groups`
-- `_enabled_editors`
-- `uploads_dir`
-- `_source_editor`
 
 ***
 
