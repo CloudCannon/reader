@@ -7,8 +7,8 @@ function cheapPlural(amount, str) {
 }
 
 export default function report(info) {
-	const collectionKeys = Object.keys(info['collections-config'] || {});
-	const dataKeys = Object.keys(info['data-config'] || {});
+	const collectionKeys = Object.keys(info.collections_config || {});
+	const dataKeys = Object.keys(info.data_config || {});
 
 	const collectionsStr = cheapPlural(collectionKeys.length, 'collection');
 	log(`📁 Processed ${collectionsStr}${collectionKeys.length ? ':' : ''}`);

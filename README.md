@@ -24,13 +24,13 @@ Parses config, files and folder structures to create a JSON file with informatio
 
 To generate a JSON file at `./_cloudcannon/info.json`:
 
-```bash
+```sh
 $ cloudcannon-reader
 ```
 
 To print usage details:
 
-```bash
+```sh
 $ cloudcannon-reader --help
 
 Usage
@@ -51,7 +51,6 @@ Examples
 
 Configuration files must be in the same directory you run `cloudcannon-reader`. The first file found is used, the files supported are:
 
-- `cloudcannon` property in `package.json`
 - `cloudcannon.config.json`
 - `cloudcannon.config.yaml`
 - `cloudcannon.config.yml`
@@ -63,8 +62,10 @@ Example content for `cloudcannon.config.cjs`:
 ```javascript
 module.exports = {
   // Global CloudCannon configuration
-  _comments: {
-    title: 'The title of your page.'
+  _inputs: {
+    title: {
+      comment: 'The title of your page.'
+    }
   },
 
   // Read from ./src instead of .
@@ -74,7 +75,7 @@ module.exports = {
   output: 'output',
 
   // Populates the sidebar navigation and provides metadata for the editor
-  'collections-config': {
+  collections_config: {
     people: {
       // Reads the contents of each file in this directory
       path: 'content/people',
@@ -134,7 +135,7 @@ module.exports = {
   },
 
   // Generates the data for select and multiselect inputs matching these names
-  'data-config': {
+  data_config: {
     authors: {
       // Reads the contents of this file
       path: 'data/authors.csv'
@@ -164,11 +165,11 @@ The `output` settings changes where to write the `_cloudcannon` folder containin
 
 ### Data
 
-The `data-config` defines how data files should be read and parsed into the JSON representation. Defaults to `{}`.
+The `data_config` defines how data files should be read and parsed into the JSON representation. Defaults to `{}`.
 
 ```json
 {
-  "data-config": {
+  "data_config": {
     "locations": {
       "path": "data/locations.csv"
     },
@@ -203,11 +204,11 @@ The available keys in each data set configuration are:
 
 ### Collections
 
-The `collections-config` object defines how collections and their files should be read and parsed into the JSON representation. Defaults to `{}`.
+The `collections_config` object defines how collections and their files should be read and parsed into the JSON representation. Defaults to `{}`.
 
 ```json
 {
-  "collections-config": {
+  "collections_config": {
     "posts": {
       "path": "content/posts",
       "parser": "yaml",
@@ -312,7 +313,7 @@ CloudCannon then reads these in the app and applies them to your editing interfa
 
 - `_options`
 - `_select_data`
-- `_array_structures`
+- `_structures`
 - `_comments`
 - `_instance_values`
 - `_collection_groups`
@@ -324,7 +325,7 @@ CloudCannon then reads these in the app and applies them to your editing interfa
 
 ## Parsers
 
-Parsers define how `cloudcannon-reader` processes your files into the JSON written to `info.json`. You can set the parser for data and collections under `data-config` and `collection-config`.
+Parsers define how `cloudcannon-reader` processes your files into the JSON written to `info.json`. You can set the parser for data and collections under `data_config` and `collections_config`.
 
 These are the available parsers and default file extensions covered:
 
@@ -345,13 +346,13 @@ Functions are are supported with `.js` or `.cjs` files. Given file path, raw fil
 
 Install dependencies:
 
-```bash
+```sh
 $ npm i
 ```
 
 Run tests:
 
-```bash
+```sh
 $ npm test
 $ npm run test:watch
 $ npm run test:coverage
@@ -359,13 +360,13 @@ $ npm run test:coverage
 
 Lint code:
 
-```bash
+```sh
 $ npm run lint
 ```
 
 Link this package locally to test it on a site folder, then run it within your site folder:
 
-```bash
+```sh
 $ npm link
 $ cd ../my-ssg-site
 $ cloudcannon-reader

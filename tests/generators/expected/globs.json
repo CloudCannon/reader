@@ -1,6 +1,6 @@
 {
   "source": "tests/generators/fixtures/standard",
-  "data-config": {
+  "data_config": {
     "authors": {
       "path": "data/authors.csv"
     },
@@ -8,7 +8,7 @@
       "path": "data/fruit"
     }
   },
-  "collections-config": {
+  "collections_config": {
     "posts": {
       "path": "_posts",
       "glob": [
@@ -25,19 +25,20 @@
   },
   "_comments": {},
   "_options": {},
-  "_array_structures": {},
+  "_structures": {},
   "_select_data": {},
   "generator": {},
-  "_source_editor": {},
+  "source_editor": {},
   "paths": {
     "uploads": "assets/uploads"
   },
-  "base-url": "",
+  "base_url": "",
   "time": "2000-11-22T00:00:00.000Z",
   "cloudcannon": {
     "name": "cloudcannon-reader",
     "version": "0.0.1"
   },
+  "version": "0.0.3",
   "data": {
     "authors": [
       {

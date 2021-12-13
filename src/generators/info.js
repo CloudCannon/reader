@@ -11,8 +11,9 @@ export async function generateInfo(config, options) {
 			name: 'cloudcannon-reader',
 			version: options?.version || '0.0.0'
 		},
-		data: await generateData(config['data-config'], { source }),
-		collections: await generateCollections(config['collections-config'], { source })
+		version: '0.0.3',
+		data: await generateData(config.data_config, { source }),
+		collections: await generateCollections(config.collections_config, { source })
 	};
 }
 
