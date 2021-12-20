@@ -62,10 +62,10 @@ async function readConfig(configPath) {
 		if (e.code === 'ENOENT') {
 			log(`⚠️ ${chalk.red('No config file found at')} ${chalk.red.bold(configPath)}`);
 			return false;
-		} else {
-			log(`⚠️ ${chalk.red('Error reading config file')}`, 'error');
-			throw e;
 		}
+
+		log(`⚠️ ${chalk.red('Error reading config file')}`, 'error');
+		throw e;
 	}
 
 	log('⚙️ No config file found');

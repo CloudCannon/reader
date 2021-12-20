@@ -20,7 +20,7 @@ const levels = {
 	info: logInfo,
 	warn: logWarning,
 	error: logError
-}
+};
 
 export default function log(text, level = 'info') {
 	if (!enabled) {

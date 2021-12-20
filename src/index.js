@@ -33,7 +33,7 @@ const cli = meow(`
 			alias: 'o'
 		},
 		quiet: {
-			quiet: 'string',
+			type: 'boolean',
 			alias: 'q'
 		}
 	}
