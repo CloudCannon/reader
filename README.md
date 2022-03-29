@@ -304,17 +304,18 @@ The keys available in each collection configuration are:
 
 > The `url` is used to build the `url` field for items in the collection. Similar to permalink in many SSGs. Can be a string or a function. Defaults to `''`.
 >
-> Functions are are supported with `.js` or `.cjs` files. Given file path, parsed file content and an object with filters and the `buildUrl` function as arguments. The return value should be the slash-prefixed URL string.
+> Functions are are supported with `.js` or `.cjs` files. Given file path, parsed file content and an object with filters, the `buildUrl` function and the `collection_config` entry as arguments. The return value should be the slash-prefixed URL string.
 >
 > ```javascript
-> url: (filePath, content, { filters, buildUrl }) => {
+> url: (filePath, content, { filters, buildUrl, collectionConfig }) => {
 >   if (content.permalink) {
 >     // Returns a lower case permalink front matter field
 >     return filters.lowercase(content.permalink);
 >   }
 >
->   // Falls back to processing a url string
->   return buildUrl(filePath, content, '/[slug]/');
+>   // Falls back to processing a default url template
+>   // Takes filePath, content, and a collections_config entry
+>   return buildUrl(filePath, content, { ...collectionsConfig, url: '/[slug]/' });
 > }
 > ```
 >
@@ -327,8 +328,13 @@ The keys available in each collection configuration are:
 > File placeholders are always available, and provided by `cloudcannon-reader`:
 >
 > - `[path]` is the full path of the file, relative to `source`.
-> - `[slug]` is the filename, excluding extension.
+> - `[base_path]` is the path of the file excluding filename, relative to site `source`.
+> - `[slug]` is the filename, excluding extension. Is an empty string if this results in "index".
+> - `[filename]` is the filename, including extension.
 > - `[ext]` is the last extension, including `.`.
+> - `[relative_path]` is the full path of the file, relative to the collection `path`.
+> - `[relative_base_path]` is the path of the file excluding filename, relative to the collection `path`.
+> - `[full_slug]` is an alias for `[relative_base_path]/[slug]`
 >
 > Data placeholders are populated from front matter or data values in the file, and support a number of filters:
 >

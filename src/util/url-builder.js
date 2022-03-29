@@ -16,14 +16,26 @@ export const filters = {
 	}
 };
 
-function processFileTemplates(urlTemplate, filePath) {
-	const { name, ext } = parse(filePath);
+function processFileTemplates(urlTemplate, filePath, collectionPath) {
+	const { name, ext, dir: basePath, base: filename } = parse(filePath);
 	const slug = name === 'index' ? '' : name;
+
+	const relativePath = collectionPath
+		? filePath.replace(new RegExp(`^/?${collectionPath}/`), '')
+		: filePath;
+
+	const relativeBasePath = collectionPath
+		? parse(relativePath).dir || ''
+		: basePath;
 
 	return urlTemplate
 		.replace(/\[ext\]/g, ext)
 		.replace(/\[slug\]/g, slug)
-		.replace(/\[filename\]/g, slug)
+		.replace(/\[filename\]/g, filename)
+		.replace(/\[base_path\]/g, basePath)
+		.replace(/\[relative_path\]/g, relativePath)
+		.replace(/\[relative_base_path\]/g, relativeBasePath)
+		.replace(/\[full_slug\]/g, `${relativeBasePath}/${slug}`)
 		.replace(/\[path\]/g, filePath);
 }
 
@@ -39,16 +51,23 @@ function processDataTemplates(urlTemplate, data) {
 	});
 }
 
-export function buildUrl(filePath, data, urlTemplate) {
-	if (!urlTemplate) {
+export function buildUrl(filePath, data, collectionConfigOrUrl) {
+	const isUrl = typeof collectionConfigOrUrl === 'string'
+		|| typeof collectionConfigOrUrl === 'function';
+
+	const collectionConfig = isUrl
+		? { url: collectionConfigOrUrl }
+		: (collectionConfigOrUrl || {});
+
+	if (!collectionConfig.url) {
 		return '';
 	}
 
-	if (typeof urlTemplate === 'function') {
-		return urlTemplate(filePath, data, { filters, buildUrl });
+	if (typeof collectionConfig.url === 'function') {
+		return collectionConfig.url(filePath, data, { filters, buildUrl, collectionConfig });
 	}
 
-	const fileTemplated = processFileTemplates(urlTemplate, filePath);
+	const fileTemplated = processFileTemplates(collectionConfig.url, filePath, collectionConfig.path);
 	const templated = processDataTemplates(fileTemplated, data);
 
 	return templated.replace(/\/+/g, '/');

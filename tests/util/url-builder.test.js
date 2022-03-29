@@ -2,6 +2,8 @@ import test from 'ava';
 import { buildUrl } from '../../src/util/url-builder.js';
 
 const filePath = 'content/_posts/example-post.md';
+const longFilePath = 'content/_posts/in/here/example-post.md';
+const collectionConfig = { path: 'content/_posts' };
 const indexFilePath = 'content/pages/index.md';
 
 const data = {
@@ -21,15 +23,24 @@ test('Return URL argument when URL template has no placeholders', (t) => {
 
 test('Replace file placeholders in URL template', (t) => {
 	t.is(buildUrl(filePath, data, '/url/[path]'), '/url/content/_posts/example-post.md');
-	t.is(buildUrl(filePath, data, '/url/[filename]'), '/url/example-post');
 	t.is(buildUrl(filePath, data, '/url/[slug]'), '/url/example-post');
 	t.is(buildUrl(filePath, data, '/url/[ext]'), '/url/.md');
+	t.is(buildUrl(filePath, data, '/url/[filename]'), '/url/example-post.md');
+
+	t.is(buildUrl(filePath, data, '/[relative_path]'), '/content/_posts/example-post.md');
+	t.is(buildUrl(filePath, data, '/[base_path]'), '/content/_posts');
+	t.is(buildUrl(filePath, data, '/[relative_base_path]'), '/content/_posts');
+	t.is(buildUrl(filePath, data, '/[full_slug]'), '/content/_posts/example-post');
+
+	t.is(buildUrl(longFilePath, data, { url: '[base_path]', ...collectionConfig }), 'content/_posts/in/here');
+	t.is(buildUrl(longFilePath, data, { url: '[relative_base_path]', ...collectionConfig }), 'in/here');
+	t.is(buildUrl(longFilePath, data, { url: '[relative_path]', ...collectionConfig }), 'in/here/example-post.md');
+	t.is(buildUrl(longFilePath, data, { url: '[full_slug]', ...collectionConfig }), 'in/here/example-post');
 });
 
 test('Replace index for file placeholders in URL template', (t) => {
 	t.is(buildUrl(indexFilePath, data, '/[slug]'), '/');
 	t.is(buildUrl(indexFilePath, data, '/nested/[slug]'), '/nested/');
-	t.is(buildUrl(indexFilePath, data, '/nested/[slug]/'), '/nested/');
 });
 
 test('Replace data placeholders in URL template', (t) => {
@@ -60,7 +71,7 @@ test('Builds URL with function template', async (t) => {
 	const url = buildUrl('abc', { hi: 'there' }, (filePath, parsed, { filters }) => {
 		passedFilters = filters;
 		return `/${parsed.hi}/${filters.uppercase(filePath)}`;
-	})
+	});
 
 	t.is(url, '/there/ABC');
 	t.deepEqual(Object.keys(passedFilters), [
@@ -76,7 +87,7 @@ test('Builds URL with function template', async (t) => {
 test('Builds URL with function template buildUrl fallback', async (t) => {
 	const url = buildUrl('abc', { hi: 'there' }, (filePath, content, { buildUrl }) => {
 		return buildUrl(filePath, content, '/{hi|uppercase}.hello');
-	})
+	});
 
 	t.is(url, '/THERE.hello');
 });

@@ -25,7 +25,7 @@ async function readCollectionItem(filePath, collectionConfig, key, source) {
 			...data,
 			path: itemPath,
 			collection: key,
-			url: buildUrl(itemPath, data, collectionConfig.url)
+			url: buildUrl(itemPath, data, collectionConfig)
 		};
 	} catch (e) {
 		log(`   ${chalk.bold(filePath)} skipped due to ${chalk.red(e.message)}`);
