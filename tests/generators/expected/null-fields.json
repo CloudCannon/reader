@@ -1,17 +1,17 @@
 {
-	"source": "",
-	"data_config": {},
-	"collections_config": {},
-	"_comments": {},
-	"_options": {},
-	"_structures": {},
-	"_select_data": {},
-	"generator": {},
-	"source_editor": {},
+	"source": null,
+	"data_config": null,
+	"collections_config": null,
+	"_comments": null,
+	"_options": null,
+	"_structures": null,
+	"_select_data": null,
+	"generator": null,
+	"source_editor": null,
 	"paths": {
 	  "uploads": null
 	},
-	"base_url": "",
+	"base_url": null,
 	"time": "2000-11-22T00:00:00.000Z",
 	"cloudcannon": {
 	  "name": "cloudcannon-reader",
