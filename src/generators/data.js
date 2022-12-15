@@ -4,7 +4,7 @@ import { join } from 'path';
 import { parseFile } from '../parsers/parser.js';
 
 export async function generateData(dataConfig, options) {
-	dataConfig = dataConfig ?? {};
+	dataConfig = dataConfig || {};
 	const source = join('.', options?.source || '');
 
 	return await Object.keys(dataConfig).reduce(async (memo, key) => {
