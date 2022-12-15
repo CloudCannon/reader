@@ -1,0 +1,23 @@
+{
+	"source": null,
+	"data_config": null,
+	"collections_config": null,
+	"_comments": null,
+	"_options": null,
+	"_structures": null,
+	"_select_data": null,
+	"generator": null,
+	"source_editor": null,
+	"paths": {
+	  "uploads": null
+	},
+	"base_url": null,
+	"time": "2000-11-22T00:00:00.000Z",
+	"cloudcannon": {
+	  "name": "cloudcannon-reader",
+	  "version": "0.0.1"
+	},
+	"version": "0.0.3",
+	"data": {},
+	"collections": {}
+  }

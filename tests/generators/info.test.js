@@ -30,3 +30,4 @@ async function runTest(t, key) {
 test('Generate JSON info', async (t) => runTest(t, 'standard'));
 test('Generate JSON info with custom source', async (t) => runTest(t, 'custom-source'));
 test('Generate JSON info with globs', async (t) => runTest(t, 'globs'));
+test('Generate JSON info with null fields', async (t) => runTest(t, 'null-fields'));
