@@ -6,6 +6,7 @@ import log from '../util/logger.js';
 import { parseFile } from '../parsers/parser.js';
 
 export async function generateCollections(collectionsConfig = {}, options) {
+	collectionsConfig = collectionsConfig ?? {};
 	const source = join('.', options?.source || '');
 
 	return await Object.keys(collectionsConfig).reduce(async (memo, key) => {

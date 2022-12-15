@@ -1,11 +1,29 @@
 import { generateCollections } from './collections.js';
 import { generateData } from './data.js';
 
+const sanitizeConfig = function (config) {
+	const isObject = (obj) => obj === Object(obj);
+	const defaults = {
+		source: '',
+		base_url: '',
+		'base-url': '',
+	};
+
+	let sanitizedConfig = config || {};
+	sanitizedConfig = isObject(sanitizedConfig) ? sanitizedConfig : {};
+
+	Object.keys(sanitizedConfig).forEach((configKey) => {
+		sanitizedConfig[configKey] = (sanitizedConfig[configKey] || defaults[configKey]) ?? {};
+	});
+	return sanitizedConfig;
+};
+
 export async function generateInfo(config, options) {
 	const source = config.source?.replace(/^\/+|\/+$/g, '').replace(/\/+/g, '/') || '';
+	const sanitizedConfig = sanitizeConfig(config);
 
 	return {
-		...config,
+		...sanitizedConfig,
 		time: new Date().toISOString(),
 		cloudcannon: {
 			name: 'cloudcannon-reader',
