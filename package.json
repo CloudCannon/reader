@@ -23,7 +23,9 @@
     "test:coverage": "c8 --all ava",
     "lint": "eslint src",
     "release:latest": "npx np",
-    "release:next": "npx np prerelease --tag=next"
+    "release:prepatch": "npx np prepatch --tag=next",
+    "release:preminor": "npx np preminor --tag=next",
+    "release:premajor": "npx np premajor --tag=next"
   },
   "bin": {
     "cloudcannon-reader": "src/index.js"
