@@ -1,0 +1,10 @@
+{
+	"collections_config": {
+		"data": {
+			"path": "tests/generators/fixtures/standard/data"
+		},
+		"fruit": {
+			"path": "tests/generators/fixtures/standard/data/fruit"
+		}
+	}
+}

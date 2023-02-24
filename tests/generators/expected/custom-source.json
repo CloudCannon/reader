@@ -57,6 +57,22 @@
     ]
   },
   "collections": {
+    "vegetables": [
+      {
+        "name": "Potato",
+        "rating": 5,
+        "path": "vegetables/potato.yml",
+        "collection": "vegetables",
+        "url": ""
+      },
+      {
+        "name": "Yam",
+        "rating": 4,
+        "path": "vegetables/yam.yml",
+        "collection": "vegetables",
+        "url": ""
+      }
+    ],
     "posts": [
       {
         "date": "2020-07-20T00:00:00.000Z",
@@ -125,22 +141,6 @@
         "path": "_posts/nested/2020-07-22-egg.md",
         "collection": "posts",
         "url": "hello/egg"
-      }
-    ],
-    "vegetables": [
-      {
-        "name": "Potato",
-        "rating": 5,
-        "path": "vegetables/potato.yml",
-        "collection": "vegetables",
-        "url": ""
-      },
-      {
-        "name": "Yam",
-        "rating": 4,
-        "path": "vegetables/yam.yml",
-        "collection": "vegetables",
-        "url": ""
       }
     ]
   }

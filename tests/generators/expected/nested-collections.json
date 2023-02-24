@@ -1,0 +1,50 @@
+{
+  "collections_config": {
+    "data": {
+      "path": "tests/generators/fixtures/standard/data"
+    },
+    "fruit": {
+      "path": "tests/generators/fixtures/standard/data/fruit"
+    }
+  },
+  "time": "2000-11-22T00:00:00.000Z",
+  "cloudcannon": {
+    "name": "cloudcannon-reader",
+    "version": "0.0.1"
+  },
+  "version": "0.0.3",
+  "data": {},
+  "collections": {
+    "fruit": [
+      {
+        "name": "Apple",
+        "rating": 5,
+        "path": "tests/generators/fixtures/standard/data/fruit/apple.yml",
+        "collection": "fruit",
+        "url": ""
+      },
+      {
+        "name": "Banana",
+        "rating": 4,
+        "path": "tests/generators/fixtures/standard/data/fruit/banana.yml",
+        "collection": "fruit",
+        "url": ""
+      }
+    ],
+    "data": [
+      {
+        "0": {
+          "name": "Jim",
+          "interest": "kayaks"
+        },
+        "1": {
+          "name": "Pam",
+          "interest": "art"
+        },
+        "path": "tests/generators/fixtures/standard/data/authors.csv",
+        "collection": "data",
+        "url": ""
+      }
+    ]
+  }
+}
