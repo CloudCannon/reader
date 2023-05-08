@@ -9,7 +9,7 @@ const indexFilePath = 'content/pages/index.md';
 const data = {
 	id: 2,
 	date: new Date('2021-01-09T09:39:05.237Z'),
-	title: 'My Title!',
+	title: 'My TiTle!',
 	description: 'This is a longer than usual field'
 };
 
@@ -44,8 +44,8 @@ test('Replace index for file placeholders in URL template', (t) => {
 });
 
 test('Replace data placeholders in URL template', (t) => {
-	t.is(buildUrl(filePath, data, '/url/{title}'), '/url/My Title!');
-	t.is(buildUrl(filePath, data, '/url/{title}{id}'), '/url/My Title!2');
+	t.is(buildUrl(filePath, data, '/url/{title}'), '/url/My TiTle!');
+	t.is(buildUrl(filePath, data, '/url/{title}{id}'), '/url/My TiTle!2');
 });
 
 test('Replace data placeholders with filters in URL template', (t) => {
