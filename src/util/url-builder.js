@@ -4,7 +4,7 @@ import slugify from '@sindresorhus/slugify';
 export const filters = {
 	uppercase: (value) => value?.toUpperCase?.(),
 	lowercase: (value) => value?.toLowerCase?.(),
-	slugify,
+	slugify: (value) => slugify(value, { decamelize: false }),
 	year: (value) => value?.getFullYear?.(),
 	month: (value) => {
 		const month = value?.getMonth?.();

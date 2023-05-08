@@ -1,6 +1,6 @@
 ---
 date: 2020-07-28
-title: Effective upselling techniques
+title: Effective UpSelling techniques
 categories:
   - sales
   - tips
