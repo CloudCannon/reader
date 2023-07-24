@@ -1,0 +1,45 @@
+{
+  "source": ".",
+  "collections_config": {
+    "everything": {
+      "path": ".",
+      "glob": [
+        "tests/generators/fixtures/standard/**/nested/*"
+      ],
+      "output": true,
+      "url": "hello/{title|slugify}"
+    }
+  },
+  "_comments": {},
+  "_options": {},
+  "_structures": {},
+  "_select_data": {},
+  "generator": {},
+  "source_editor": {},
+  "paths": {
+    "uploads": "assets/uploads"
+  },
+  "base_url": "",
+  "time": "2000-11-22T00:00:00.000Z",
+  "cloudcannon": {
+    "name": "cloudcannon-reader",
+    "version": "0.0.1"
+  },
+  "version": "0.0.3",
+  "data": {},
+  "collections": {
+    "everything": [
+      {
+        "date": "2020-07-22T00:00:00.000Z",
+        "title": "Egg",
+        "categories": [
+          "tips"
+        ],
+        "author_staff_member": "betty",
+        "path": "tests/generators/fixtures/standard/_posts/nested/2020-07-22-egg.md",
+        "collection": "everything",
+        "url": "hello/egg"
+      }
+    ]
+  }
+}

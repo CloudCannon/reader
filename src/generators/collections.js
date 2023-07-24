@@ -6,9 +6,19 @@ import log from '../util/logger.js';
 import { parseFile } from '../parsers/parser.js';
 
 async function getCollectionFilePaths(collectionConfig, source) {
-	const crawler = new fdir()
+	let crawler = new fdir()
 		.withBasePath()
 		.filter((filePath, isDirectory) => !isDirectory && !filePath.includes('/_defaults.'));
+
+	let crawlDirectory = join(source, collectionConfig.path);
+
+	// Work around for https://github.com/thecodrr/fdir/issues/92
+	// Globbing on `.` doesn't work, so we crawl using the absolute CWD
+	// and get the relative paths of results instead of the base paths.
+	if ((crawlDirectory === '.' || crawlDirectory === './') && collectionConfig.glob) {
+		crawler = crawler.withRelativePaths();
+		crawlDirectory = process.cwd();
+	}
 
 	const glob = typeof collectionConfig.glob === 'string'
 		? [collectionConfig.glob]
@@ -19,7 +29,7 @@ async function getCollectionFilePaths(collectionConfig, source) {
 	}
 
 	return crawler
-		.crawl(join(source, collectionConfig.path))
+		.crawl(crawlDirectory)
 		.withPromise();
 }
 

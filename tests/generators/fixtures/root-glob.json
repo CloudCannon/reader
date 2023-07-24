@@ -1,0 +1,23 @@
+{
+	"source": ".",
+	"collections_config": {
+		"everything": {
+			"path": ".",
+			"glob": [
+				"tests/generators/fixtures/standard/**/nested/*"
+			],
+			"output": true,
+			"url": "hello/{title|slugify}"
+		}
+	},
+	"_comments": {},
+	"_options": {},
+	"_structures": {},
+	"_select_data": {},
+	"generator": {},
+	"source_editor": {},
+	"paths": {
+		"uploads": "assets/uploads"
+	},
+	"base_url": ""
+}
