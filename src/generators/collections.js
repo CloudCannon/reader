@@ -15,7 +15,7 @@ async function getCollectionFilePaths(collectionConfig, source) {
 	// Work around for https://github.com/thecodrr/fdir/issues/92
 	// Globbing on `.` doesn't work, so we crawl using the absolute CWD
 	// and get the relative paths of results instead of the base paths.
-	if (crawlDirectory === '.' || crawlDirectory === './') {
+	if ((crawlDirectory === '.' || crawlDirectory === './') && collectionConfig.glob) {
 		crawler = crawler.withRelativePaths();
 		crawlDirectory = process.cwd();
 	}
