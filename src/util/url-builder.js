@@ -18,7 +18,7 @@ export const filters = {
 
 function processFileTemplates(urlTemplate, filePath, collectionPath) {
 	const { name, ext, dir: basePath, base: filename } = parse(filePath);
-	const slug = name === 'index' ? '' : name;
+	const slug = name === 'index' || name === '_index' ? '' : name;
 
 	const relativePath = collectionPath
 		? filePath.replace(new RegExp(`^/?${collectionPath}/`), '')

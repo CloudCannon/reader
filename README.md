@@ -160,8 +160,8 @@ module.exports = {
       // Tells CloudCannon to navigate to this path for this collection
       path: '',
 
-      // Reads the contents of each file for this pattern (takes priority over path)
-      glob: ['**/*.md', './src/pages/*.html'],
+      // Limits files read to these patterns (relative to path)
+      glob: ['**/*.md', '*.html'],
 
       // Tells CloudCannon to only show successfully parsed files for this collection
       // Useful for excluding other collections when using '' as path
@@ -281,14 +281,10 @@ The keys available in each collection configuration are:
 <details>
   <summary><code>glob</code> (optional)</summary>
 
-> The `glob` is a string or array of strings containing patterns to filter the files parsed into this collection. Globs are **not** relative to `source`. Patterns are matched with [picomatch](https://github.com/micromatch/picomatch#basic-globbing). If set as an array, files only have to match one glob pattern to be parsed.
+> The `glob` is a string or array of strings containing patterns to filter the files parsed into this collection. Globs are relative to `path`. Patterns are matched with [picomatch](https://github.com/micromatch/picomatch#basic-globbing). If set as an array, files only have to match one glob pattern to be parsed.
 >
 > ```javascript
 > glob: ['**/*.md', '**/*.html'] // All .md and .html files
-> ```
->
-> ```javascript
-> glob: './src/**/*.liquid' // All .liquid files inside the src folder and subfolders
 > ```
 >
 > This is used to find files instead of `path`, but path is still required as a base path for the collection.

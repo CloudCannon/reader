@@ -5,6 +5,7 @@ const filePath = 'content/_posts/example-post.md';
 const longFilePath = 'content/_posts/in/here/example-post.md';
 const collectionConfig = { path: 'content/_posts' };
 const indexFilePath = 'content/pages/index.md';
+const underscoreIndexFilePath = 'content/pages/_index.md';
 
 const data = {
 	id: 2,
@@ -41,6 +42,11 @@ test('Replace file placeholders in URL template', (t) => {
 test('Replace index for file placeholders in URL template', (t) => {
 	t.is(buildUrl(indexFilePath, data, '/[slug]'), '/');
 	t.is(buildUrl(indexFilePath, data, '/nested/[slug]'), '/nested/');
+});
+
+test('Replace underscore index for file placeholders in URL template', (t) => {
+	t.is(buildUrl(underscoreIndexFilePath, data, '/[slug]'), '/');
+	t.is(buildUrl(underscoreIndexFilePath, data, '/nested/[slug]'), '/nested/');
 });
 
 test('Replace data placeholders in URL template', (t) => {
