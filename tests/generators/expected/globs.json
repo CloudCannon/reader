@@ -1,99 +1,95 @@
 {
-  "source": "tests/generators/fixtures/standard",
-  "data_config": {
-    "authors": {
-      "path": "data/authors.csv"
-    },
-    "fruit": {
-      "path": "data/fruit"
-    }
-  },
-  "collections_config": {
-    "posts": {
-      "path": "_posts",
-      "glob": [
-        "tests/generators/fixtures/standard/_posts/2016-08-12-*",
-        "**/nested/*"
-      ],
-      "output": true,
-      "url": "hello/{title|slugify}"
-    },
-    "vegetables": {
-      "path": "vegetables",
-      "glob": "**/po*"
-    }
-  },
-  "_comments": {},
-  "_options": {},
-  "_structures": {},
-  "_select_data": {},
-  "generator": {},
-  "source_editor": {},
-  "paths": {
-    "uploads": "assets/uploads"
-  },
-  "base_url": "",
-  "time": "2000-11-22T00:00:00.000Z",
-  "cloudcannon": {
-    "name": "cloudcannon-reader",
-    "version": "0.0.1"
-  },
-  "version": "0.0.3",
-  "data": {
-    "authors": [
-      {
-        "name": "Jim",
-        "interest": "kayaks"
-      },
-      {
-        "name": "Pam",
-        "interest": "art"
-      }
-    ],
-    "fruit": [
-      {
-        "name": "Apple",
-        "rating": 5
-      },
-      {
-        "name": "Banana",
-        "rating": 4
-      }
-    ]
-  },
-  "collections": {
-    "vegetables": [
-      {
-        "name": "Potato",
-        "rating": 5,
-        "path": "vegetables/potato.yml",
-        "collection": "vegetables",
-        "url": ""
-      }
-    ],
-    "posts": [
-      {
-        "date": "2020-08-12T00:00:00.000Z",
-        "title": "The history of marketing",
-        "categories": [
-          "marketing"
-        ],
-        "author_staff_member": "robin",
-        "path": "_posts/2016-08-12-the-history-of-marketing.md",
-        "collection": "posts",
-        "url": "hello/the-history-of-marketing"
-      },
-      {
-        "date": "2020-07-22T00:00:00.000Z",
-        "title": "Egg",
-        "categories": [
-          "tips"
-        ],
-        "author_staff_member": "betty",
-        "path": "_posts/nested/2020-07-22-egg.md",
-        "collection": "posts",
-        "url": "hello/egg"
-      }
-    ]
-  }
+	"source": "tests/generators/fixtures/standard",
+	"data_config": {
+		"authors": {
+			"path": "data/authors.csv"
+		},
+		"fruit": {
+			"path": "data/fruit"
+		}
+	},
+	"collections_config": {
+		"posts": {
+			"path": "_posts",
+			"glob": [
+				"tests/generators/fixtures/standard/_posts/2016-08-12-*",
+				"**/nested/*"
+			],
+			"output": true,
+			"url": "hello/{title|slugify}"
+		},
+		"vegetables": {
+			"path": "vegetables",
+			"glob": "**/po*"
+		}
+	},
+	"_comments": {},
+	"_options": {},
+	"_structures": {},
+	"_select_data": {},
+	"generator": {},
+	"source_editor": {},
+	"paths": {
+		"uploads": "assets/uploads"
+	},
+	"base_url": "",
+	"time": "2000-11-22T00:00:00.000Z",
+	"cloudcannon": {
+		"name": "cloudcannon-reader",
+		"version": "0.0.1"
+	},
+	"version": "0.0.3",
+	"data": {
+		"authors": [
+			{
+				"name": "Jim",
+				"interest": "kayaks"
+			},
+			{
+				"name": "Pam",
+				"interest": "art"
+			}
+		],
+		"fruit": [
+			{
+				"name": "Apple",
+				"rating": 5
+			},
+			{
+				"name": "Banana",
+				"rating": 4
+			}
+		]
+	},
+	"collections": {
+		"vegetables": [
+			{
+				"name": "Potato",
+				"rating": 5,
+				"path": "vegetables/potato.yml",
+				"collection": "vegetables",
+				"url": ""
+			}
+		],
+		"posts": [
+			{
+				"date": "2020-08-12T00:00:00.000Z",
+				"title": "The history of marketing",
+				"categories": ["marketing"],
+				"author_staff_member": "robin",
+				"path": "_posts/2016-08-12-the-history-of-marketing.md",
+				"collection": "posts",
+				"url": "hello/the-history-of-marketing"
+			},
+			{
+				"date": "2020-07-22T00:00:00.000Z",
+				"title": "Egg",
+				"categories": ["tips"],
+				"author_staff_member": "betty",
+				"path": "_posts/nested/2020-07-22-egg.md",
+				"collection": "posts",
+				"url": "hello/egg"
+			}
+		]
+	}
 }

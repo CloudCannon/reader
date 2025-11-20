@@ -1,6 +1,6 @@
-import test from 'ava';
-import { parse } from '../../src/parsers/toml.js';
+import test from "ava";
+import { parse } from "../../src/parsers/toml.js";
 
-test('Parse TOML', (t) => {
-	t.deepEqual(parse('hi = "there"'), { hi: 'there' });
+test("Parse TOML", (t) => {
+	t.deepEqual(parse('hi = "there"'), { hi: "there" });
 });

@@ -1,5 +1,5 @@
-import { parse } from 'path';
-import slugify from '@sindresorhus/slugify';
+import slugify from "@sindresorhus/slugify";
+import { parse } from "path";
 
 export const filters = {
 	uppercase: (value) => value?.toUpperCase?.(),
@@ -8,24 +8,24 @@ export const filters = {
 	year: (value) => value?.getFullYear?.(),
 	month: (value) => {
 		const month = value?.getMonth?.();
-		return month === undefined ? month : ('0' + (month + 1)).slice(-2);
+		return month === undefined ? month : ("0" + (month + 1)).slice(-2);
 	},
 	day: (value) => {
 		const day = value?.getDate?.();
-		return day === undefined ? day : ('0' + day).slice(-2);
-	}
+		return day === undefined ? day : ("0" + day).slice(-2);
+	},
 };
 
 function processFileTemplates(urlTemplate, filePath, collectionPath) {
 	const { name, ext, dir: basePath, base: filename } = parse(filePath);
-	const slug = name === 'index' || name === '_index' ? '' : name;
+	const slug = name === "index" || name === "_index" ? "" : name;
 
 	const relativePath = collectionPath
-		? filePath.replace(new RegExp(`^/?${collectionPath}/`), '')
+		? filePath.replace(new RegExp(`^/?${collectionPath}/`), "")
 		: filePath;
 
 	const relativeBasePath = collectionPath
-		? parse(relativePath).dir || ''
+		? parse(relativePath).dir || ""
 		: basePath;
 
 	return urlTemplate
@@ -41,34 +41,43 @@ function processFileTemplates(urlTemplate, filePath, collectionPath) {
 
 function processDataTemplates(urlTemplate, data) {
 	return urlTemplate.replace(/(\{[^}]+\})/g, function (match) {
-		const [key, ...filterKeys] = match.slice(1, -1).split('|');
-		const value = data[key] || '';
+		const [key, ...filterKeys] = match.slice(1, -1).split("|");
+		const value = data[key] || "";
 
 		return filterKeys.reduce((memo, filterKey) => {
 			const filter = filters[filterKey];
-			return (filter ? filter(memo) : memo) || '';
+			return (filter ? filter(memo) : memo) || "";
 		}, value);
 	});
 }
 
 export function buildUrl(filePath, data, collectionConfigOrUrl) {
-	const isUrl = typeof collectionConfigOrUrl === 'string'
-		|| typeof collectionConfigOrUrl === 'function';
+	const isUrl =
+		typeof collectionConfigOrUrl === "string" ||
+		typeof collectionConfigOrUrl === "function";
 
 	const collectionConfig = isUrl
 		? { url: collectionConfigOrUrl }
-		: (collectionConfigOrUrl || {});
+		: collectionConfigOrUrl || {};
 
 	if (!collectionConfig.url) {
-		return '';
+		return "";
 	}
 
-	if (typeof collectionConfig.url === 'function') {
-		return collectionConfig.url(filePath, data, { filters, buildUrl, collectionConfig });
+	if (typeof collectionConfig.url === "function") {
+		return collectionConfig.url(filePath, data, {
+			filters,
+			buildUrl,
+			collectionConfig,
+		});
 	}
 
-	const fileTemplated = processFileTemplates(collectionConfig.url, filePath, collectionConfig.path);
+	const fileTemplated = processFileTemplates(
+		collectionConfig.url,
+		filePath,
+		collectionConfig.path,
+	);
 	const templated = processDataTemplates(fileTemplated, data);
 
-	return templated.replace(/\/+/g, '/');
+	return templated.replace(/\/+/g, "/");
 }

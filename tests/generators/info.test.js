@@ -1,10 +1,10 @@
-import test from 'ava';
-import { readFile } from 'fs/promises';
-import MockDate from 'mockdate';
-import { generateInfo } from '../../src/generators/info.js';
+import test from "ava";
+import { readFile } from "fs/promises";
+import MockDate from "mockdate";
+import { generateInfo } from "../../src/generators/info.js";
 
 test.before(() => {
-	MockDate.set('2000-11-22');
+	MockDate.set("2000-11-22");
 });
 
 test.after(() => {
@@ -21,15 +21,19 @@ async function runTest(t, key) {
 	const expectedObject = await readJsonFile(`./expected/${key}.json`);
 	const expectedInfo = JSON.stringify(expectedObject, null, 2);
 
-	const infoObject = await generateInfo(config, { version: '0.0.1' });
+	const infoObject = await generateInfo(config, { version: "0.0.1" });
 	const info = JSON.stringify(infoObject, null, 2);
 
 	t.is(info, expectedInfo);
 }
 
-test('Generate JSON info', async (t) => runTest(t, 'standard'));
-test('Generate JSON info with custom source', async (t) => runTest(t, 'custom-source'));
-test('Generate JSON info with globs', async (t) => runTest(t, 'globs'));
-test('Generate JSON info with a root glob', async (t) => runTest(t, 'root-glob'));
-test('Generate JSON info with null fields', async (t) => runTest(t, 'null-fields'));
-test('Generate JSON info with nested collections', async (t) => runTest(t, 'nested-collections'));
+test("Generate JSON info", async (t) => runTest(t, "standard"));
+test("Generate JSON info with custom source", async (t) =>
+	runTest(t, "custom-source"));
+test("Generate JSON info with globs", async (t) => runTest(t, "globs"));
+test("Generate JSON info with a root glob", async (t) =>
+	runTest(t, "root-glob"));
+test("Generate JSON info with null fields", async (t) =>
+	runTest(t, "null-fields"));
+test("Generate JSON info with nested collections", async (t) =>
+	runTest(t, "nested-collections"));

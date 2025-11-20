@@ -1,36 +1,41 @@
-import chalk from 'chalk';
-import { fdir } from 'fdir';
-import { join } from 'path';
-import { buildUrl } from '../util/url-builder.js';
-import log from '../util/logger.js';
-import { parseFile } from '../parsers/parser.js';
+import chalk from "chalk";
+import { fdir } from "fdir";
+import { join } from "path";
+import { parseFile } from "../parsers/parser.js";
+import log from "../util/logger.js";
+import { buildUrl } from "../util/url-builder.js";
 
 async function getCollectionFilePaths(collectionConfig, source) {
 	let crawler = new fdir()
 		.withBasePath()
-		.filter((filePath, isDirectory) => !isDirectory && !filePath.includes('/_defaults.'));
+		.filter(
+			(filePath, isDirectory) =>
+				!isDirectory && !filePath.includes("/_defaults."),
+		);
 
 	let crawlDirectory = join(source, collectionConfig.path);
 
 	// Work around for https://github.com/thecodrr/fdir/issues/92
 	// Globbing on `.` doesn't work, so we crawl using the absolute CWD
 	// and get the relative paths of results instead of the base paths.
-	if ((crawlDirectory === '.' || crawlDirectory === './') && collectionConfig.glob) {
+	if (
+		(crawlDirectory === "." || crawlDirectory === "./") &&
+		collectionConfig.glob
+	) {
 		crawler = crawler.withRelativePaths();
 		crawlDirectory = process.cwd();
 	}
 
-	const glob = typeof collectionConfig.glob === 'string'
-		? [collectionConfig.glob]
-		: collectionConfig.glob;
+	const glob =
+		typeof collectionConfig.glob === "string"
+			? [collectionConfig.glob]
+			: collectionConfig.glob;
 
 	if (collectionConfig.glob) {
 		crawler.glob(glob);
 	}
 
-	return crawler
-		.crawl(crawlDirectory)
-		.withPromise();
+	return crawler.crawl(crawlDirectory).withPromise();
 }
 
 // Sort on longest path first to ensure files are assigned to most specific collection
@@ -44,14 +49,19 @@ function getSortedCollectionKeys(collectionsConfig) {
 
 export async function generateCollections(collectionsConfig, options) {
 	collectionsConfig = collectionsConfig || {};
-	const source = join('.', options?.source || '');
+	const source = join(".", options?.source || "");
 	const sortedCollectionKeys = getSortedCollectionKeys(collectionsConfig);
 	const seen = {};
 	const collections = {};
 
 	for (var i = 0; i < sortedCollectionKeys.length; i++) {
 		const key = sortedCollectionKeys[i];
-		collections[key] = await readCollection(collectionsConfig[key], key, source, seen);
+		collections[key] = await readCollection(
+			collectionsConfig[key],
+			key,
+			source,
+			seen,
+		);
 	}
 
 	return collections;
@@ -60,15 +70,16 @@ export async function generateCollections(collectionsConfig, options) {
 async function readCollectionItem(filePath, collectionConfig, key, source) {
 	try {
 		const data = await parseFile(filePath, collectionConfig.parser);
-		const itemPath = source && filePath.startsWith(source)
-			? filePath.slice(source.length + 1) // +1 for slash after source
-			: filePath;
+		const itemPath =
+			source && filePath.startsWith(source)
+				? filePath.slice(source.length + 1) // +1 for slash after source
+				: filePath;
 
 		return {
 			...data,
 			path: itemPath,
 			collection: key,
-			url: buildUrl(itemPath, data, collectionConfig)
+			url: buildUrl(itemPath, data, collectionConfig),
 		};
 	} catch (e) {
 		log(`   ${chalk.bold(filePath)} skipped due to ${chalk.red(e.message)}`);
@@ -86,7 +97,12 @@ async function readCollection(collectionConfig, key, source, seen) {
 
 		seen[filePath] = true;
 
-		const collectionItem = await readCollectionItem(filePath, collectionConfig, key, source);
+		const collectionItem = await readCollectionItem(
+			filePath,
+			collectionConfig,
+			key,
+			source,
+		);
 		const collectionItems = await memo;
 
 		if (collectionItem) {
