@@ -1,4 +1,5 @@
-import test from "ava";
+import { test } from "node:test";
+import assert from "node:assert";
 import { parseFile } from "../../src/parsers/parser.js";
 
 const filePaths = {
@@ -6,26 +7,26 @@ const filePaths = {
 	"json.txt": new URL("./fixtures/json.txt", import.meta.url).pathname,
 };
 
-test("Parse file with default parser", async (t) => {
+test("Parse file with default parser", async () => {
 	const parsed = await parseFile(filePaths["test.md"]);
-	t.deepEqual(parsed, { hi: "there" });
+	assert.deepStrictEqual(parsed, { hi: "there" });
 });
 
-test("Parse file with different parser", async (t) => {
+test("Parse file with different parser", async () => {
 	const parsed = await parseFile(filePaths["json.txt"], "json");
-	t.deepEqual(parsed, { hi: "there", json: "yes" });
+	assert.deepStrictEqual(parsed, { hi: "there", json: "yes" });
 });
 
-test("Parse file with custom parser", async (t) => {
+test("Parse file with custom parser", async () => {
 	const parsed = await parseFile(filePaths["test.md"], () => ({
 		hello: "mate",
 	}));
-	t.deepEqual(parsed, { hello: "mate" });
+	assert.deepStrictEqual(parsed, { hello: "mate" });
 });
 
-test("Error for unsupported parser", async (t) => {
-	await t.throwsAsync(
+test("Error for unsupported parser", async () => {
+	await assert.rejects(
 		async () => await parseFile(filePaths["test.md"], "banana"),
-		{ instanceOf: Error, message: "unsupported parser banana" },
+		{ name: "Error", message: "unsupported parser banana" },
 	);
 });

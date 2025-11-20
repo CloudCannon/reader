@@ -1,6 +1,7 @@
-import test from "ava";
+import { test } from "node:test";
+import assert from "node:assert";
 import { parse } from "../../src/parsers/yaml.js";
 
-test("Parse YAML", (t) => {
-	t.deepEqual(parse("hi: there"), { hi: "there" });
+test("Parse YAML", () => {
+	assert.deepStrictEqual(parse("hi: there"), { hi: "there" });
 });

@@ -1,7 +1,8 @@
-import test from "ava";
+import { test } from "node:test";
+import assert from "node:assert";
 import { migrateLegacyKeys } from "../src/config.js";
 
-test("Migrate old configuration keys", (t) => {
+test("Migrate old configuration keys", () => {
 	const config = {
 		"data-config": {
 			locations: true,
@@ -37,7 +38,7 @@ test("Migrate old configuration keys", (t) => {
 
 	migrateLegacyKeys(config);
 
-	t.deepEqual(config, {
+	assert.deepStrictEqual(config, {
 		data_config: {
 			locations: true,
 		},
