@@ -1,5 +1,5 @@
-import matter from "gray-matter";
-import { parse as parseToml } from "toml";
+import matter from 'gray-matter';
+import { parse as parseToml } from 'toml';
 
 export function parse(raw) {
 	return matter(raw, {

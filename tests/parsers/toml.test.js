@@ -1,7 +1,7 @@
-import { test } from "node:test";
-import assert from "node:assert";
-import { parse } from "../../src/parsers/toml.js";
+import assert from 'node:assert';
+import { test } from 'node:test';
+import { parse } from '../../src/parsers/toml.js';
 
-test("Parse TOML", () => {
-	assert.deepEqual(parse('hi = "there"'), { hi: "there" });
+test('Parse TOML', () => {
+	assert.deepEqual(parse('hi = "there"'), { hi: 'there' });
 });

@@ -22,7 +22,7 @@ const levels = {
 	error: logError,
 };
 
-export default function log(text, level = "info") {
+export default function log(text, level = 'info') {
 	if (!enabled) {
 		return;
 	}

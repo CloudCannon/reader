@@ -1,35 +1,27 @@
-import chalk from "chalk";
-import { fdir } from "fdir";
-import { join } from "path";
-import { parseFile } from "../parsers/parser.js";
-import log from "../util/logger.js";
-import { buildUrl } from "../util/url-builder.js";
+import { join } from 'node:path';
+import chalk from 'chalk';
+import { fdir } from 'fdir';
+import { parseFile } from '../parsers/parser.js';
+import log from '../util/logger.js';
+import { buildUrl } from '../util/url-builder.js';
 
 async function getCollectionFilePaths(collectionConfig, source) {
 	let crawler = new fdir()
 		.withBasePath()
-		.filter(
-			(filePath, isDirectory) =>
-				!isDirectory && !filePath.includes("/_defaults."),
-		);
+		.filter((filePath, isDirectory) => !isDirectory && !filePath.includes('/_defaults.'));
 
 	let crawlDirectory = join(source, collectionConfig.path);
 
 	// Work around for https://github.com/thecodrr/fdir/issues/92
 	// Globbing on `.` doesn't work, so we crawl using the absolute CWD
 	// and get the relative paths of results instead of the base paths.
-	if (
-		(crawlDirectory === "." || crawlDirectory === "./") &&
-		collectionConfig.glob
-	) {
+	if ((crawlDirectory === '.' || crawlDirectory === './') && collectionConfig.glob) {
 		crawler = crawler.withRelativePaths();
 		crawlDirectory = process.cwd();
 	}
 
 	const glob =
-		typeof collectionConfig.glob === "string"
-			? [collectionConfig.glob]
-			: collectionConfig.glob;
+		typeof collectionConfig.glob === 'string' ? [collectionConfig.glob] : collectionConfig.glob;
 
 	if (collectionConfig.glob) {
 		crawler.glob(glob);
@@ -49,19 +41,14 @@ function getSortedCollectionKeys(collectionsConfig) {
 
 export async function generateCollections(collectionsConfig, options) {
 	collectionsConfig = collectionsConfig || {};
-	const source = join(".", options?.source || "");
+	const source = join('.', options?.source || '');
 	const sortedCollectionKeys = getSortedCollectionKeys(collectionsConfig);
 	const seen = {};
 	const collections = {};
 
-	for (var i = 0; i < sortedCollectionKeys.length; i++) {
+	for (let i = 0; i < sortedCollectionKeys.length; i++) {
 		const key = sortedCollectionKeys[i];
-		collections[key] = await readCollection(
-			collectionsConfig[key],
-			key,
-			source,
-			seen,
-		);
+		collections[key] = await readCollection(collectionsConfig[key], key, source, seen);
 	}
 
 	return collections;
@@ -97,12 +84,7 @@ async function readCollection(collectionConfig, key, source, seen) {
 
 		seen[filePath] = true;
 
-		const collectionItem = await readCollectionItem(
-			filePath,
-			collectionConfig,
-			key,
-			source,
-		);
+		const collectionItem = await readCollectionItem(filePath, collectionConfig, key, source);
 		const collectionItems = await memo;
 
 		if (collectionItem) {

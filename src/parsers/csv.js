@@ -1,4 +1,4 @@
-import papa from "papaparse";
+import papa from 'papaparse';
 
 export function parse(raw) {
 	return papa.parse(raw, {

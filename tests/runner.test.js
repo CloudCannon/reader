@@ -1,6 +1,6 @@
-import { test } from "node:test";
-import assert from "node:assert";
-import runner from "../src/runner.js";
+import assert from 'node:assert';
+import { test } from 'node:test';
+import runner from '../src/runner.js';
 
 const mockRunner = {
 	...runner,
@@ -9,41 +9,40 @@ const mockRunner = {
 	write: async () => Promise.resolve(),
 };
 
-test("Handle error on generate", async () => {
+test('Handle error on generate', async () => {
 	const mockRunnerThrow = {
 		...mockRunner,
 		generate: async () => {
-			throw new Error("Test");
+			throw new Error('Test');
 		},
 	};
 
 	await assert.rejects(async () => await mockRunnerThrow.run(), {
-		name: "Error",
-		message: "Test",
+		name: 'Error',
+		message: 'Test',
 	});
 });
 
-test("Handle error on write", async () => {
+test('Handle error on write', async () => {
 	const mockRunnerThrow = {
 		...mockRunner,
 		write: async () => {
-			throw new Error("Test");
+			throw new Error('Test');
 		},
 	};
 
 	await assert.rejects(async () => await mockRunnerThrow.run(), {
-		name: "Error",
-		message: "Test",
+		name: 'Error',
+		message: 'Test',
 	});
 });
 
-test("Run", async () => {
+test('Run', async () => {
 	let resultInfo;
 	let resultOutputDir;
 
-	runner.readConfig = async () => Promise.resolve({ output: "over/here" });
-	runner.generate = async (config) =>
-		Promise.resolve({ ...config, info: true });
+	runner.readConfig = async () => Promise.resolve({ output: 'over/here' });
+	runner.generate = async (config) => Promise.resolve({ ...config, info: true });
 	runner.write = async (info, config) => {
 		resultInfo = info;
 		resultOutputDir = config;
@@ -52,6 +51,6 @@ test("Run", async () => {
 
 	await runner.run();
 
-	assert.deepStrictEqual(resultInfo, { output: "over/here", info: true });
-	assert.deepStrictEqual(resultOutputDir, "over/here/_cloudcannon");
+	assert.deepStrictEqual(resultInfo, { output: 'over/here', info: true });
+	assert.deepStrictEqual(resultOutputDir, 'over/here/_cloudcannon');
 });

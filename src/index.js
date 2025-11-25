@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import meow from "meow";
-import runner from "./runner.js";
-import { toggleLogging } from "./util/logger.js";
+import meow from 'meow';
+import runner from './runner.js';
+import { toggleLogging } from './util/logger.js';
 
 const cli = meow(
 	`
@@ -27,19 +27,19 @@ const cli = meow(
 		importMeta: import.meta,
 		flags: {
 			config: {
-				type: "string",
-				alias: "c",
+				type: 'string',
+				alias: 'c',
 			},
 			output: {
-				type: "string",
-				alias: "o",
+				type: 'string',
+				alias: 'o',
 			},
 			quiet: {
-				type: "boolean",
-				alias: "q",
+				type: 'boolean',
+				alias: 'q',
 			},
 		},
-	},
+	}
 );
 
 if (cli.flags.quiet) {
