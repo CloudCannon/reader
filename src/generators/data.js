@@ -1,13 +1,13 @@
+import { stat } from 'node:fs/promises';
+import { join } from 'node:path';
 import { fdir } from 'fdir';
-import { stat } from 'fs/promises';
-import { join } from 'path';
 import { parseFile } from '../parsers/parser.js';
 
 export async function generateData(dataConfig, options) {
 	dataConfig = dataConfig || {};
 	const source = join('.', options?.source || '');
 
-	return await Object.keys(dataConfig).reduce(async (memo, key) => {
+	return Object.keys(dataConfig).reduce(async (memo, key) => {
 		const datumConfig = dataConfig[key];
 		const datumPath = join(source, datumConfig.path);
 		const stats = await stat(datumPath);
@@ -31,7 +31,9 @@ async function readDataFiles(datumConfig, source) {
 		.crawl(join(source, datumConfig.path))
 		.withPromise();
 
-	return await Promise.all(filePaths.map(async (filePath) => {
-		return await readDataFile(filePath, datumConfig);
-	}));
+	return await Promise.all(
+		filePaths.map(async (filePath) => {
+			return await readDataFile(filePath, datumConfig);
+		})
+	);
 }

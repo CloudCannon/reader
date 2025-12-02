@@ -1,11 +1,10 @@
-import { relative } from 'path';
+import { relative } from 'node:path';
+import chalk from 'chalk';
 import { cosmiconfig } from 'cosmiconfig';
 import log from './util/logger.js';
-import chalk from 'chalk';
 
 function rewriteKey(object, oldKey, newKey) {
-	const canRename = Object.prototype.hasOwnProperty.call(object, oldKey)
-		&& !Object.prototype.hasOwnProperty.call(object, newKey);
+	const canRename = Object.hasOwn(object, oldKey) && !Object.hasOwn(object, newKey);
 
 	if (canRename) {
 		object[newKey] = object[oldKey];
@@ -44,14 +43,12 @@ async function readConfig(configPath) {
 			`${moduleName}.config.yaml`,
 			`${moduleName}.config.yml`,
 			`${moduleName}.config.js`,
-			`${moduleName}.config.cjs`
-		]
+			`${moduleName}.config.cjs`,
+		],
 	});
 
 	try {
-		const config = configPath
-			? await explorer.load(configPath)
-			: await explorer.search();
+		const config = configPath ? await explorer.load(configPath) : await explorer.search();
 
 		if (config) {
 			const relativeConfigPath = relative(process.cwd(), config.filepath);
@@ -72,9 +69,4 @@ async function readConfig(configPath) {
 	return false;
 }
 
-export {
-	migrateLegacyKeys,
-	readConfig
-};
-
-
+export { migrateLegacyKeys, readConfig };

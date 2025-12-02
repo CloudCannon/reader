@@ -1,38 +1,43 @@
-import test from 'ava';
+import assert from 'node:assert';
+import { test } from 'node:test';
 import runner from '../src/runner.js';
 
 const mockRunner = {
 	...runner,
 	readConfig: async () => Promise.resolve({}),
 	generate: async () => Promise.resolve({}),
-	write: async () => Promise.resolve()
+	write: async () => Promise.resolve(),
 };
 
-test('Handle error on generate', async (t) => {
+test('Handle error on generate', async () => {
 	const mockRunnerThrow = {
 		...mockRunner,
-		generate: async () => { throw new Error('Test'); },
+		generate: async () => {
+			throw new Error('Test');
+		},
 	};
 
-	await t.throwsAsync(
-		async () => await mockRunnerThrow.run(),
-		{ instanceOf: Error, message: 'Test' }
-	);
+	await assert.rejects(async () => await mockRunnerThrow.run(), {
+		name: 'Error',
+		message: 'Test',
+	});
 });
 
-test('Handle error on write', async (t) => {
+test('Handle error on write', async () => {
 	const mockRunnerThrow = {
 		...mockRunner,
-		write: async () => { throw new Error('Test'); },
+		write: async () => {
+			throw new Error('Test');
+		},
 	};
 
-	await t.throwsAsync(
-		async () => await mockRunnerThrow.run(),
-		{ instanceOf: Error, message: 'Test' }
-	);
+	await assert.rejects(async () => await mockRunnerThrow.run(), {
+		name: 'Error',
+		message: 'Test',
+	});
 });
 
-test('Run', async (t) => {
+test('Run', async () => {
 	let resultInfo;
 	let resultOutputDir;
 
@@ -42,10 +47,10 @@ test('Run', async (t) => {
 		resultInfo = info;
 		resultOutputDir = config;
 		return Promise.resolve();
-	}
+	};
 
 	await runner.run();
 
-	t.deepEqual(resultInfo, { output: 'over/here', info: true });
-	t.deepEqual(resultOutputDir, 'over/here/_cloudcannon');
+	assert.deepStrictEqual(resultInfo, { output: 'over/here', info: true });
+	assert.deepStrictEqual(resultOutputDir, 'over/here/_cloudcannon');
 });

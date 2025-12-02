@@ -9,15 +9,15 @@
 	"generator": null,
 	"source_editor": null,
 	"paths": {
-	  "uploads": null
+		"uploads": null
 	},
 	"base_url": null,
-	"time": "2000-11-22T00:00:00.000Z",
+	"time": "1970-01-01T00:00:00.000Z",
 	"cloudcannon": {
-	  "name": "cloudcannon-reader",
-	  "version": "0.0.1"
+		"name": "cloudcannon-reader",
+		"version": "0.0.1"
 	},
 	"version": "0.0.3",
 	"data": {},
 	"collections": {}
-  }
+}

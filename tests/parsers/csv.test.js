@@ -1,11 +1,12 @@
-import test from 'ava';
+import assert from 'node:assert';
+import { test } from 'node:test';
 import { parse } from '../../src/parsers/csv.js';
 
-test('Parse CSV', (t) => {
+test('Parse CSV', () => {
 	const raw = 'hi,name\ngreetings,Jim\nhello,Pam';
 
-	t.deepEqual(parse(raw), [
+	assert.deepStrictEqual(parse(raw), [
 		{ hi: 'greetings', name: 'Jim' },
-		{ hi: 'hello', name: 'Pam' }
+		{ hi: 'hello', name: 'Pam' },
 	]);
 });

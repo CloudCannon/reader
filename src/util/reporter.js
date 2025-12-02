@@ -15,7 +15,7 @@ export default function report(info) {
 
 	const collectionSummary = collectionKeys.map((collectionKey) => ({
 		key: collectionKey,
-		fileCount: info.collections[collectionKey]?.length || 0
+		fileCount: info.collections[collectionKey]?.length || 0,
 	}));
 
 	collectionSummary.forEach((collectionSummary) => {

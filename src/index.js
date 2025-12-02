@@ -4,7 +4,8 @@ import meow from 'meow';
 import runner from './runner.js';
 import { toggleLogging } from './util/logger.js';
 
-const cli = meow(`
+const cli = meow(
+	`
   Usage
     $ cloudcannon-reader [options]
 
@@ -21,23 +22,25 @@ const cli = meow(`
     $ cloudcannon-reader --config "cloudcannon.dev.config.json"
     $ cloudcannon-reader --output "public"
     $ CLOUDCANNON_CONFIG_PATH=src/cloudcannon.config.js cloudcannon-reader
-`, {
-	importMeta: import.meta,
-	flags: {
-		config: {
-			type: 'string',
-			alias: 'c'
+`,
+	{
+		importMeta: import.meta,
+		flags: {
+			config: {
+				type: 'string',
+				alias: 'c',
+			},
+			output: {
+				type: 'string',
+				alias: 'o',
+			},
+			quiet: {
+				type: 'boolean',
+				alias: 'q',
+			},
 		},
-		output: {
-			type: 'string',
-			alias: 'o'
-		},
-		quiet: {
-			type: 'boolean',
-			alias: 'q'
-		}
 	}
-});
+);
 
 if (cli.flags.quiet) {
 	toggleLogging(false);

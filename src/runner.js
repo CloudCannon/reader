@@ -1,19 +1,17 @@
-import { mkdir, writeFile } from 'fs/promises';
-import { join } from 'path';
-import { generateInfo } from './generators/info.js';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import chalk from 'chalk';
 import { readConfig } from './config.js';
+import { generateInfo } from './generators/info.js';
 import log from './util/logger.js';
 import report from './util/reporter.js';
-import chalk from 'chalk';
 
 export default {
 	readConfig,
 
-	generate: async function (config, options) {
-		return await generateInfo(config, options);
-	},
+	generate: async (config, options) => await generateInfo(config, options),
 
-	write: async function (info, outputDir, outputPath) {
+	write: async (info, outputDir, outputPath) => {
 		await mkdir(outputDir, { recursive: true });
 		await writeFile(outputPath, JSON.stringify(info, null, '\t'));
 	},
@@ -47,5 +45,5 @@ export default {
 			log(`⚠️ ${chalk.red('Failed to write')} ${chalk.red.bold(outputPath)}`, 'error');
 			throw e;
 		}
-	}
+	},
 };

@@ -1,10 +1,11 @@
-import test from 'ava';
+import assert from 'node:assert';
+import { test } from 'node:test';
 import { migrateLegacyKeys } from '../src/config.js';
 
-test('Migrate old configuration keys', (t) => {
+test('Migrate old configuration keys', () => {
 	const config = {
 		'data-config': {
-			locations: true
+			locations: true,
 		},
 		'collections-config': {
 			staff: {
@@ -17,29 +18,29 @@ test('Migrate old configuration keys', (t) => {
 				_singular_name: 'Staff member',
 				_disable_add: false,
 				_icon: 'person',
-				_add_options: []
-			}
+				_add_options: [],
+			},
 		},
 		_collection_groups: [
 			{
 				heading: 'Content',
-				collections: 'staff'
-			}
+				collections: 'staff',
+			},
 		],
 		'base-url': '/base',
 		_editor: {
-			default_path: '/landing/'
+			default_path: '/landing/',
 		},
 		_source_editor: {
-			theme: 'dawn'
-		}
+			theme: 'dawn',
+		},
 	};
 
 	migrateLegacyKeys(config);
 
-	t.deepEqual(config, {
+	assert.deepStrictEqual(config, {
 		data_config: {
-			locations: true
+			locations: true,
 		},
 		collections_config: {
 			staff: {
@@ -52,22 +53,21 @@ test('Migrate old configuration keys', (t) => {
 				singular_name: 'Staff member',
 				disable_add: false,
 				icon: 'person',
-				add_options: []
-			}
+				add_options: [],
+			},
 		},
 		collection_groups: [
 			{
 				heading: 'Content',
-				collections: 'staff'
-			}
+				collections: 'staff',
+			},
 		],
 		base_url: '/base',
 		editor: {
-			default_path: '/landing/'
+			default_path: '/landing/',
 		},
 		source_editor: {
-			theme: 'dawn'
-		}
+			theme: 'dawn',
+		},
 	});
 });
-

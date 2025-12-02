@@ -19,7 +19,7 @@ function logError(text) {
 const levels = {
 	info: logInfo,
 	warn: logWarning,
-	error: logError
+	error: logError,
 };
 
 export default function log(text, level = 'info') {

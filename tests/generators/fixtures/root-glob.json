@@ -3,9 +3,7 @@
 	"collections_config": {
 		"everything": {
 			"path": ".",
-			"glob": [
-				"tests/generators/fixtures/standard/**/nested/*"
-			],
+			"glob": ["tests/generators/fixtures/standard/**/nested/*"],
 			"output": true,
 			"url": "hello/{title|slugify}"
 		}

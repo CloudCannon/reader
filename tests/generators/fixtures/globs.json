@@ -11,10 +11,7 @@
 	"collections_config": {
 		"posts": {
 			"path": "_posts",
-			"glob": [
-				"tests/generators/fixtures/standard/_posts/2016-08-12-*",
-				"**/nested/*"
-			],
+			"glob": ["tests/generators/fixtures/standard/_posts/2016-08-12-*", "**/nested/*"],
 			"output": true,
 			"url": "hello/{title|slugify}"
 		},

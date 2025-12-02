@@ -1,9 +1,9 @@
+import { join } from 'node:path';
 import chalk from 'chalk';
 import { fdir } from 'fdir';
-import { join } from 'path';
-import { buildUrl } from '../util/url-builder.js';
-import log from '../util/logger.js';
 import { parseFile } from '../parsers/parser.js';
+import log from '../util/logger.js';
+import { buildUrl } from '../util/url-builder.js';
 
 async function getCollectionFilePaths(collectionConfig, source) {
 	let crawler = new fdir()
@@ -20,17 +20,14 @@ async function getCollectionFilePaths(collectionConfig, source) {
 		crawlDirectory = process.cwd();
 	}
 
-	const glob = typeof collectionConfig.glob === 'string'
-		? [collectionConfig.glob]
-		: collectionConfig.glob;
+	const glob =
+		typeof collectionConfig.glob === 'string' ? [collectionConfig.glob] : collectionConfig.glob;
 
 	if (collectionConfig.glob) {
 		crawler.glob(glob);
 	}
 
-	return crawler
-		.crawl(crawlDirectory)
-		.withPromise();
+	return crawler.crawl(crawlDirectory).withPromise();
 }
 
 // Sort on longest path first to ensure files are assigned to most specific collection
@@ -49,7 +46,7 @@ export async function generateCollections(collectionsConfig, options) {
 	const seen = {};
 	const collections = {};
 
-	for (var i = 0; i < sortedCollectionKeys.length; i++) {
+	for (let i = 0; i < sortedCollectionKeys.length; i++) {
 		const key = sortedCollectionKeys[i];
 		collections[key] = await readCollection(collectionsConfig[key], key, source, seen);
 	}
@@ -60,15 +57,16 @@ export async function generateCollections(collectionsConfig, options) {
 async function readCollectionItem(filePath, collectionConfig, key, source) {
 	try {
 		const data = await parseFile(filePath, collectionConfig.parser);
-		const itemPath = source && filePath.startsWith(source)
-			? filePath.slice(source.length + 1) // +1 for slash after source
-			: filePath;
+		const itemPath =
+			source && filePath.startsWith(source)
+				? filePath.slice(source.length + 1) // +1 for slash after source
+				: filePath;
 
 		return {
 			...data,
 			path: itemPath,
 			collection: key,
-			url: buildUrl(itemPath, data, collectionConfig)
+			url: buildUrl(itemPath, data, collectionConfig),
 		};
 	} catch (e) {
 		log(`   ${chalk.bold(filePath)} skipped due to ${chalk.red(e.message)}`);
