@@ -44,7 +44,7 @@
   "dependencies": {
     "@sindresorhus/slugify": "^3.0.0",
     "chalk": "^5.2.0",
-    "cosmiconfig": "^8.0.0",
+    "cosmiconfig": "^9.0.1",
     "fdir": "^6.0.1",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
