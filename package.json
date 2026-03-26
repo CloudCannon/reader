@@ -36,7 +36,7 @@
   "author": "CloudCannon <support@cloudcannon.com>",
   "license": "ISC",
   "devDependencies": {
-    "@biomejs/biome": "2.4.8"
+    "@biomejs/biome": "2.4.9"
   },
   "publishConfig": {
     "access": "public"
