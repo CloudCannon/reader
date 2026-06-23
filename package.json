@@ -47,7 +47,7 @@
     "cosmiconfig": "^9.0.1",
     "fdir": "^6.0.1",
     "gray-matter": "^4.0.3",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^5.1.0",
     "meow": "^14.1.0",
     "papaparse": "^5.3.2",
     "picomatch": "^2.3.1",
