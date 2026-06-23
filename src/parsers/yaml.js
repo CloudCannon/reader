@@ -1,5 +1,5 @@
-import yaml from 'js-yaml';
+import { load } from 'js-yaml';
 
 export function parse(raw) {
-	return yaml.load(raw);
+	return load(raw);
 }
