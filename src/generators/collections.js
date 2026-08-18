@@ -1,5 +1,5 @@
 import { join } from 'node:path';
-import chalk from 'chalk';
+import ansis from 'ansis';
 import { fdir } from 'fdir';
 import { parseFile } from '../parsers/parser.js';
 import log from '../util/logger.js';
@@ -61,7 +61,7 @@ async function readCollectionItem(filePath, collectionConfig, key, source) {
 			url: buildUrl(itemPath, data, collectionConfig),
 		};
 	} catch (e) {
-		log(`   ${chalk.bold(filePath)} skipped due to ${chalk.red(e.message)}`);
+		log(`   ${ansis.bold(filePath)} skipped due to ${ansis.red(e.message)}`);
 	}
 }
 

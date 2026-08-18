@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import chalk from 'chalk';
+import ansis from 'ansis';
 import { readConfig } from './config.js';
 import { generateInfo } from './generators/info.js';
 import log from './util/logger.js';
@@ -17,7 +17,7 @@ export default {
 	},
 
 	run: async function (flags, pkg) {
-		log(`⭐️ Starting ${chalk.blue('cloudcannon-reader')}`);
+		log(`⭐️ Starting ${ansis.blue('cloudcannon-reader')}`);
 
 		const config = await this.readConfig(flags?.config || process.env.CLOUDCANNON_CONFIG_PATH);
 		if (config === false) {
@@ -33,16 +33,16 @@ export default {
 		try {
 			info = await this.generate(config, { version: pkg?.version });
 		} catch (e) {
-			log(`⚠️ ${chalk.red('Failed to generate')} ${chalk.red.bold(outputPath)}`, 'error');
+			log(`⚠️ ${ansis.red('Failed to generate')} ${ansis.red.bold(outputPath)}`, 'error');
 			throw e;
 		}
 
 		try {
 			await this.write(info, outputDir, outputPath);
 			report(info);
-			log(`🏁 Generated ${chalk.bold(outputPath)} ${chalk.green('successfully')}`);
+			log(`🏁 Generated ${ansis.bold(outputPath)} ${ansis.green('successfully')}`);
 		} catch (e) {
-			log(`⚠️ ${chalk.red('Failed to write')} ${chalk.red.bold(outputPath)}`, 'error');
+			log(`⚠️ ${ansis.red('Failed to write')} ${ansis.red.bold(outputPath)}`, 'error');
 			throw e;
 		}
 	},

@@ -1,6 +1,7 @@
 import { relative } from 'node:path';
-import chalk from 'chalk';
-import { cosmiconfig } from 'cosmiconfig';
+import ansis from 'ansis';
+import { lilconfig } from 'lilconfig';
+import { parse as parseYaml } from './parsers/yaml.js';
 import log from './util/logger.js';
 
 function rewriteKey(object, oldKey, newKey) {
@@ -37,7 +38,7 @@ function migrateLegacyKeys(config) {
 
 async function readConfig(configPath) {
 	const moduleName = 'cloudcannon';
-	const explorer = cosmiconfig(moduleName, {
+	const explorer = lilconfig(moduleName, {
 		searchPlaces: [
 			`${moduleName}.config.json`,
 			`${moduleName}.config.yaml`,
@@ -45,6 +46,10 @@ async function readConfig(configPath) {
 			`${moduleName}.config.js`,
 			`${moduleName}.config.cjs`,
 		],
+		loaders: {
+			'.yaml': (_filePath, content) => parseYaml(content),
+			'.yml': (_filePath, content) => parseYaml(content),
+		},
 	});
 
 	try {
@@ -52,16 +57,16 @@ async function readConfig(configPath) {
 
 		if (config) {
 			const relativeConfigPath = relative(process.cwd(), config.filepath);
-			log(`⚙️ Using config file at ${chalk.bold(relativeConfigPath)}`);
+			log(`⚙️ Using config file at ${ansis.bold(relativeConfigPath)}`);
 			return migrateLegacyKeys(config.config || {});
 		}
 	} catch (e) {
 		if (e.code === 'ENOENT') {
-			log(`⚠️ ${chalk.red('No config file found at')} ${chalk.red.bold(configPath)}`);
+			log(`⚠️ ${ansis.red('No config file found at')} ${ansis.red.bold(configPath)}`);
 			return false;
 		}
 
-		log(`⚠️ ${chalk.red('Error reading config file')}`, 'error');
+		log(`⚠️ ${ansis.red('Error reading config file')}`, 'error');
 		throw e;
 	}
 
