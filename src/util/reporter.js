@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import ansis from 'ansis';
 import log from './logger.js';
 
 function cheapPlural(amount, str) {
@@ -20,13 +20,13 @@ export default function report(info) {
 
 	collectionSummary.forEach((collectionSummary) => {
 		const countStr = cheapPlural(collectionSummary.fileCount, 'file');
-		log(`   ${chalk.bold(collectionSummary.key)} with ${countStr}`);
+		log(`   ${ansis.bold(collectionSummary.key)} with ${countStr}`);
 	});
 
 	const dataStr = cheapPlural(dataKeys.length, 'data set');
 	log(`💾 Processed ${dataStr}${dataKeys.length ? ':' : ''}`);
 
 	dataKeys.forEach((key) => {
-		log(`   ${chalk.bold(key)}`);
+		log(`   ${ansis.bold(key)}`);
 	});
 }
