@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@11ty/gray-matter": "^3.0.0",
-    "@sindresorhus/slugify": "^3.0.0",
+    "@sindresorhus/slugify": "^4.0.0",
     "ansis": "^4.3.1",
     "dot-properties": "^1.1.1",
     "fdir": "^6.0.1",
